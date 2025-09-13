@@ -1,0 +1,21 @@
+{
+    "name": "Platform.Mobile",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8102e406ece411f45885502195894b09"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
