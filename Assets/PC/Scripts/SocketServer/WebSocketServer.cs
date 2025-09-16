@@ -63,9 +63,9 @@ namespace SocketServer
             {
                 while (IsActive)
                 {
-                    TcpClient client = _listener.AcceptTcpClient();
+                    TcpClient client = _listener.AcceptTcpClientAsync().GetAwaiter().GetResult();
 
-                    if (!client.Connected)
+                    if (!IsActive || !client.Connected)
                         continue;
 
                     _connection = new TcpConnection(client)
