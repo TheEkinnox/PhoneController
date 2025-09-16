@@ -173,7 +173,7 @@ namespace Shared.WebSocket
             _messageQueue.Enqueue(new WebSocketMessage(isText ? WebSocketOpCode.Text : WebSocketOpCode.Binary, data));
         }
 
-        protected void Close(TcpConnection connection)
+        protected static void Close(TcpConnection connection)
         {
             if (connection?.Stream?.CanWrite is true)
                 SendImpl(connection.Stream, WebSocketOpCode.Close, Array.Empty<byte>());
@@ -181,7 +181,7 @@ namespace Shared.WebSocket
             connection?.Close();
         }
 
-        private void SendImpl(NetworkStream stream, WebSocketOpCode opCode, byte[] payload)
+        private static void SendImpl(NetworkStream stream, WebSocketOpCode opCode, byte[] payload)
         {
             Debug.Assert(stream.CanWrite);
 
