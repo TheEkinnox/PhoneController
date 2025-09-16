@@ -1,23 +1,35 @@
 ﻿using System;
-using UnityEngine;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using JetBrains.Annotations;
 using Shared.WebSocket;
+using UnityEngine;
 
 namespace SocketClient
 {
     /// <summary>
-    /// A (partially) RFC6455 compliant socket client
-    /// See <see href="https://datatracker.ietf.org/doc/html/rfc6455"/>
+    ///     A (partially) RFC6455 compliant socket client
+    ///     See <see href="https://datatracker.ietf.org/doc/html/rfc6455" />
     /// </summary>
     [Serializable]
     public class WebSocketClient : WebSocketBase
     {
-        private TcpConnection _connection;
+        private static WebSocketClient _instance;
 
         private Thread _clientThread;
+        private TcpConnection _connection;
         private string _targetOrigin;
+
+        [NotNull]
+        public static WebSocketClient Instance
+        {
+            get
+            {
+                _instance ??= new WebSocketClient();
+                return _instance;
+            }
+        }
 
         public void Connect(string host, int port)
         {

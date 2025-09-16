@@ -19,7 +19,7 @@ public class LoginScreenController : MonoBehaviour
     private void Awake()
 #endif
     {
-        _client = new WebSocketClient();
+        _client = WebSocketClient.Instance;
         _client.onOpen.AddListener(OnConnect);
         _client.onClose.AddListener(OnDisconnect);
 

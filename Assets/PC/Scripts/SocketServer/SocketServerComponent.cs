@@ -1,17 +1,20 @@
 ﻿using System.Net.Sockets;
-using System.Text;
 using Shared.Scripts;
 using Shared.WebSocket;
 using UnityEngine;
 
 namespace SocketServer
 {
+    [DefaultExecutionOrder(ExecutionOrder)]
     public class SocketServerComponent : MonoBehaviour
     {
+        public const int ExecutionOrder = -1500;
+
         [SerializeField] private WebSocketServer server = new();
 
         public WebSocketOpenEvent OnOpen => server.onOpen;
-        public WebSocketMessageEvent OnMessage => server.onMessage;
+        public WebSocketTextMessageEvent OnTextMessage => server.onTextMessage;
+        public WebSocketBinaryMessageEvent OnBinaryMessage => server.onBinaryMessage;
         public WebSocketErrorEvent OnError => server.onError;
         public WebSocketCloseEvent OnClose => server.onClose;
 
@@ -31,13 +34,8 @@ namespace SocketServer
             OnOpen.AddListener(() => { Debug.Log("Client connected"); });
             OnClose.AddListener(() => { Debug.Log("Client disconnected"); });
             OnError.AddListener(Debug.LogError);
-            OnMessage.AddListener((isText, message) =>
-            {
-                if (isText)
-                    Debug.Log($"Text message received: {Encoding.UTF8.GetString(message)}");
-                else
-                    Debug.Log($"Binary message received: {message.Flatten()}");
-            });
+            OnTextMessage.AddListener(message => { Debug.Log($"Text message received: {message}"); });
+            OnBinaryMessage.AddListener(message => { Debug.Log($"Binary message received: {message.Flatten()}"); });
 #endif
 
             server.Start();

@@ -11,7 +11,12 @@ namespace Shared.WebSocket
     }
 
     [Serializable]
-    public class WebSocketMessageEvent : UnityEvent<bool /*isText*/, byte[]>
+    public class WebSocketTextMessageEvent : UnityEvent<string>
+    {
+    }
+
+    [Serializable]
+    public class WebSocketBinaryMessageEvent : UnityEvent<byte[]>
     {
     }
 

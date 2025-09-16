@@ -39,7 +39,8 @@ namespace Shared.WebSocket
         private ConcurrentQueue<WebSocketMessage> _messageQueue = new();
 
         [Space] public WebSocketOpenEvent onOpen = new();
-        public WebSocketMessageEvent onMessage = new();
+        public WebSocketTextMessageEvent onTextMessage = new();
+        public WebSocketBinaryMessageEvent onBinaryMessage = new();
         public WebSocketErrorEvent onError = new();
         public WebSocketCloseEvent onClose = new();
 
@@ -74,6 +75,8 @@ namespace Shared.WebSocket
 
         protected void SendEvents(Socket socket, params TcpConnection[] connections)
         {
+            _messageQueue.Clear();
+
             while (socket.Connected)
             {
                 while (_messageQueue.TryDequeue(out WebSocketMessage message))
@@ -143,10 +146,10 @@ namespace Shared.WebSocket
                         onOpen?.Invoke();
                         break;
                     case WebSocketEventType.Text:
-                        onMessage?.Invoke(true, socketEvent.data);
+                        onTextMessage?.Invoke(Encoding.UTF8.GetString(socketEvent.data));
                         break;
                     case WebSocketEventType.Binary:
-                        onMessage?.Invoke(false, socketEvent.data);
+                        onBinaryMessage?.Invoke(socketEvent.data);
                         break;
                     case WebSocketEventType.Error:
                         onError?.Invoke(Encoding.UTF8.GetString(socketEvent.data));
@@ -280,7 +283,7 @@ namespace Shared.WebSocket
             frame.Data = buffer;
 
 #if DEBUG
-            Debug.Log($"Received data frame\n{buffer.Flatten()}");
+//            Debug.Log($"Received data frame\n{buffer.Flatten()}");
 #endif
             return frame;
         }
