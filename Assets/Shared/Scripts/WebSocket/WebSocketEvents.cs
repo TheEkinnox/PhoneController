@@ -1,0 +1,62 @@
+﻿using System;
+using System.Text;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace Shared.WebSocket
+{
+    [Serializable]
+    public class WebSocketOpenEvent : UnityEvent
+    {
+    }
+
+    [Serializable]
+    public class WebSocketMessageEvent : UnityEvent<bool /*isText*/, byte[]>
+    {
+    }
+
+    [Serializable]
+    public class WebSocketErrorEvent : UnityEvent<string>
+    {
+    }
+
+    [Serializable]
+    public class WebSocketCloseEvent : UnityEvent
+    {
+    }
+
+    public enum WebSocketEventType
+    {
+        Open,
+        Text,
+        Binary,
+        Error,
+        Close
+    }
+
+    public readonly struct WebSocketEvent
+    {
+        public readonly WebSocketEventType type;
+        public readonly byte[] data;
+
+        public WebSocketEvent(WebSocketEventType type)
+        {
+            Debug.Assert(type is WebSocketEventType.Open or WebSocketEventType.Close);
+            this.type = type;
+            data = null;
+        }
+
+        public WebSocketEvent(WebSocketEventType type, byte[] data)
+        {
+            this.type = type;
+            this.data = data;
+        }
+
+        public WebSocketEvent(WebSocketEventType type, string data)
+        {
+            Debug.Assert(type is WebSocketEventType.Text or WebSocketEventType.Error);
+            this.type = type;
+            this.data = Encoding.UTF8.GetBytes(data);
+        }
+    }
+}
