@@ -440,8 +440,8 @@ MonoBehaviour:
     onClose:
       m_PersistentCalls:
         m_Calls: []
-    port: 5000
-    checkOrigin: 0
+    port: 443
+    checkOrigin: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
