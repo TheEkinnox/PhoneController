@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Sockets;
+using System.Text;
 using Shared.Scripts;
 using Shared.WebSocket;
 using UnityEngine;
@@ -40,6 +41,7 @@ namespace SocketServer
 #endif
 
             server.Start();
+            Debug.Log($"Local IP: {WebSocketUtils.GetLocalIPAddress(AddressFamily.InterNetwork)}");
         }
 
         private void FixedUpdate()
