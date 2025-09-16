@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -41,6 +43,23 @@ namespace Shared.WebSocket
                 headers.Add(match.Groups[1].Value.Trim(), match.Groups[2].Value.Trim());
 
             return headers;
+        }
+
+        public static IPAddress GetLocalIPAddress(AddressFamily family)
+        {
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == family)
+                {
+                    return ip;
+                }
+            }
+
+#if DEBUG
+            Debug.LogError("No network adapters with a valid IP for the given address family found");
+#endif
+            return IPAddress.None;
         }
     }
 }
