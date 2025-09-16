@@ -44,6 +44,7 @@ namespace SocketServer
         {
             IsActive = false;
             _serverThread?.Interrupt();
+            _serverThread?.Join();
 
             DispatchEvents();
 
