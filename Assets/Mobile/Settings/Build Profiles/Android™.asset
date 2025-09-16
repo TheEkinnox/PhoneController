@@ -19,7 +19,9 @@ MonoBehaviour:
   m_PlatformBuildProfile:
     rid: 2179955819770282074
   m_OverrideGlobalSceneList: 1
-  m_Scenes: []
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Mobile/Scenes/MobileMain.unity
   m_ScriptingDefines:
   - PLATFORM_MOBILE
   m_PlayerSettingsYaml:
