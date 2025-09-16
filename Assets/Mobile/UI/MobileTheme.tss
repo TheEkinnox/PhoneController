@@ -1,0 +1,5 @@
+@import url("/Assets/Shared/UI Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss");
+
+@import url("MobileStyle.uss");
+
+VisualElement {}
