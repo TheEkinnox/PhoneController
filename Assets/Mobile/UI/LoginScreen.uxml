@@ -1,0 +1,9 @@
+﻿<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" data-source-type="LoginScreenController, Platform.Mobile" style="flex-grow: 1; justify-content: center;">
+        <ui:VisualElement name="ManualConnectionGroup" style="align-items: center; align-self: center; width: 60%; justify-content: center; flex-direction: row;">
+            <ui:TextField placeholder-text="127.0.0.1" name="txt-address" hide-placeholder-on-focus="true" style="flex-grow: 1;" />
+            <ui:Button text="Connect" name="btn-connect" enable-rich-text="false" double-click-selects-word="false" triple-click-selects-line="false" />
+        </ui:VisualElement>
+        <ui:Label name="lbl-status" />
+    </ui:VisualElement>
+</ui:UXML>
