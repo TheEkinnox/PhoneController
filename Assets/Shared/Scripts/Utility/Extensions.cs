@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Shared.Scripts
+namespace Shared.Utility
 {
     public static class Extensions
     {

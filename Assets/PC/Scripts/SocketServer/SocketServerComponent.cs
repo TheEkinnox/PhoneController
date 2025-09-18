@@ -1,5 +1,5 @@
 ﻿using System.Net.Sockets;
-using Shared.Scripts;
+using Shared.Utility;
 using Shared.WebSocket;
 using UnityEngine;
 

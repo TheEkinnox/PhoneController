@@ -1,5 +1,5 @@
 ﻿using System;
-using Shared.Scripts;
+using Shared.Utility;
 using UnityEngine;
 
 namespace Shared.WebSocket

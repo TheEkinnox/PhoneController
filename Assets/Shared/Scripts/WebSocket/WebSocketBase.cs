@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Shared.Scripts;
+using Shared.Utility;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
