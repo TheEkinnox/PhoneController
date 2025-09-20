@@ -10,8 +10,8 @@ using UnityEngine;
 namespace SocketClient
 {
     /// <summary>
-    ///     A (partially) RFC6455 compliant socket client
-    ///     See <see href="https://datatracker.ietf.org/doc/html/rfc6455" />
+    /// A (partially) RFC6455 compliant socket client
+    /// See <see href="https://datatracker.ietf.org/doc/html/rfc6455" />
     /// </summary>
     [Serializable]
     public class WebSocketClient : WebSocketBase
@@ -23,14 +23,7 @@ namespace SocketClient
         private string _targetOrigin;
 
         [NotNull]
-        public static WebSocketClient Instance
-        {
-            get
-            {
-                _instance ??= new WebSocketClient();
-                return _instance;
-            }
-        }
+        public static WebSocketClient Instance => _instance ??= new();
 
         public void Connect(string host, int port)
         {
