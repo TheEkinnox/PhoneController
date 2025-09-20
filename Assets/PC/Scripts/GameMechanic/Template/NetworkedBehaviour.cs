@@ -16,7 +16,10 @@ public abstract class NetworkedBehaviour : MonoBehaviour
 
     private void OnMessage(string message)
     {
-        HandleMessage(new NetworkedObject(message));
+        NetworkedObject networkedObject = new(message);
+
+        if (networkedObject.IsValid())
+            HandleMessage(new NetworkedObject(message));
     }
 
     protected abstract void HandleMessage(NetworkedObject data);

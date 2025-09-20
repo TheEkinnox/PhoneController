@@ -28,6 +28,11 @@ public struct NetworkedObject
         return type == GetTypeId<T>();
     }
 
+    public bool IsValid()
+    {
+        return type != 0;
+    }
+
     public T GetData<T>()
     {
         Debug.Assert(Is<T>());
