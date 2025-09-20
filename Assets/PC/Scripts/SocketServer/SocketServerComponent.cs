@@ -11,6 +11,7 @@ namespace SocketServer
         public const int ExecutionOrder = -1500;
 
         [SerializeField] private WebSocketServer server = new();
+        [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
         public WebSocketOpenEvent OnOpen => server.onOpen;
         public WebSocketTextMessageEvent OnTextMessage => server.onTextMessage;
@@ -42,9 +43,22 @@ namespace SocketServer
             Debug.Log($"Local IP: {WebSocketUtils.GetLocalIPAddress(AddressFamily.InterNetwork)}");
         }
 
+        private void Update()
+        {
+            if (dispatchMode == WebSocketEventDispatchMode.Update)
+                server.DispatchEvents();
+        }
+
         private void FixedUpdate()
         {
-            server.DispatchEvents();
+            if (dispatchMode == WebSocketEventDispatchMode.FixedUpdate)
+                server.DispatchEvents();
+        }
+
+        private void LateUpdate()
+        {
+            if (dispatchMode == WebSocketEventDispatchMode.LateUpdate)
+                server.DispatchEvents();
         }
 
         private void OnApplicationQuit()

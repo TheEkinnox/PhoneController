@@ -12,6 +12,7 @@ public class LoginScreenController : MonoBehaviour
     private Label _statusLabel;
 
     private WebSocketClient _client;
+    [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
 #if UNITY_EDITOR
     private void OnEnable()
@@ -40,9 +41,22 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.clicked += Connect;
     }
 
+    private void Update()
+    {
+        if (dispatchMode == WebSocketEventDispatchMode.Update)
+            _client.DispatchEvents();
+    }
+
     private void FixedUpdate()
     {
-        _client.DispatchEvents();
+        if (dispatchMode == WebSocketEventDispatchMode.FixedUpdate)
+            _client.DispatchEvents();
+    }
+
+    private void LateUpdate()
+    {
+        if (dispatchMode == WebSocketEventDispatchMode.LateUpdate)
+            _client.DispatchEvents();
     }
 
 #if UNITY_EDITOR

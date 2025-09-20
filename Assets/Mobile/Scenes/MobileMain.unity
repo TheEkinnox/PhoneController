@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f8dae19be383d4697d0fd5ec301e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.Mobile::GyroscopeRotation
-  testObj: {fileID: 330585543}
 --- !u!4 &262767566
 Transform:
   m_ObjectHideFlags: 0
@@ -496,6 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bdb4f9d5139fa4dbc0bf7489849c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.Mobile::LoginScreenController
+  dispatchMode: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

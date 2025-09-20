@@ -39,6 +39,13 @@ namespace Shared.WebSocket
         Close
     }
 
+    public enum WebSocketEventDispatchMode
+    {
+        Update,
+        FixedUpdate,
+        LateUpdate
+    }
+
     public readonly struct WebSocketEvent
     {
         public readonly WebSocketEventType type;
