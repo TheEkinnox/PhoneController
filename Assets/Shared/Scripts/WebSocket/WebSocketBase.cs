@@ -79,14 +79,22 @@ namespace Shared.WebSocket
 
             while (socket.Connected)
             {
-                while (_messageQueue.TryDequeue(out WebSocketMessage message))
+                while (socket.Connected && _messageQueue.TryDequeue(out WebSocketMessage message))
                 {
                     foreach (TcpConnection connection in connections)
                     {
+                        if (!socket.Connected)
+                            break;
+
+                        if (!connection.Client.Connected)
+                            continue;
+
                         SendImpl(connection.Stream, message.opCode, message.data);
                     }
                 }
             }
+
+            _messageQueue.Clear();
         }
 
         protected void ReceiveEvents(TcpConnection connection)
