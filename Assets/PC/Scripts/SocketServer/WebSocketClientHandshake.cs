@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using Shared.Utility;
 using Shared.WebSocket;
 using UnityEngine;
 
@@ -131,9 +132,7 @@ namespace SocketServer
                     status = "403 Forbidden";
             }
 
-#if DEBUG
-            Debug.Log(errorMessage);
-#endif
+            TrueDebug.Log(errorMessage);
 
             StringBuilder response = new();
             response.Append($"{WebSocketUtils.HttpStr} {status}{WebSocketUtils.EOL}");

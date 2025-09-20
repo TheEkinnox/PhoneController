@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using Shared.Utility;
 using UnityEngine;
 
 namespace Shared.WebSocket
@@ -56,9 +57,7 @@ namespace Shared.WebSocket
                 }
             }
 
-#if DEBUG
-            Debug.LogError("No network adapters with a valid IP for the given address family found");
-#endif
+            TrueDebug.LogError("No network adapters with a valid IP for the given address family found");
             return IPAddress.None;
         }
     }

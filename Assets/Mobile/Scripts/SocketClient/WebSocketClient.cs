@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using JetBrains.Annotations;
+using Shared.Utility;
 using Shared.WebSocket;
 using UnityEngine;
 
@@ -66,9 +67,7 @@ namespace SocketClient
 
         private void HandleConnection(string host, int port)
         {
-#if DEBUG
-            Debug.Log($"Client thread started - Host: {host}, Port: {port}");
-#endif
+            TrueDebug.Log($"Client thread started - Host: {host}, Port: {port}");
 
             Thread sendThread = null;
             try
@@ -119,16 +118,12 @@ namespace SocketClient
             catch (ThreadInterruptedException)
             {
                 // This is fine - We just stopped the thread
-#if DEBUG
-                Debug.Log("Client thread stopped");
-#endif
+                TrueDebug.Log("Client thread stopped");
             }
             catch (ThreadAbortException e)
             {
                 // This might be fine - Still log the message just in case
-#if DEBUG
-                Debug.LogWarning($"Client thread aborted\n{e.Message}");
-#endif
+                TrueDebug.LogWarning($"Client thread aborted\n{e.Message}");
             }
             catch (Exception e)
             {
@@ -157,9 +152,7 @@ namespace SocketClient
             request.Append($"Sec-WebSocket-Version: 13{WebSocketUtils.EOL}");
             request.Append($"Origin: {origin}{WebSocketUtils.EOL}");
 
-#if DEBUG
-            Debug.Log($"Created handshake:\n{request}");
-#endif
+            TrueDebug.Log($"Created handshake:\n{request}");
             return Encoding.UTF8.GetBytes(request.ToString());
         }
     }

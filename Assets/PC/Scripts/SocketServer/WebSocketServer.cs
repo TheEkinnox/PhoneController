@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Shared.Utility;
 using UnityEngine;
 using Shared.WebSocket;
 
@@ -54,9 +55,7 @@ namespace SocketServer
 
         private void HandleConnection()
         {
-#if DEBUG
-            Debug.Log($"Server thread started - Endpoint: {_listener.LocalEndpoint}");
-#endif
+            TrueDebug.Log($"Server thread started - Endpoint: {_listener.LocalEndpoint}");
 
             Thread sendThread = null;
             try
@@ -118,16 +117,12 @@ namespace SocketServer
             catch (ThreadInterruptedException)
             {
                 // This is fine - We voluntarily killed the thread
-#if DEBUG
-                Debug.Log("Server thread stopped");
-#endif
+                TrueDebug.Log("Server thread stopped");
             }
             catch (ThreadAbortException e)
             {
                 // This might be fine - Still log the message just in case
-#if DEBUG
-                Debug.LogWarning($"Server thread aborted\n{e.Message}");
-#endif
+                TrueDebug.LogWarning($"Server thread aborted\n{e.Message}");
             }
             catch (Exception e)
             {

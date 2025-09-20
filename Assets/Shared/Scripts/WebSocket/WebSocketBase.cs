@@ -97,17 +97,13 @@ namespace Shared.WebSocket
 
                 if (frame == null)
                 {
-#if DEBUG
-                    Debug.LogWarning("Frame dropped");
-#endif
+                    TrueDebug.LogWarning("Frame dropped");
                     continue;
                 }
 
                 if (!frame.IsFinalFragment)
                 {
-#if DEBUG
-                    Debug.LogWarning("Fragmented frame received");
-#endif
+                    TrueDebug.LogWarning("Fragmented frame received");
                     continue;
                 }
 
@@ -123,9 +119,7 @@ namespace Shared.WebSocket
                         connection.Close();
                         break;
                     default:
-#if DEBUG
-                        Debug.LogWarning("Unknown opcode: " + frame.OpCode);
-#endif
+                        TrueDebug.LogWarning("Unknown opcode: " + frame.OpCode);
                         break;
                 }
             }
@@ -158,9 +152,7 @@ namespace Shared.WebSocket
                         onClose?.Invoke();
                         break;
                     default:
-#if DEBUG
-                        Debug.LogWarning($"Unhandled event type: {socketEvent.type}");
-#endif
+                        TrueDebug.LogWarning($"Unhandled event type: {socketEvent.type}");
                         break;
                 }
             }
@@ -191,9 +183,7 @@ namespace Shared.WebSocket
             WebSocketDataFrame frame = new(opCode, payload);
             stream.Write(frame.Data);
 
-#if DEBUG
-            Debug.Log($"{opCode} frame sent\n{(opCode == WebSocketOpCode.Text ? Encoding.UTF8.GetString(payload) : payload.Flatten())}");
-#endif
+            TrueDebug.Log($"{opCode} frame sent\n{(opCode == WebSocketOpCode.Text ? Encoding.UTF8.GetString(payload) : payload.Flatten())}");
         }
 
         protected bool WaitForBytes(TcpConnection connection, int count, int timeout = WebSocketUtils.DefaultTimeout)
@@ -282,9 +272,7 @@ namespace Shared.WebSocket
             connection.Stream.ReadExactly(buffer, offset, frame.PayloadLength);
             frame.Data = buffer;
 
-#if DEBUG
-//            Debug.Log($"Received data frame\n{buffer.Flatten()}");
-#endif
+            // TrueDebug.Log($"Received data frame\n{buffer.Flatten()}");
             return frame;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Shared.Utility;
-using UnityEngine;
 
 namespace Shared.WebSocket
 {
@@ -90,9 +89,7 @@ namespace Shared.WebSocket
                 Array.Copy(payload, 0, Data, payloadOffset, PayloadLength);
             }
 
-#if DEBUG
-            Debug.Log($"Created data frame\n{Data.Flatten()}");
-#endif
+            TrueDebug.Log($"Created data frame\n{Data.Flatten()}");
         }
 
         public void ParseHeader(byte[] bytes)
