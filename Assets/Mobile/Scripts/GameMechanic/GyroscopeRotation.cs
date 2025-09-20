@@ -7,7 +7,11 @@ public class GyroscopeRotation : MonoBehaviour
     private bool _isGyroSupported;
     private Quaternion _lastRotation;
 
+#if UNITY_EDITOR
+    private void OnApplicationFocus(bool hasFocus)
+#else
     private void Start()
+#endif
     {
         _isGyroSupported = SystemInfo.supportsGyroscope;
 
