@@ -4,31 +4,40 @@ using UnityEngine;
 [Serializable]
 public struct NetworkedObject
 {
-    [SerializeField] private int _type;
-    [SerializeField] private string _data;
+    private static readonly string sentinel = $"\x8c{nameof(NetworkedObject).GetHashCode():X}\x8c";
+
+    [SerializeField] private int type;
+    [SerializeField] private string data;
 
     public NetworkedObject(string data)
     {
-        _type = 0;
-        _data = null;
-        this = JsonUtility.FromJson<NetworkedObject>(data);
+        type = 0;
+        this.data = null;
+
+        if (data.Length > sentinel.Length && data.StartsWith(sentinel))
+            this = JsonUtility.FromJson<NetworkedObject>(data[sentinel.Length..]);
+    }
+
+    private static int GetTypeId<T>()
+    {
+        return (typeof(T).FullName ?? typeof(T).Name).GetHashCode();
     }
 
     public bool Is<T>()
     {
-        return _type == (typeof(T).FullName?.GetHashCode() ?? 0);
+        return type == GetTypeId<T>();
     }
 
     public T GetData<T>()
     {
         Debug.Assert(Is<T>());
-        return JsonUtility.FromJson<T>(_data);
+        return JsonUtility.FromJson<T>(data);
     }
 
     public NetworkedObject SetData<T>(T data)
     {
-        _type = typeof(T).FullName?.GetHashCode() ?? 0;
-        _data = JsonUtility.ToJson(data);
+        type = GetTypeId<T>();
+        this.data = JsonUtility.ToJson(data);
         return this;
     }
 
@@ -39,6 +48,6 @@ public struct NetworkedObject
 
     public static string MakePayload<T>(T data)
     {
-        return new NetworkedObject().SetData(data).ToString();
+        return $"{sentinel}{new NetworkedObject().SetData(data)}";
     }
 }
