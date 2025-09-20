@@ -1,9 +1,5 @@
-﻿// using System;
-
-using System.Diagnostics;
-using UnityEngine;
-using Debug = UnityEngine.Debug;
-using Object = UnityEngine.Object;
+﻿using UnityEngine;
+using Conditional = System.Diagnostics.ConditionalAttribute;
 
 namespace Shared.Utility
 {
