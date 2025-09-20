@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using UnityEngine;
+using Shared.Utility;
 using UnityEngine.Events;
 
 namespace Shared.WebSocket
@@ -53,7 +53,7 @@ namespace Shared.WebSocket
 
         public WebSocketEvent(WebSocketEventType type)
         {
-            Debug.Assert(type is WebSocketEventType.Open or WebSocketEventType.Close);
+            TrueDebug.Assert(type is WebSocketEventType.Open or WebSocketEventType.Close);
             this.type = type;
             data = null;
         }
@@ -66,7 +66,7 @@ namespace Shared.WebSocket
 
         public WebSocketEvent(WebSocketEventType type, string data)
         {
-            Debug.Assert(type is WebSocketEventType.Text or WebSocketEventType.Error);
+            TrueDebug.Assert(type is WebSocketEventType.Text or WebSocketEventType.Error);
             this.type = type;
             this.data = Encoding.UTF8.GetBytes(data);
         }

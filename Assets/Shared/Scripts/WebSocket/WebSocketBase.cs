@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using Shared.Utility;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Shared.WebSocket
 {
@@ -17,7 +16,7 @@ namespace Shared.WebSocket
                 return;
 
             int readBytes = stream.Read(bytes, offset, count);
-            Debug.Assert(readBytes == count);
+            TrueDebug.Assert(readBytes == count);
         }
     }
 
@@ -186,7 +185,7 @@ namespace Shared.WebSocket
 
         private static void SendImpl(NetworkStream stream, WebSocketOpCode opCode, byte[] payload)
         {
-            Debug.Assert(stream.CanWrite);
+            TrueDebug.Assert(stream.CanWrite);
 
             WebSocketDataFrame frame = new(opCode, payload);
             stream.Write(frame.Data);

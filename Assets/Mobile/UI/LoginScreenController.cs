@@ -1,4 +1,5 @@
-﻿using Shared.WebSocket;
+﻿using Shared.Utility;
+using Shared.WebSocket;
 using SocketClient;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -72,7 +73,7 @@ public class LoginScreenController : MonoBehaviour
     private void Connect()
     {
         string[] tokens = _addressField.text.Split(':');
-        Debug.Assert(tokens.Length is 1 or 2);
+        TrueDebug.Assert(tokens.Length is 1 or 2);
 
         int port = tokens.Length == 2 ? int.Parse(tokens[1]) : WebSocketUtils.DefaultPort;
         _client.Connect(tokens[0], port);
@@ -89,7 +90,7 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.clicked -= Connect;
         _connectButton.clicked += Disconnect;
         _addressField.isReadOnly = true;
-        Debug.Log("Connected to server");
+        TrueDebug.Log("Connected to server");
 
         _client.Send("Plop!");
     }
@@ -100,6 +101,6 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.clicked -= Disconnect;
         _connectButton.clicked += Connect;
         _addressField.isReadOnly = false;
-        Debug.Log("Disconnected from server");
+        TrueDebug.Log("Disconnected from server");
     }
 }

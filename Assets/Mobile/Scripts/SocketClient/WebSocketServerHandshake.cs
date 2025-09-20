@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Shared.Utility;
 using Shared.WebSocket;
-using UnityEngine;
 
 namespace SocketClient
 {
@@ -25,7 +25,7 @@ namespace SocketClient
             if (matches.Count >= 1)
             {
                 // If there is more than one the server sent weird stuff...
-                Debug.Assert(matches.Count == 1);
+                TrueDebug.Assert(matches.Count == 1);
                 Match match = matches[0];
 
                 version = new Version(match.Groups[1].Value.Trim());

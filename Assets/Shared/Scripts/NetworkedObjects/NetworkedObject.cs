@@ -1,4 +1,5 @@
 ﻿using System;
+using Shared.Utility;
 using UnityEngine;
 
 [Serializable]
@@ -35,7 +36,7 @@ public struct NetworkedObject
 
     public T GetData<T>()
     {
-        Debug.Assert(Is<T>());
+        TrueDebug.Assert(Is<T>());
         return JsonUtility.FromJson<T>(data);
     }
 

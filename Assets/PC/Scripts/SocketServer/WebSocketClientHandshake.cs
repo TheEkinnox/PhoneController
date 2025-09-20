@@ -4,7 +4,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Shared.Utility;
 using Shared.WebSocket;
-using UnityEngine;
 
 namespace SocketServer
 {
@@ -28,7 +27,7 @@ namespace SocketServer
             if (matches.Count >= 1)
             {
                 // If there is more than one the client sent weird stuff...
-                Debug.Assert(matches.Count == 1);
+                TrueDebug.Assert(matches.Count == 1);
                 Match match = matches[0];
 
                 method = match.Groups[1].Value.Trim();

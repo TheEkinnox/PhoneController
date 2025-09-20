@@ -4,8 +4,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Shared.Utility;
-using UnityEngine;
 using Shared.WebSocket;
+using UnityEngine;
 
 namespace SocketServer
 {
@@ -29,7 +29,7 @@ namespace SocketServer
 
         public void Start()
         {
-            Debug.Assert(!IsActive);
+            TrueDebug.Assert(!IsActive);
 
             _targetOrigin = checkOrigin ? WebSocketUtils.TargetOrigin : null; // Needs to be set on the main thread
             _listener = new TcpListener(IPAddress.Any, port);

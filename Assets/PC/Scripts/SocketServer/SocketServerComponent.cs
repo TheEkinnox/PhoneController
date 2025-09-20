@@ -40,7 +40,7 @@ namespace SocketServer
 #endif
 
             server.Start();
-            Debug.Log($"Local IP: {WebSocketUtils.GetLocalIPAddress(AddressFamily.InterNetwork)}");
+            TrueDebug.Log($"Local IP: {WebSocketUtils.GetLocalIPAddress(AddressFamily.InterNetwork)}");
         }
 
         private void Update()

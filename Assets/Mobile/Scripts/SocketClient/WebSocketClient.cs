@@ -5,7 +5,6 @@ using System.Threading;
 using JetBrains.Annotations;
 using Shared.Utility;
 using Shared.WebSocket;
-using UnityEngine;
 
 namespace SocketClient
 {
@@ -23,12 +22,12 @@ namespace SocketClient
         private string _targetOrigin;
 
         [NotNull]
-        public static WebSocketClient Instance => _instance ??= new();
+        public static WebSocketClient Instance => _instance ??= new WebSocketClient();
 
         public void Connect(string host, int port)
         {
-            Debug.Assert(_connection?.Client is not { Connected: true });
-            Debug.Assert(_clientThread is not { IsAlive: true });
+            TrueDebug.Assert(_connection?.Client is not { Connected: true });
+            TrueDebug.Assert(_clientThread is not { IsAlive: true });
 
             host = host.Trim();
 
