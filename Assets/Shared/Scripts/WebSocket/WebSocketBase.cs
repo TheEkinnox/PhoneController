@@ -65,8 +65,9 @@ namespace Shared.WebSocket
 
         protected void QueueError(string message)
         {
-#if !DEBUG
-            _eventQueue.Enqueue(new WebSocketEvent(WebSocketEventType.Error, $"{message}\n{new StackTrace(1, true)}"));
+#if DEBUG
+            _eventQueue.Enqueue(new WebSocketEvent(WebSocketEventType.Error,
+                $"{message}\n\nStackTrace:\n{new System.Diagnostics.StackTrace(1, true)}"));
 #else
             _eventQueue.Enqueue(new WebSocketEvent(WebSocketEventType.Error, message));
 #endif
