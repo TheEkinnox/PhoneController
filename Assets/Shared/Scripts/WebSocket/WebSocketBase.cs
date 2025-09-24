@@ -205,7 +205,6 @@ namespace Shared.WebSocket
             while (currentTime < endTime && connection?.Client?.Connected is true &&
                    !(connection.Stream?.DataAvailable is true && connection.Client.Available >= count))
             {
-                Thread.Sleep(0);
                 currentTime = DateTime.Now;
             }
 
