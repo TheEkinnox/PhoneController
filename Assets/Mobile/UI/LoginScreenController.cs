@@ -36,6 +36,10 @@ public class LoginScreenController : MonoBehaviour
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
 
+#if UNITY_EDITOR
+        _addressField.value = "localhost";
+#endif
+
         // TODO: Setup status label (Data source ? Manual text overriding ?)
 
         // Setup button
