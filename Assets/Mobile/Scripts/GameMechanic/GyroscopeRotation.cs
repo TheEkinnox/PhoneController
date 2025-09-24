@@ -20,19 +20,27 @@ public class GyroscopeRotation : MonoBehaviour
 
         _gyroscope = Input.gyro;
         _gyroscope.enabled = true;
+        Debug.Log(_gyroscope.enabled);
     }
 
     private void FixedUpdate()
     {
         if (!_isGyroSupported)
             return;
+        
+        Vector3 euler = _gyroscope.attitude.eulerAngles;
+        (euler.y, euler.z) = (euler.z, -euler.y);
+        
 
-        GyroData data = new(_gyroscope.attitude); // send special data
+        GyroData data = new(Quaternion.Euler(euler));
 
+        //Debug.Log($"{data.value} text {_lastRotation}");
         if (data.value == _lastRotation)
             return;
 
-        WebSocketClient.Instance.Send(NetworkedObject.MakePayload(data)); //NEEDED: send data
+        WebSocketClient.Instance.Send(NetworkedObject.MakePayload(data));
         _lastRotation = data.value;
+        
+        //Debug.Log(data.value);
     }
 }
