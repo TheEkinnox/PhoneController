@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 193971274}
   - component: {fileID: 193971273}
   - component: {fileID: 193971272}
+  - component: {fileID: 193971277}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -243,6 +244,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &193971277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193971271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5423ab577f46e5c458d815c8fc1a2bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Platform.PC::ServerTouchData
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +582,7 @@ MonoBehaviour:
         m_Calls: []
     port: 443
     checkOrigin: 1
+  dispatchMode: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
