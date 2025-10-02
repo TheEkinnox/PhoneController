@@ -38,8 +38,11 @@ namespace SocketClient
             }
 
             _targetOrigin = WebSocketUtils.TargetOrigin; // Needs to be set on the main thread
-            _clientThread = new Thread(() => HandleConnection(host, port));
-            _clientThread.IsBackground = true;
+            _clientThread = new Thread(() => HandleConnection(host, port))
+            {
+                IsBackground = true,
+                Name = $"[{nameof(WebSocketClient)}] Receive Thread"
+            };
             _clientThread.Start();
         }
 
@@ -101,8 +104,11 @@ namespace SocketClient
 
                 QueueOpen();
 
-                sendThread = new Thread(() => SendEvents(_connection.Client.Client, _connection));
-                sendThread.IsBackground = true;
+                sendThread = new Thread(() => SendEvents(_connection.Client.Client, _connection))
+                {
+                    IsBackground = true,
+                    Name = $"[{nameof(WebSocketClient)}] Send Thread"
+                };
                 sendThread.Start();
 
                 ReceiveEvents(_connection);

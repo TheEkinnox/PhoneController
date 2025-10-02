@@ -36,8 +36,11 @@ namespace SocketServer
             _listener.Start();
             IsActive = true;
 
-            _serverThread = new Thread(HandleConnection);
-            _serverThread.IsBackground = true;
+            _serverThread = new Thread(HandleConnection)
+            {
+                IsBackground = true,
+                Name = $"[{nameof(WebSocketServer)}] Receive Thread"
+            };
             _serverThread.Start();
         }
 
@@ -107,8 +110,11 @@ namespace SocketServer
                     _connection.Stream.ReadTimeout = WebSocketUtils.DefaultTimeout;
                     _connection.Stream.WriteTimeout = WebSocketUtils.DefaultTimeout;
 
-                    sendThread = new Thread(() => SendEvents(_listener.Server, _connection));
-                    sendThread.IsBackground = true;
+                    sendThread = new Thread(() => SendEvents(_listener.Server, _connection))
+                    {
+                        IsBackground = true,
+                        Name = $"[{nameof(WebSocketServer)}] Send Thread"
+                    };
                     sendThread.Start();
 
                     ReceiveEvents(_connection);
