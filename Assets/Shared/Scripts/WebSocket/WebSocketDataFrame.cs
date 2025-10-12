@@ -89,7 +89,7 @@ namespace Shared.WebSocket
                 Array.Copy(payload, 0, Data, payloadOffset, PayloadLength);
             }
 
-            TrueDebug.Log($"Created data frame\n{Data.Flatten()}");
+            //TrueDebug.Log($"Created data frame\n{Data.Flatten()}");
         }
 
         public void ParseHeader(byte[] bytes)

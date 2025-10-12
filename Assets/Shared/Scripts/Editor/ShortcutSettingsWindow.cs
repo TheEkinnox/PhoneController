@@ -4,26 +4,14 @@ using UnityEngine;
 
 public class ShortcutSettingsWindow : EditorWindow
 {
+    private bool _isWaitingForKey;
     private IShortcutManager _shortcutManager;
     private ShortcutBinding _snapBinding;
-
-    private bool _isWaitingForKey = false;
-
-    [MenuItem("Tools/Shortcut Settings")]
-    private static void Open()
-    {
-        GetWindow<ShortcutSettingsWindow>("Shortcut Settings");
-    }
 
     private void OnEnable()
     {
         _shortcutManager = ShortcutManager.instance;
         LoadBindings();
-    }
-
-    private void LoadBindings()
-    {
-        _snapBinding = _shortcutManager.GetShortcutBinding(ModularBuilding.ShortcutId);
     }
 
     private void OnGUI()
@@ -45,7 +33,7 @@ public class ShortcutSettingsWindow : EditorWindow
             GUILayout.Label("Press a new key...", EditorStyles.helpBox);
             if (Event.current.type == EventType.KeyDown && Event.current.keyCode != KeyCode.None)
             {
-                var newBinding = new ShortcutBinding(new KeyCombination(Event.current.keyCode));
+                ShortcutBinding newBinding = new(new KeyCombination(Event.current.keyCode));
                 _shortcutManager.RebindShortcut(ModularBuilding.ShortcutId, newBinding);
                 LoadBindings();
                 Repaint();
@@ -55,5 +43,16 @@ public class ShortcutSettingsWindow : EditorWindow
                 Event.current.Use();
             }
         }
+    }
+
+    [MenuItem("Tools/Shortcut Settings")]
+    private static void Open()
+    {
+        GetWindow<ShortcutSettingsWindow>("Shortcut Settings");
+    }
+
+    private void LoadBindings()
+    {
+        _snapBinding = _shortcutManager.GetShortcutBinding(ModularBuilding.ShortcutId);
     }
 }

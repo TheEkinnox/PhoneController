@@ -13,6 +13,7 @@ public class Compass : MonoBehaviour
     {
         Input.location.Start();
         Input.compass.enabled = true;
+        Debug.Log(Input.compass.enabled);
         
     }
 
@@ -22,7 +23,7 @@ public class Compass : MonoBehaviour
         float heading = Input.compass.trueHeading;
 
         // Print it to console
-        Debug.Log("Compass Heading: " + heading);
+        //Debug.Log("Compass Heading: " + heading);
 
         // Example: rotate an object to match compass
         //transform.rotation = Quaternion.Euler(0, -heading, 0);

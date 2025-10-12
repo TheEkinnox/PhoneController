@@ -191,7 +191,7 @@ namespace Shared.WebSocket
             WebSocketDataFrame frame = new(opCode, payload);
             stream.Write(frame.Data);
 
-            TrueDebug.Log($"{opCode} frame sent\n{(opCode == WebSocketOpCode.Text ? Encoding.UTF8.GetString(payload) : payload.Flatten())}");
+            //TrueDebug.Log($"{opCode} frame sent\n{(opCode == WebSocketOpCode.Text ? Encoding.UTF8.GetString(payload) : payload.Flatten())}");
         }
 
         protected bool WaitForBytes(TcpConnection connection, int count, int timeout = WebSocketUtils.DefaultTimeout)

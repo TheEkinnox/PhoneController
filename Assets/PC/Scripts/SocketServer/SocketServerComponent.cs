@@ -35,8 +35,8 @@ namespace SocketServer
             OnOpen.AddListener(() => { Debug.Log("Client connected"); });
             OnClose.AddListener(() => { Debug.Log("Client disconnected"); });
             OnError.AddListener(Debug.LogError);
-            OnTextMessage.AddListener(message => { Debug.Log($"Text message received: {message}"); });
-            OnBinaryMessage.AddListener(message => { Debug.Log($"Binary message received: {message.Flatten()}"); });
+            //OnTextMessage.AddListener(message => { Debug.Log($"Text message received: {message}"); });
+            //OnBinaryMessage.AddListener(message => { Debug.Log($"Binary message received: {message.Flatten()}"); });
 #endif
 
             server.Start();

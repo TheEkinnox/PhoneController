@@ -30,7 +30,7 @@ public class TouchScreen : MonoBehaviour
 
         TouchData data = new TouchData(position, phase);
         WebSocketClient.Instance.Send(NetworkedObject.MakePayload(data));
-        Debug.Log("Touch:" + position);
+        //Debug.Log("Touch:" + position);
 
         _lastPosition = position;
         _lastPhase = phase;

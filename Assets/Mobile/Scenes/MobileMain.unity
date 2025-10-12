@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 262767566}
   - component: {fileID: 262767565}
   - component: {fileID: 262767567}
+  - component: {fileID: 262767568}
+  - component: {fileID: 262767569}
   m_Layer: 0
   m_Name: testObj
   m_TagString: Untagged
@@ -176,6 +178,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d5f793398a4bcfa92b2bce3a41c146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.Mobile::TouchScreen
+--- !u!114 &262767568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262767564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4365c14892eb6c4685a3b9e18fba400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Platform.Mobile::Compass
+--- !u!114 &262767569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262767564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad3def6d09948c449eb467a08731ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Platform.Mobile::Accelerometer
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
