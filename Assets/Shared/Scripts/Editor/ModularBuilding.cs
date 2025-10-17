@@ -6,6 +6,8 @@ using System.Reflection;
 public class ModularBuilding : EditorWindow
 {
     private static bool snapAlwaysOn;
+    private static bool followSelectionX;
+    private static bool followSelectionY;
     private static bool unselectedGridHiding;
     private static float gridSize = 1f;
     private static bool showCustomGrid = true;
@@ -16,6 +18,8 @@ public class ModularBuilding : EditorWindow
     private static Color vGridColor;
 
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
+    private const string GridFollowX = "ModularBuilding_GridFollowX";
+    private const string GridFollowY = "ModularBuilding_GridFollowY";
     private const string AutoGridHiding = "ModularBuilding_AutoGridHiding";
     private const string GridSizePrefKey = "ModularBuilding_GridSize";
     private const string ShowGridPrefKey = "ModularBuilding_ShowGrid";
@@ -37,7 +41,7 @@ public class ModularBuilding : EditorWindow
     {
         LoadSettings();
         SceneView.duringSceneGui += OnSceneGUI;
-        HideUnityGrid(showCustomGrid);
+        HideUnityGrid(true);
     }
 
     private void OnDisable()
@@ -59,11 +63,10 @@ public class ModularBuilding : EditorWindow
         showCustomGrid = EditorGUILayout.Toggle("Show XZ Grid", showCustomGrid);
 
         showYGrid = EditorGUILayout.Toggle("Show Y Grid", showYGrid);
+        followSelectionX = EditorGUILayout.Toggle("Follow Selection X", followSelectionX);
+        followSelectionY = EditorGUILayout.Toggle("Follow Selection Y", followSelectionY);
         ySnapHeight = EditorGUILayout.FloatField("Y Snap Height", ySnapHeight);
         ySnapHeight = Mathf.Max(0.0001f, ySnapHeight);
-
-        if (prevShowGrid != showCustomGrid)
-            HideUnityGrid(showCustomGrid);
 
         hGridColor = EditorGUILayout.ColorField("H Grid Color", hGridColor);
         vGridColor = EditorGUILayout.ColorField("V Grid Color", vGridColor);
@@ -78,6 +81,8 @@ public class ModularBuilding : EditorWindow
             unselectedGridHiding = true;
             showCustomGrid = true;
             showYGrid = false;
+            followSelectionX = false;
+            followSelectionY = false;
             HideUnityGrid(showCustomGrid);
         }
 
@@ -94,7 +99,18 @@ public class ModularBuilding : EditorWindow
                 return;
         }
         else
-            _selectedObject = Selection.activeTransform.localPosition;
+        {
+            Vector3 selPos = Selection.activeTransform.localPosition;
+
+            if (followSelectionX && !followSelectionY)
+                _selectedObject = new Vector3(_selectedObject.x, selPos.y, _selectedObject.z);
+            else if (followSelectionY && !followSelectionX)
+                _selectedObject = new Vector3(selPos.x, _selectedObject.y, selPos.z);
+            else if (followSelectionX && followSelectionY)
+                _selectedObject = selPos;
+            else
+                _selectedObject = Vector3.zero;
+        }
 
         if (showCustomGrid)
             DrawXZGrid(sceneView);
@@ -165,6 +181,8 @@ public class ModularBuilding : EditorWindow
         if (settingsLoaded) return;
 
         snapAlwaysOn = EditorPrefs.GetBool(SnapPrefKey, false);
+        followSelectionX = EditorPrefs.GetBool(GridFollowX, false);
+        followSelectionY = EditorPrefs.GetBool(GridFollowY, false);
         unselectedGridHiding = EditorPrefs.GetBool(AutoGridHiding, true);
         gridSize = EditorPrefs.GetFloat(GridSizePrefKey, 1f);
         ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
@@ -188,6 +206,8 @@ public class ModularBuilding : EditorWindow
     private static void SaveSettings()
     {
         EditorPrefs.SetBool(SnapPrefKey, snapAlwaysOn);
+        EditorPrefs.SetBool(GridFollowX, followSelectionX);
+        EditorPrefs.SetBool(GridFollowY, followSelectionY);
         EditorPrefs.SetBool(AutoGridHiding, unselectedGridHiding);
         EditorPrefs.SetFloat(GridSizePrefKey, gridSize);
         EditorPrefs.SetFloat(YSnapHeightPrefKey, ySnapHeight);
