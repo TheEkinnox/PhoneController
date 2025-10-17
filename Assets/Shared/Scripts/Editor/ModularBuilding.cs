@@ -5,17 +5,18 @@ using System.Reflection;
 
 public class ModularBuilding : EditorWindow
 {
-    private static bool snapAlwaysOn;
-    private static bool followSelectionX;
-    private static bool followSelectionY;
-    private static bool unselectedGridHiding;
-    private static float gridSize = 1f;
-    private static bool showCustomGrid = true;
-    private static bool showYGrid = false;
-    private static float ySnapHeight = 1f;
-    private static bool settingsLoaded;
-    private static Color hGridColor;
-    private static Color vGridColor;
+    private static bool _snapAlwaysOn;
+    private static bool _followSelectionX;
+    private static bool _followSelectionY;
+    private static bool _unselectedGridHiding;
+    private static float _gridSize = 1f;
+    private static bool _showCustomGrid = true;
+    private static bool _showYGrid = false;
+    private static float _ySnapHeight = 1f;
+    private static bool _settingsLoaded;
+    private static Color _hGridColor;
+    private static Color _vGridColor;
+    private static int _duplicateNum;
 
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
     private const string GridFollowX = "ModularBuilding_GridFollowX";
@@ -35,7 +36,7 @@ public class ModularBuilding : EditorWindow
     private static void OpenWindow() => GetWindow<ModularBuilding>("Grid Snap");
 
     [Shortcut(ShortcutId, KeyCode.Space)]
-    public static void ShortcutSnap() => snapAlwaysOn = !snapAlwaysOn;
+    public static void ShortcutSnap() => _snapAlwaysOn = !_snapAlwaysOn;
 
     private void OnEnable()
     {
@@ -53,37 +54,40 @@ public class ModularBuilding : EditorWindow
     private void OnGUI()
     {
         GUILayout.Label("Grid Snap Tool", EditorStyles.boldLabel);
-        gridSize = EditorGUILayout.FloatField("Grid Size (XZ)", gridSize);
-        gridSize = Mathf.Max(0.0001f, gridSize);
+        _gridSize = EditorGUILayout.FloatField("Grid Size (XZ)", _gridSize);
+        _gridSize = Mathf.Max(0.0001f, _gridSize);
 
-        snapAlwaysOn = EditorGUILayout.Toggle("Snap Always On", snapAlwaysOn);
-        unselectedGridHiding = EditorGUILayout.Toggle("Unselected Grid Hiding", unselectedGridHiding);
+        _snapAlwaysOn = EditorGUILayout.Toggle("Snap Always On", _snapAlwaysOn);
+        _duplicateNum = EditorGUILayout.IntField("Duplicate Number", Mathf.Max(1, _duplicateNum));
+        _unselectedGridHiding = EditorGUILayout.Toggle("Unselected Grid Hiding", _unselectedGridHiding);
+        if (GUILayout.Button("Duplicate"))
+            DuplicateItems();
 
-        bool prevShowGrid = showCustomGrid;
-        showCustomGrid = EditorGUILayout.Toggle("Show XZ Grid", showCustomGrid);
+        bool prevShowGrid = _showCustomGrid;
+        _showCustomGrid = EditorGUILayout.Toggle("Show XZ Grid", _showCustomGrid);
 
-        showYGrid = EditorGUILayout.Toggle("Show Y Grid", showYGrid);
-        followSelectionX = EditorGUILayout.Toggle("Follow Selection X", followSelectionX);
-        followSelectionY = EditorGUILayout.Toggle("Follow Selection Y", followSelectionY);
-        ySnapHeight = EditorGUILayout.FloatField("Y Snap Height", ySnapHeight);
-        ySnapHeight = Mathf.Max(0.0001f, ySnapHeight);
+        _showYGrid = EditorGUILayout.Toggle("Show Y Grid", _showYGrid);
+        _followSelectionX = EditorGUILayout.Toggle("Follow Selection X", _followSelectionX);
+        _followSelectionY = EditorGUILayout.Toggle("Follow Selection Y", _followSelectionY);
+        _ySnapHeight = EditorGUILayout.FloatField("Y Snap Height", _ySnapHeight);
+        _ySnapHeight = Mathf.Max(0.0001f, _ySnapHeight);
 
-        hGridColor = EditorGUILayout.ColorField("H Grid Color", hGridColor);
-        vGridColor = EditorGUILayout.ColorField("V Grid Color", vGridColor);
+        _hGridColor = EditorGUILayout.ColorField("H Grid Color", _hGridColor);
+        _vGridColor = EditorGUILayout.ColorField("V Grid Color", _vGridColor);
 
         GUILayout.Space(8);
 
         if (GUILayout.Button("Reset to Default"))
         {
-            gridSize = 1f;
-            ySnapHeight = 1f;
-            snapAlwaysOn = false;
-            unselectedGridHiding = true;
-            showCustomGrid = true;
-            showYGrid = false;
-            followSelectionX = false;
-            followSelectionY = false;
-            HideUnityGrid(showCustomGrid);
+            _gridSize = 1f;
+            _ySnapHeight = 1f;
+            _snapAlwaysOn = false;
+            _unselectedGridHiding = true;
+            _showCustomGrid = true;
+            _showYGrid = false;
+            _followSelectionX = false;
+            _followSelectionY = false;
+            HideUnityGrid(_showCustomGrid);
         }
 
         SaveSettings();
@@ -95,30 +99,30 @@ public class ModularBuilding : EditorWindow
         if (Selection.activeGameObject == null)
         {
             _selectedObject = Vector3.zero;
-            if (unselectedGridHiding)
+            if (_unselectedGridHiding)
                 return;
         }
         else
         {
             Vector3 selPos = Selection.activeTransform.localPosition;
 
-            if (followSelectionX && !followSelectionY)
+            if (_followSelectionX && !_followSelectionY)
                 _selectedObject = new Vector3(_selectedObject.x, selPos.y, _selectedObject.z);
-            else if (followSelectionY && !followSelectionX)
+            else if (_followSelectionY && !_followSelectionX)
                 _selectedObject = new Vector3(selPos.x, _selectedObject.y, selPos.z);
-            else if (followSelectionX && followSelectionY)
+            else if (_followSelectionX && _followSelectionY)
                 _selectedObject = selPos;
             else
                 _selectedObject = Vector3.zero;
         }
 
-        if (showCustomGrid)
+        if (_showCustomGrid)
             DrawXZGrid(sceneView);
 
-        if (showYGrid && Selection.activeGameObject != null)
+        if (_showYGrid && Selection.activeGameObject != null)
             DrawYGrid(sceneView);
 
-        if (!snapAlwaysOn || Selection.transforms.Length == 0)
+        if (!_snapAlwaysOn || Selection.transforms.Length == 0)
             return;
 
         foreach (Transform t in Selection.transforms)
@@ -127,24 +131,51 @@ public class ModularBuilding : EditorWindow
             {
                 Undo.RecordObject(t, "Snap To Grid (Auto)");
                 Vector3 pos = t.position;
-                pos.x = Mathf.Round(pos.x / gridSize) * gridSize;
-                pos.z = Mathf.Round(pos.z / gridSize) * gridSize;
-                pos.y = Mathf.Round(pos.y / ySnapHeight) * ySnapHeight;
+                pos.x = Mathf.Round(pos.x / _gridSize) * _gridSize;
+                pos.z = Mathf.Round(pos.z / _gridSize) * _gridSize;
+                pos.y = Mathf.Round(pos.y / _ySnapHeight) * _ySnapHeight;
                 t.position = pos;
                 t.hasChanged = false;
             }
         }
     }
+    
+    private static void DuplicateItems()
+    {
+        if (Selection.transforms.Length == 0)
+        {
+            return;
+        }
+
+        foreach (Transform original in Selection.transforms)
+        {
+            Vector3 basePos = original.position;
+
+            for (int i = 1; i <= _duplicateNum; i++)
+            {
+                GameObject newObj = Object.Instantiate(original.gameObject, original.parent);
+                Undo.RegisterCreatedObjectUndo(newObj, "Duplicate Along X Grid");
+
+                Vector3 newPos = basePos + Vector3.right * (i * _gridSize);
+                newPos.x = Mathf.Round(newPos.x / _gridSize) * _gridSize;
+                newPos.y = Mathf.Round(newPos.y / _ySnapHeight) * _ySnapHeight;
+                newPos.z = Mathf.Round(newPos.z / _gridSize) * _gridSize;
+
+                newObj.transform.position = newPos;
+            }
+        }
+        SceneView.RepaintAll();
+    }
 
     private static void DrawXZGrid(SceneView sceneView)
     {
-        Handles.color = hGridColor;
+        Handles.color = _hGridColor;
         int lines = 50;
-        float extent = lines * gridSize;
+        float extent = lines * _gridSize;
 
         for (int i = -lines; i <= lines; i++)
         {
-            float p = i * gridSize;
+            float p = i * _gridSize;
             Handles.DrawLine(new Vector3(p, _selectedObject.y, -extent), new Vector3(p, _selectedObject.y, extent));
             Handles.DrawLine(new Vector3(-extent, _selectedObject.y, p), new Vector3(extent, _selectedObject.y, p));
         }
@@ -152,14 +183,14 @@ public class ModularBuilding : EditorWindow
 
     private static void DrawYGrid(SceneView sceneView)
     {
-        Handles.color = vGridColor;
+        Handles.color = _vGridColor;
         int lines = 50;
-        float horizontalExtent = lines * gridSize;
-        float verticalExtent = lines * ySnapHeight;
+        float horizontalExtent = lines * _gridSize;
+        float verticalExtent = lines * _ySnapHeight;
 
         for (int i = -lines; i <= lines; i++)
         {
-            float x = i * gridSize;
+            float x = i * _gridSize;
             Handles.DrawLine(
                 new Vector3(x, -verticalExtent, _selectedObject.z),
                 new Vector3(x, verticalExtent, _selectedObject.z)
@@ -168,7 +199,7 @@ public class ModularBuilding : EditorWindow
 
         for (int j = -lines; j <= lines; j++)
         {
-            float y = j * ySnapHeight;
+            float y = j * _ySnapHeight;
             Handles.DrawLine(
                 new Vector3(-horizontalExtent, y, _selectedObject.z),
                 new Vector3(horizontalExtent, y, _selectedObject.z)
@@ -178,43 +209,43 @@ public class ModularBuilding : EditorWindow
 
     private static void LoadSettings()
     {
-        if (settingsLoaded) return;
+        if (_settingsLoaded) return;
 
-        snapAlwaysOn = EditorPrefs.GetBool(SnapPrefKey, false);
-        followSelectionX = EditorPrefs.GetBool(GridFollowX, false);
-        followSelectionY = EditorPrefs.GetBool(GridFollowY, false);
-        unselectedGridHiding = EditorPrefs.GetBool(AutoGridHiding, true);
-        gridSize = EditorPrefs.GetFloat(GridSizePrefKey, 1f);
-        ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
-        showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
-        showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
-        settingsLoaded = true;
+        _snapAlwaysOn = EditorPrefs.GetBool(SnapPrefKey, false);
+        _followSelectionX = EditorPrefs.GetBool(GridFollowX, false);
+        _followSelectionY = EditorPrefs.GetBool(GridFollowY, false);
+        _unselectedGridHiding = EditorPrefs.GetBool(AutoGridHiding, true);
+        _gridSize = EditorPrefs.GetFloat(GridSizePrefKey, 1f);
+        _ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
+        _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
+        _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
+        _settingsLoaded = true;
 
         if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(XGridColorPrefKey, "4D4D4DFF"),
                 out var hSavedColor))
-            hGridColor = hSavedColor;
+            _hGridColor = hSavedColor;
         else
-            hGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+            _hGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
 
         if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(YGridColorPrefKey, "4D4D4DFF"),
                 out var vSavedColor))
-            vGridColor = vSavedColor;
+            _vGridColor = vSavedColor;
         else
-            vGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
+            _vGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
     }
 
     private static void SaveSettings()
     {
-        EditorPrefs.SetBool(SnapPrefKey, snapAlwaysOn);
-        EditorPrefs.SetBool(GridFollowX, followSelectionX);
-        EditorPrefs.SetBool(GridFollowY, followSelectionY);
-        EditorPrefs.SetBool(AutoGridHiding, unselectedGridHiding);
-        EditorPrefs.SetFloat(GridSizePrefKey, gridSize);
-        EditorPrefs.SetFloat(YSnapHeightPrefKey, ySnapHeight);
-        EditorPrefs.SetBool(ShowGridPrefKey, showCustomGrid);
-        EditorPrefs.SetBool(ShowYGridPrefKey, showYGrid);
-        EditorPrefs.SetString(XGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(hGridColor));
-        EditorPrefs.SetString(YGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(vGridColor));
+        EditorPrefs.SetBool(SnapPrefKey, _snapAlwaysOn);
+        EditorPrefs.SetBool(GridFollowX, _followSelectionX);
+        EditorPrefs.SetBool(GridFollowY, _followSelectionY);
+        EditorPrefs.SetBool(AutoGridHiding, _unselectedGridHiding);
+        EditorPrefs.SetFloat(GridSizePrefKey, _gridSize);
+        EditorPrefs.SetFloat(YSnapHeightPrefKey, _ySnapHeight);
+        EditorPrefs.SetBool(ShowGridPrefKey, _showCustomGrid);
+        EditorPrefs.SetBool(ShowYGridPrefKey, _showYGrid);
+        EditorPrefs.SetString(XGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_hGridColor));
+        EditorPrefs.SetString(YGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_vGridColor));
     }
 
     private static void HideUnityGrid(bool hide)
