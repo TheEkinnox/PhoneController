@@ -76,3 +76,4 @@ crashlytics-build.properties
 
 # Unity recovery files
 /[Aa]ssets/_[Rr]ecovery/
+/[Aa]ssets/_[Rr]ecovery.meta
