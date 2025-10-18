@@ -32,6 +32,7 @@ namespace Shared.WebSocket
 
         public bool IsShortPayload => LengthHint == ShortPayloadHint;
         public bool IsLongPayload => LengthHint == LongPayloadHint;
+        public bool IsDataFrame => OpCode is WebSocketOpCode.Text or WebSocketOpCode.Binary;
 
         public WebSocketDataFrame()
         {
@@ -142,12 +143,13 @@ namespace Shared.WebSocket
             }
         }
 
-        public byte[] DecodeData()
+        public byte[] DecodeData(ref byte[] buffer, int offset = 0)
         {
             if (PayloadLength <= 0)
                 return null;
 
-            byte[] buffer = new byte[PayloadLength];
+            if (buffer.Length < offset + PayloadLength)
+                Array.Resize(ref buffer, offset + PayloadLength);
 
             if (HasMask)
             {
@@ -157,12 +159,12 @@ namespace Shared.WebSocket
 
                 for (int i = 0; i < PayloadLength; i++)
                 {
-                    buffer[i] = (byte)(Data[payloadOffset + i] ^ masks[i % 4]);
+                    buffer[offset + i] = (byte)(Data[payloadOffset + i] ^ masks[i % 4]);
                 }
             }
             else
             {
-                Array.Copy(Data, Offset, buffer, 0, PayloadLength);
+                Array.Copy(Data, Offset, buffer, offset, PayloadLength);
             }
 
             return buffer;
