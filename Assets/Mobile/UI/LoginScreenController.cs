@@ -6,6 +6,13 @@ using UnityEngine.UIElements;
 
 public class LoginScreenController : MonoBehaviour
 {
+    private enum Estate
+    {
+        Disconnected,
+        Connecting,
+        Connected
+    }
+
     private VisualElement _root;
 
     private Button _connectButton;
@@ -13,7 +20,7 @@ public class LoginScreenController : MonoBehaviour
     private Label _statusLabel;
 
     private WebSocketClient _client;
-    private bool _isConnecting;
+    private Estate _state;
 
     [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
@@ -40,7 +47,8 @@ public class LoginScreenController : MonoBehaviour
         _addressField.value = "localhost";
 #endif
 
-        // TODO: Setup status label (Data source ? Manual text overriding ?)
+        _statusLabel.text = string.Empty;
+        _state = Estate.Disconnected;
 
         // Setup button
         _connectButton.clicked += Connect;
@@ -84,7 +92,7 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.text = "Connecting...";
         _connectButton.enabledSelf = false;
         _statusLabel.text = string.Empty;
-        _isConnecting = true;
+        _state = Estate.Connecting;
     }
 
     private void Disconnect()
@@ -94,13 +102,13 @@ public class LoginScreenController : MonoBehaviour
 
     private void OnConnect()
     {
-        _isConnecting = false;
         _connectButton.text = "Disconnect";
         _connectButton.enabledSelf = true;
         _connectButton.clicked -= Connect;
         _connectButton.clicked += Disconnect;
         _addressField.isReadOnly = true;
         _statusLabel.text = string.Empty;
+        _state = Estate.Connected;
         TrueDebug.Log("Connected to server");
 
         _client.Send("Plop!");
@@ -108,11 +116,10 @@ public class LoginScreenController : MonoBehaviour
 
     private void OnDisconnect()
     {
-        _isConnecting = false;
         _connectButton.text = "Connect";
         _connectButton.enabledSelf = true;
 
-        if (_client.IsConnected)
+        if (_state == Estate.Connected)
         {
             _connectButton.clicked -= Disconnect;
             _connectButton.clicked += Connect;
@@ -120,6 +127,8 @@ public class LoginScreenController : MonoBehaviour
         }
 
         _addressField.isReadOnly = false;
+        _statusLabel.text = string.Empty;
+        _state = Estate.Disconnected;
     }
 
     private void OnError(string message)
@@ -127,9 +136,10 @@ public class LoginScreenController : MonoBehaviour
 #if DEBUG
         Debug.LogError(message);
 #endif
-        _statusLabel.text = message;
 
-        if (_isConnecting && !_client.IsConnected)
+        if (_state == Estate.Connecting && !_client.IsConnected)
             OnDisconnect();
+
+        _statusLabel.text = message;
     }
 }
