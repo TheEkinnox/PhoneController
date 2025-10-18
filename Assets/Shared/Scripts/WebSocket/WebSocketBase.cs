@@ -277,6 +277,10 @@ namespace Shared.WebSocket
             }
 
             Array.Resize(ref buffer, offset + frame.PayloadLength);
+
+            if (!WaitForBytes(connection, frame.PayloadLength))
+                return null;
+
             connection.Stream.ReadExactly(buffer, offset, frame.PayloadLength);
             frame.Data = buffer;
 
