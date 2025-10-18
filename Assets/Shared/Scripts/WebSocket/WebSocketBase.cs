@@ -126,8 +126,15 @@ namespace Shared.WebSocket
                     case WebSocketOpCode.Close:
                         connection.Close();
                         break;
+                    case WebSocketOpCode.Ping:
+                        SendImpl(connection.Stream, WebSocketOpCode.Pong, Array.Empty<byte>());
+                        break;
+                    case WebSocketOpCode.Pong:
+                        TrueDebug.Log("Pong received");
+                        break;
+                    case WebSocketOpCode.Continuation:
                     default:
-                        TrueDebug.LogWarning("Unknown opcode: " + frame.OpCode);
+                        TrueDebug.LogWarning("Unhandled opcode: " + frame.OpCode);
                         break;
                 }
             }
