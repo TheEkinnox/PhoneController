@@ -23,6 +23,7 @@ namespace SocketClient
 
         [NotNull]
         public static WebSocketClient Instance => _instance ??= new WebSocketClient();
+
         public bool IsConnected => _connection?.Client?.Connected ?? false;
 
         public void Connect(string host, int port)
@@ -70,7 +71,20 @@ namespace SocketClient
             {
                 string socketKey = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
-                _connection = new TcpConnection(new TcpClient(host, port))
+                TcpClient client = new();
+                if (!client.ConnectAsync(host, port).Wait(WebSocketUtils.HandshakeTimeout))
+                {
+                    QueueError("Failed to connect to server - Connection timed out");
+                    return;
+                }
+
+                if (!client.Connected)
+                {
+                    QueueError("Failed to connect to server - Unknown reason");
+                    return;
+                }
+
+                _connection = new TcpConnection(client)
                 {
                     Stream =
                     {
