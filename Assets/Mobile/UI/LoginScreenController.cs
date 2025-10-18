@@ -13,6 +13,8 @@ public class LoginScreenController : MonoBehaviour
     private Label _statusLabel;
 
     private WebSocketClient _client;
+    private bool _isConnecting;
+
     [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
 #if UNITY_EDITOR
@@ -25,9 +27,7 @@ public class LoginScreenController : MonoBehaviour
         _client.onOpen.AddListener(OnConnect);
         _client.onClose.AddListener(OnDisconnect);
 
-#if DEBUG
-        _client.onError.AddListener(Debug.LogError);
-#endif
+        _client.onError.AddListener(OnError);
 
         _root = GetComponent<UIDocument>().rootVisualElement;
 
@@ -81,6 +81,10 @@ public class LoginScreenController : MonoBehaviour
 
         int port = tokens.Length == 2 ? int.Parse(tokens[1]) : WebSocketUtils.DefaultPort;
         _client.Connect(tokens[0], port);
+        _connectButton.text = "Connecting...";
+        _connectButton.enabledSelf = false;
+        _statusLabel.text = string.Empty;
+        _isConnecting = true;
     }
 
     private void Disconnect()
@@ -90,10 +94,13 @@ public class LoginScreenController : MonoBehaviour
 
     private void OnConnect()
     {
+        _isConnecting = false;
         _connectButton.text = "Disconnect";
+        _connectButton.enabledSelf = true;
         _connectButton.clicked -= Connect;
         _connectButton.clicked += Disconnect;
         _addressField.isReadOnly = true;
+        _statusLabel.text = string.Empty;
         TrueDebug.Log("Connected to server");
 
         _client.Send("Plop!");
@@ -101,10 +108,28 @@ public class LoginScreenController : MonoBehaviour
 
     private void OnDisconnect()
     {
+        _isConnecting = false;
         _connectButton.text = "Connect";
-        _connectButton.clicked -= Disconnect;
-        _connectButton.clicked += Connect;
+        _connectButton.enabledSelf = true;
+
+        if (_client.IsConnected)
+        {
+            _connectButton.clicked -= Disconnect;
+            _connectButton.clicked += Connect;
+            TrueDebug.Log("Disconnected from server");
+        }
+
         _addressField.isReadOnly = false;
-        TrueDebug.Log("Disconnected from server");
+    }
+
+    private void OnError(string message)
+    {
+#if DEBUG
+        Debug.LogError(message);
+#endif
+        _statusLabel.text = message;
+
+        if (_isConnecting && !_client.IsConnected)
+            OnDisconnect();
     }
 }

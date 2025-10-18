@@ -23,6 +23,7 @@ namespace SocketClient
 
         [NotNull]
         public static WebSocketClient Instance => _instance ??= new WebSocketClient();
+        public bool IsConnected => _connection?.Client?.Connected ?? false;
 
         public void Connect(string host, int port)
         {
