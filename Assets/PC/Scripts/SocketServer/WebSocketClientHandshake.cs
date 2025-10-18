@@ -91,7 +91,7 @@ namespace SocketServer
 
                 if (!string.Equals(origin, targetOrigin))
                 {
-                    return (false, $"Invalid socket origin: {origin}");
+                    return (false, $"Invalid socket origin: \"{origin}\" - Expected: \"{targetOrigin}\"");
                 }
             }
 
