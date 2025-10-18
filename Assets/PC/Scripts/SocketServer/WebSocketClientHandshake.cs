@@ -131,7 +131,7 @@ namespace SocketServer
                     status = "403 Forbidden";
             }
 
-            TrueDebug.Log(errorMessage);
+            TrueDebug.LogError(errorMessage);
 
             StringBuilder response = new();
             response.Append($"{WebSocketUtils.HttpStr} {status}{WebSocketUtils.EOL}");
