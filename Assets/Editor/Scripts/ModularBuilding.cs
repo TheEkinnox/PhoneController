@@ -17,10 +17,22 @@ public class ModularBuilding : EditorWindow
     private static Color _hGridColor;
     private static Color _vGridColor;
     private static int _duplicateNum;
+    
+    [System.Flags]
+    private enum DuplicateAxis
+    {
+        None = 0,
+        X = 1 << 0,
+        Y = 1 << 1,
+        Z = 1 << 2
+    }
+    private static DuplicateAxis _duplicateAxis;
 
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
     private const string GridFollowX = "ModularBuilding_GridFollowX";
     private const string GridFollowY = "ModularBuilding_GridFollowY";
+    private const string DuplicationNum = "ModularBuilding_DuplicationNum";
+    private const string DuplicationAxis = "ModularBuilding_DuplicationAxis";
     private const string AutoGridHiding = "ModularBuilding_AutoGridHiding";
     private const string GridSizePrefKey = "ModularBuilding_GridSize";
     private const string ShowGridPrefKey = "ModularBuilding_ShowGrid";
@@ -58,8 +70,9 @@ public class ModularBuilding : EditorWindow
         _gridSize = Mathf.Max(0.0001f, _gridSize);
 
         _snapAlwaysOn = EditorGUILayout.Toggle("Snap Always On", _snapAlwaysOn);
-        _duplicateNum = EditorGUILayout.IntField("Duplicate Number", Mathf.Max(1, _duplicateNum));
         _unselectedGridHiding = EditorGUILayout.Toggle("Unselected Grid Hiding", _unselectedGridHiding);
+        _duplicateNum = EditorGUILayout.IntField("Duplicate Number", Mathf.Max(1, _duplicateNum));
+        _duplicateAxis = (DuplicateAxis)EditorGUILayout.EnumFlagsField("Duplicate Axes", _duplicateAxis);
         if (GUILayout.Button("Duplicate"))
             DuplicateItems();
 
@@ -131,10 +144,7 @@ public class ModularBuilding : EditorWindow
             {
                 Undo.RecordObject(t, "Snap To Grid (Auto)");
                 Vector3 pos = t.position;
-                pos.x = Mathf.Round(pos.x / _gridSize) * _gridSize;
-                pos.z = Mathf.Round(pos.z / _gridSize) * _gridSize;
-                pos.y = Mathf.Round(pos.y / _ySnapHeight) * _ySnapHeight;
-                t.position = pos;
+                SnapToGrid(pos, t);
                 t.hasChanged = false;
             }
         }
@@ -143,28 +153,57 @@ public class ModularBuilding : EditorWindow
     private static void DuplicateItems()
     {
         if (Selection.transforms.Length == 0)
-        {
             return;
+
+        bool useX = (_duplicateAxis & DuplicateAxis.X) != 0;
+        bool useY = (_duplicateAxis & DuplicateAxis.Y) != 0;
+        bool useZ = (_duplicateAxis & DuplicateAxis.Z) != 0;
+
+        int countX = useX ? _duplicateNum : 1;
+        int countY = useY ? _duplicateNum : 1;
+        int countZ = useZ ? _duplicateNum : 1;
+
+        float stepX = useX ? _gridSize : 0f;
+        float stepY = useY ? _ySnapHeight : 0f;
+        float stepZ = useZ ? _gridSize : 0f;
+
+        Vector3[] offsets = new Vector3[countX * countY * countZ];
+        int index = 0;
+
+        for (int x = 0; x < countX; x++)
+        for (int y = 0; y < countY; y++)
+        for (int z = 0; z < countZ; z++)
+        {
+            if (x == 0 && y == 0 && z == 0) continue;
+
+            offsets[index++] = new Vector3(x * stepX, y * stepY, z * stepZ);
         }
+
+        System.Array.Resize(ref offsets, index);
 
         foreach (Transform original in Selection.transforms)
         {
             Vector3 basePos = original.position;
+            Transform parent = original.parent;
 
-            for (int i = 1; i <= _duplicateNum; i++)
+            foreach (Vector3 offset in offsets)
             {
-                GameObject newObj = Object.Instantiate(original.gameObject, original.parent);
-                Undo.RegisterCreatedObjectUndo(newObj, "Duplicate Along X Grid");
-
-                Vector3 newPos = basePos + Vector3.right * (i * _gridSize);
-                newPos.x = Mathf.Round(newPos.x / _gridSize) * _gridSize;
-                newPos.y = Mathf.Round(newPos.y / _ySnapHeight) * _ySnapHeight;
-                newPos.z = Mathf.Round(newPos.z / _gridSize) * _gridSize;
-
-                newObj.transform.position = newPos;
+                GameObject clone = Object.Instantiate(original.gameObject, basePos + offset, original.rotation, parent);
+                Undo.RegisterCreatedObjectUndo(clone, "Grid Duplicate");
+                SnapToGrid(clone.transform.position, clone.transform);
             }
         }
+
         SceneView.RepaintAll();
+    }
+
+
+    private static void SnapToGrid(Vector3 snapPosition, Transform snapTarget)
+    {
+        snapPosition.x = Mathf.Round(snapPosition.x / _gridSize) * _gridSize;
+        snapPosition.y = Mathf.Round(snapPosition.y / _ySnapHeight) * _ySnapHeight;
+        snapPosition.z = Mathf.Round(snapPosition.z / _gridSize) * _gridSize;
+        snapTarget.position = snapPosition;
     }
 
     private static void DrawXZGrid(SceneView sceneView)
@@ -219,6 +258,8 @@ public class ModularBuilding : EditorWindow
         _ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
         _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
         _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
+        _duplicateNum = EditorPrefs.GetInt(DuplicationNum, 1);
+        _duplicateAxis = (DuplicateAxis)EditorPrefs.GetInt(DuplicationAxis, (int)DuplicateAxis.X);
         _settingsLoaded = true;
 
         if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(XGridColorPrefKey, "4D4D4DFF"),
@@ -239,6 +280,8 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetBool(SnapPrefKey, _snapAlwaysOn);
         EditorPrefs.SetBool(GridFollowX, _followSelectionX);
         EditorPrefs.SetBool(GridFollowY, _followSelectionY);
+        EditorPrefs.SetInt(DuplicationNum, _duplicateNum);
+        EditorPrefs.SetInt(DuplicationAxis, (int)_duplicateAxis);
         EditorPrefs.SetBool(AutoGridHiding, _unselectedGridHiding);
         EditorPrefs.SetFloat(GridSizePrefKey, _gridSize);
         EditorPrefs.SetFloat(YSnapHeightPrefKey, _ySnapHeight);
