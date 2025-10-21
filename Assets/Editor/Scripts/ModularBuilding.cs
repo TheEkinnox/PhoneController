@@ -215,6 +215,7 @@ public class ModularBuilding : EditorWindow
         for (int i = -lines; i <= lines; i++)
         {
             float p = i * _gridSize;
+            Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
             Handles.DrawLine(new Vector3(p, _selectedObject.y, -extent), new Vector3(p, _selectedObject.y, extent));
             Handles.DrawLine(new Vector3(-extent, _selectedObject.y, p), new Vector3(extent, _selectedObject.y, p));
         }
@@ -226,7 +227,7 @@ public class ModularBuilding : EditorWindow
         int lines = 50;
         float horizontalExtent = lines * _gridSize;
         float verticalExtent = lines * _ySnapHeight;
-
+        Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
         for (int i = -lines; i <= lines; i++)
         {
             float x = i * _gridSize;
