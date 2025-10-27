@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
@@ -5,19 +6,34 @@ using System.Reflection;
 
 public class ModularBuilding : EditorWindow
 {
+    #region Variables
+
     private static bool _snapAlwaysOn;
     private static bool _followSelectionX;
     private static bool _followSelectionY;
     private static bool _unselectedGridHiding;
-    private static float _gridSize = 1f;
-    private static bool _showCustomGrid = true;
-    private static bool _showYGrid = false;
-    private static float _ySnapHeight = 1f;
+    private static float _gridSize;
+    private static bool _showCustomGrid;
+    private static bool _showYGrid;
+    private static float _ySnapHeight;
     private static bool _settingsLoaded;
     private static Color _hGridColor;
     private static Color _vGridColor;
-    private static int _duplicateNum;
-    
+    private static int _duplicateNumXZ;
+    private static int _duplicateNumY;
+    private static Vector3 _selectedObject;
+    private static AxisDirection _xDirection;
+    private static AxisDirection _yDirection;
+    private static AxisDirection _zDirection;
+    private static bool _showDuplicateDirections;
+    private static bool _showGridParam;
+    private static bool _buildingParam;
+    private static int _linesNumber;
+
+    #endregion
+
+    #region Duplication Axis And Mode
+
     [System.Flags]
     private enum DuplicateAxis
     {
@@ -26,12 +42,35 @@ public class ModularBuilding : EditorWindow
         Y = 1 << 1,
         Z = 1 << 2
     }
+
+
     private static DuplicateAxis _duplicateAxis;
 
+    public enum BuildMode
+    {
+        Normal,
+        Stair
+    }
+
+    private static BuildMode _buildMode = BuildMode.Normal;
+
+    private enum AxisDirection
+    {
+        Positive,
+        Negative,
+        Both
+    }
+
+    #endregion
+
+    #region SaveKey
+
+    private const string ModeKey = "GridDuplicate_Mode";
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
     private const string GridFollowX = "ModularBuilding_GridFollowX";
     private const string GridFollowY = "ModularBuilding_GridFollowY";
-    private const string DuplicationNum = "ModularBuilding_DuplicationNum";
+    private const string XZDuplicationNum = "ModularBuilding_XZDuplicationNum";
+    private const string YDuplicationNum = "ModularBuilding_YDuplicationNum";
     private const string DuplicationAxis = "ModularBuilding_DuplicationAxis";
     private const string AutoGridHiding = "ModularBuilding_AutoGridHiding";
     private const string GridSizePrefKey = "ModularBuilding_GridSize";
@@ -41,14 +80,28 @@ public class ModularBuilding : EditorWindow
     private const string XGridColorPrefKey = "XCustomGridColor";
     private const string YGridColorPrefKey = "YCustomGridColor";
     public const string ShortcutId = "Tools/Grid Snap";
+    private const string XDirectionKey = "ModularBuilding_XDirection";
+    private const string YDirectionKey = "ModularBuilding_YDirection";
+    private const string ZDirectionKey = "ModularBuilding_ZDirection";
+    private const string LinesNumber = "ModularBuilding_LinesNumber";
 
-    private static Vector3 _selectedObject;
+    #endregion
+
+    #region Open Window
 
     [MenuItem("Tools/Grid Snap Tool")]
     private static void OpenWindow() => GetWindow<ModularBuilding>("Grid Snap");
 
+    #endregion
+
+    #region ShortCuts
+
     [Shortcut(ShortcutId, KeyCode.Space)]
     public static void ShortcutSnap() => _snapAlwaysOn = !_snapAlwaysOn;
+
+    #endregion
+
+    #region Grid On/Off
 
     private void OnEnable()
     {
@@ -63,43 +116,97 @@ public class ModularBuilding : EditorWindow
         HideUnityGrid(false);
     }
 
+    #endregion
+
     private void OnGUI()
     {
-        GUILayout.Label("Grid Snap Tool", EditorStyles.boldLabel);
-        _gridSize = EditorGUILayout.FloatField("Grid Size (XZ)", _gridSize);
-        _gridSize = Mathf.Max(0.0001f, _gridSize);
+        _showGridParam = EditorGUILayout.Foldout(_showGridParam, "Grid Parameters",true, EditorStyles.foldoutHeader);
+        if (_showGridParam)
+        {
+            EditorGUI.indentLevel++;
+            _linesNumber = EditorGUILayout.IntField("Number of Grid Lines", _linesNumber, GUILayout.Width(250));
+            
+            GUILayout.Space(10);
+            
+            _gridSize = EditorGUILayout.FloatField("Grid Size (XZ)", _gridSize, GUILayout.Width(250));
+            _gridSize = Mathf.Max(0.0001f, _gridSize);
+            _ySnapHeight = EditorGUILayout.FloatField("Grid Size (Y)", _ySnapHeight, GUILayout.Width(250));
+            _ySnapHeight = Mathf.Max(0.0001f, _ySnapHeight);
+            
+            GUILayout.Space(10);
+            
+            _showCustomGrid = EditorGUILayout.Toggle("Show XZ Grid", _showCustomGrid, GUILayout.Width(250));
+            _showYGrid = EditorGUILayout.Toggle("Show Y Grid", _showYGrid, GUILayout.Width(250));
+            
+            GUILayout.Space(10);
+            
+            _hGridColor = EditorGUILayout.ColorField("H Grid Color", _hGridColor, GUILayout.Width(250));
+            _vGridColor = EditorGUILayout.ColorField("V Grid Color", _vGridColor, GUILayout.Width(250));
+            
+            GUILayout.Space(10);
+            
+            _followSelectionX = EditorGUILayout.Toggle("Follow Selection X", _followSelectionX);
+            _followSelectionY = EditorGUILayout.Toggle("Follow Selection Y", _followSelectionY);
+            
+            GUILayout.Space(10);
+            
+            _unselectedGridHiding = EditorGUILayout.Toggle("Unselected Grid Hiding", _unselectedGridHiding);
+            _snapAlwaysOn = EditorGUILayout.Toggle("Snap Always On", _snapAlwaysOn);
+            EditorGUI.indentLevel--;
+        }
 
-        _snapAlwaysOn = EditorGUILayout.Toggle("Snap Always On", _snapAlwaysOn);
-        _unselectedGridHiding = EditorGUILayout.Toggle("Unselected Grid Hiding", _unselectedGridHiding);
-        _duplicateNum = EditorGUILayout.IntField("Duplicate Number", Mathf.Max(1, _duplicateNum));
-        _duplicateAxis = (DuplicateAxis)EditorGUILayout.EnumFlagsField("Duplicate Axes", _duplicateAxis);
-        if (GUILayout.Button("Duplicate"))
-            DuplicateItems();
+        _buildingParam = EditorGUILayout.Foldout(_buildingParam, "Building Options",true, EditorStyles.foldoutHeader);
+        if (_buildingParam)
+        {
+            EditorGUI.indentLevel++;
 
-        bool prevShowGrid = _showCustomGrid;
-        _showCustomGrid = EditorGUILayout.Toggle("Show XZ Grid", _showCustomGrid);
+            _buildMode = (BuildMode)EditorGUILayout.EnumPopup("Build Mode", _buildMode);
 
-        _showYGrid = EditorGUILayout.Toggle("Show Y Grid", _showYGrid);
-        _followSelectionX = EditorGUILayout.Toggle("Follow Selection X", _followSelectionX);
-        _followSelectionY = EditorGUILayout.Toggle("Follow Selection Y", _followSelectionY);
-        _ySnapHeight = EditorGUILayout.FloatField("Y Snap Height", _ySnapHeight);
-        _ySnapHeight = Mathf.Max(0.0001f, _ySnapHeight);
+            GUILayout.Space(10);
 
-        _hGridColor = EditorGUILayout.ColorField("H Grid Color", _hGridColor);
-        _vGridColor = EditorGUILayout.ColorField("V Grid Color", _vGridColor);
+            _duplicateNumXZ = EditorGUILayout.IntField("Duplicate Number XZ", Mathf.Max(2, _duplicateNumXZ));
+            if (_buildMode == BuildMode.Normal && _duplicateAxis.HasFlag(DuplicateAxis.Y))
+                _duplicateNumY = EditorGUILayout.IntField("Duplicate Number Y", Mathf.Max(2, _duplicateNumY));
 
-        GUILayout.Space(8);
+            GUILayout.Space(10);
+
+            _duplicateAxis = (DuplicateAxis)EditorGUILayout.EnumFlagsField("Duplicate Axes", _duplicateAxis);
+            _showDuplicateDirections =
+                EditorGUILayout.Foldout(_showDuplicateDirections, "Duplication Directions", true);
+            if (_showDuplicateDirections)
+            {
+                EditorGUI.indentLevel++;
+                _xDirection = (AxisDirection)EditorGUILayout.EnumPopup("X Axis Direction", _xDirection);
+                _yDirection = (AxisDirection)EditorGUILayout.EnumPopup("Y Axis Direction", _yDirection);
+                _zDirection = (AxisDirection)EditorGUILayout.EnumPopup("Z Axis Direction", _zDirection);
+                EditorGUI.indentLevel--;
+            }
+
+            GUILayout.Space(10);
+
+            if (GUILayout.Button("Duplicate"))
+                DuplicateItems();
+
+            EditorGUI.indentLevel--;
+        }
+
+        GUILayout.Space(15);
 
         if (GUILayout.Button("Reset to Default"))
         {
+            _linesNumber = 25;
             _gridSize = 1f;
             _ySnapHeight = 1f;
-            _snapAlwaysOn = false;
+            _snapAlwaysOn = true;
             _unselectedGridHiding = true;
             _showCustomGrid = true;
             _showYGrid = false;
             _followSelectionX = false;
             _followSelectionY = false;
+            _buildMode = BuildMode.Normal;
+            _duplicateNumXZ = 2;
+            _duplicateNumY = 2;
+            _duplicateAxis = DuplicateAxis.None;
             HideUnityGrid(_showCustomGrid);
         }
 
@@ -149,7 +256,7 @@ public class ModularBuilding : EditorWindow
             }
         }
     }
-    
+
     private static void DuplicateItems()
     {
         if (Selection.transforms.Length == 0)
@@ -159,27 +266,72 @@ public class ModularBuilding : EditorWindow
         bool useY = (_duplicateAxis & DuplicateAxis.Y) != 0;
         bool useZ = (_duplicateAxis & DuplicateAxis.Z) != 0;
 
-        int countX = useX ? _duplicateNum : 1;
-        int countY = useY ? _duplicateNum : 1;
-        int countZ = useZ ? _duplicateNum : 1;
+        if (!useX && !useY && !useZ)
+            return;
 
-        float stepX = useX ? _gridSize : 0f;
-        float stepY = useY ? _ySnapHeight : 0f;
-        float stepZ = useZ ? _gridSize : 0f;
+        HashSet<Vector3> offsets = new HashSet<Vector3>();
 
-        Vector3[] offsets = new Vector3[countX * countY * countZ];
-        int index = 0;
-
-        for (int x = 0; x < countX; x++)
-        for (int y = 0; y < countY; y++)
-        for (int z = 0; z < countZ; z++)
+        if (_buildMode == BuildMode.Stair)
         {
-            if (x == 0 && y == 0 && z == 0) continue;
+            for (int i = 1; i < _duplicateNumXZ; i++)
+            {
+                float stepX = useX ? i * _gridSize : 0f;
+                float stepY = useY ? i * _ySnapHeight : 0f;
+                float stepZ = useZ ? i * _gridSize : 0f;
 
-            offsets[index++] = new Vector3(x * stepX, y * stepY, z * stepZ);
+                List<int> xDirs = GetDirectionList(_xDirection);
+                List<int> yDirs = GetDirectionList(_yDirection);
+                List<int> zDirs = GetDirectionList(_zDirection);
+
+                foreach (int xDir in xDirs)
+                foreach (int yDir in yDirs)
+                foreach (int zDir in zDirs)
+                {
+                    Vector3 offset = new Vector3(stepX * xDir, stepY * yDir, stepZ * zDir);
+                    if (offset != Vector3.zero)
+                        offsets.Add(offset);
+                }
+            }
         }
+        else
+        {
+            List<float> xOffsets = new List<float> { 0 };
+            List<float> yOffsets = new List<float> { 0 };
+            List<float> zOffsets = new List<float> { 0 };
 
-        System.Array.Resize(ref offsets, index);
+            if (useX)
+            {
+                List<int> dirs = GetDirectionList(_xDirection);
+                foreach (int dir in dirs)
+                    for (int i = 1; i < _duplicateNumXZ; i++)
+                        xOffsets.Add(i * _gridSize * dir);
+            }
+
+            if (useY)
+            {
+                List<int> dirs = GetDirectionList(_yDirection);
+                foreach (int dir in dirs)
+                    for (int i = 1; i < _duplicateNumY; i++)
+                        yOffsets.Add(i * _ySnapHeight * dir);
+            }
+
+            if (useZ)
+            {
+                List<int> dirs = GetDirectionList(_zDirection);
+                foreach (int dir in dirs)
+                    for (int i = 1; i < _duplicateNumXZ; i++)
+                        zOffsets.Add(i * _gridSize * dir);
+            }
+
+            foreach (float x in xOffsets)
+            foreach (float y in yOffsets)
+            foreach (float z in zOffsets)
+            {
+                Vector3 offset = new Vector3(x, y, z);
+                if (offset != Vector3.zero)
+                    offsets.Add(offset);
+            }
+        }
 
         foreach (Transform original in Selection.transforms)
         {
@@ -197,6 +349,16 @@ public class ModularBuilding : EditorWindow
         SceneView.RepaintAll();
     }
 
+    private static List<int> GetDirectionList(AxisDirection direction)
+    {
+        List<int> dirs = new List<int>();
+        if (direction == AxisDirection.Positive || direction == AxisDirection.Both)
+            dirs.Add(1);
+        if (direction == AxisDirection.Negative || direction == AxisDirection.Both)
+            dirs.Add(-1);
+        return dirs;
+    }
+
 
     private static void SnapToGrid(Vector3 snapPosition, Transform snapTarget)
     {
@@ -206,13 +368,14 @@ public class ModularBuilding : EditorWindow
         snapTarget.position = snapPosition;
     }
 
+    #region Draw Grid
+
     private static void DrawXZGrid(SceneView sceneView)
     {
         Handles.color = _hGridColor;
-        int lines = 50;
-        float extent = lines * _gridSize;
+        float extent = _linesNumber * _gridSize;
 
-        for (int i = -lines; i <= lines; i++)
+        for (int i = -_linesNumber; i <= _linesNumber; i++)
         {
             float p = i * _gridSize;
             Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
@@ -224,28 +387,61 @@ public class ModularBuilding : EditorWindow
     private static void DrawYGrid(SceneView sceneView)
     {
         Handles.color = _vGridColor;
-        int lines = 50;
-        float horizontalExtent = lines * _gridSize;
-        float verticalExtent = lines * _ySnapHeight;
-        Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
-        for (int i = -lines; i <= lines; i++)
-        {
-            float x = i * _gridSize;
-            Handles.DrawLine(
-                new Vector3(x, -verticalExtent, _selectedObject.z),
-                new Vector3(x, verticalExtent, _selectedObject.z)
-            );
-        }
+        float horizontalExtent = _linesNumber * _gridSize;
+        float verticalExtent = _linesNumber * _ySnapHeight;
 
-        for (int j = -lines; j <= lines; j++)
+        Vector3 camForward = sceneView.camera.transform.forward;
+        Vector3 absForward = new Vector3(Mathf.Abs(camForward.x), Mathf.Abs(camForward.y), Mathf.Abs(camForward.z));
+
+        bool alignWithX = absForward.x > absForward.z;
+
+        Handles.zTest = UnityEngine.Rendering.CompareFunction.LessEqual;
+
+        if (alignWithX)
         {
-            float y = j * _ySnapHeight;
-            Handles.DrawLine(
-                new Vector3(-horizontalExtent, y, _selectedObject.z),
-                new Vector3(horizontalExtent, y, _selectedObject.z)
-            );
+            for (int i = -_linesNumber; i <= _linesNumber; i++)
+            {
+                float z = i * _gridSize;
+                Handles.DrawLine(
+                    new Vector3(_selectedObject.x, -verticalExtent, z),
+                    new Vector3(_selectedObject.x, verticalExtent, z)
+                );
+            }
+
+            for (int j = -_linesNumber; j <= _linesNumber; j++)
+            {
+                float y = j * _ySnapHeight;
+                Handles.DrawLine(
+                    new Vector3(_selectedObject.x, y, -horizontalExtent),
+                    new Vector3(_selectedObject.x, y, horizontalExtent)
+                );
+            }
+        }
+        else
+        {
+            for (int i = -_linesNumber; i <= _linesNumber; i++)
+            {
+                float x = i * _gridSize;
+                Handles.DrawLine(
+                    new Vector3(x, -verticalExtent, _selectedObject.z),
+                    new Vector3(x, verticalExtent, _selectedObject.z)
+                );
+            }
+
+            for (int j = -_linesNumber; j <= _linesNumber; j++)
+            {
+                float y = j * _ySnapHeight;
+                Handles.DrawLine(
+                    new Vector3(-horizontalExtent, y, _selectedObject.z),
+                    new Vector3(horizontalExtent, y, _selectedObject.z)
+                );
+            }
         }
     }
+
+    #endregion
+
+    #region Save/Load Settings
 
     private static void LoadSettings()
     {
@@ -259,9 +455,15 @@ public class ModularBuilding : EditorWindow
         _ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
         _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
         _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
-        _duplicateNum = EditorPrefs.GetInt(DuplicationNum, 1);
+        _duplicateNumXZ = EditorPrefs.GetInt(XZDuplicationNum, 1);
+        _linesNumber = EditorPrefs.GetInt(LinesNumber, 25);
+        _duplicateNumY = EditorPrefs.GetInt(YDuplicationNum, 1);
         _duplicateAxis = (DuplicateAxis)EditorPrefs.GetInt(DuplicationAxis, (int)DuplicateAxis.X);
         _settingsLoaded = true;
+        _buildMode = (BuildMode)EditorPrefs.GetInt(ModeKey, (int)_buildMode);
+        _xDirection = (AxisDirection)EditorPrefs.GetInt(XDirectionKey, (int)AxisDirection.Positive);
+        _yDirection = (AxisDirection)EditorPrefs.GetInt(YDirectionKey, (int)AxisDirection.Positive);
+        _zDirection = (AxisDirection)EditorPrefs.GetInt(ZDirectionKey, (int)AxisDirection.Positive);
 
         if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(XGridColorPrefKey, "4D4D4DFF"),
                 out var hSavedColor))
@@ -281,7 +483,8 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetBool(SnapPrefKey, _snapAlwaysOn);
         EditorPrefs.SetBool(GridFollowX, _followSelectionX);
         EditorPrefs.SetBool(GridFollowY, _followSelectionY);
-        EditorPrefs.SetInt(DuplicationNum, _duplicateNum);
+        EditorPrefs.SetInt(XZDuplicationNum, _duplicateNumXZ);
+        EditorPrefs.SetInt(YDuplicationNum, _duplicateNumY);
         EditorPrefs.SetInt(DuplicationAxis, (int)_duplicateAxis);
         EditorPrefs.SetBool(AutoGridHiding, _unselectedGridHiding);
         EditorPrefs.SetFloat(GridSizePrefKey, _gridSize);
@@ -290,7 +493,14 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetBool(ShowYGridPrefKey, _showYGrid);
         EditorPrefs.SetString(XGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_hGridColor));
         EditorPrefs.SetString(YGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_vGridColor));
+        EditorPrefs.SetInt(ModeKey, (int)_buildMode);
+        EditorPrefs.SetInt(XDirectionKey, (int)_xDirection);
+        EditorPrefs.SetInt(YDirectionKey, (int)_yDirection);
+        EditorPrefs.SetInt(ZDirectionKey, (int)_zDirection);
+        EditorPrefs.SetInt(LinesNumber, _linesNumber);
     }
+
+    #endregion
 
     private static void HideUnityGrid(bool hide)
     {
