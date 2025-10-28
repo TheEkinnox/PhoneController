@@ -1,14 +1,13 @@
-using UnityEngine;
+using System;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
-public class QRScannerManager : MonoBehaviour
+public class QRScannerController : MonoBehaviour
 {
+    public event Action<string> OnQrAction;
 #if UNITY_IOS && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    private static extern void StartQRScanner();
-
-    [DllImport("__Internal")]
-    private static extern void StopQRScanner();
+    [DllImport("__Internal")] private static extern void StartQRScanner();
+    [DllImport("__Internal")] private static extern void StopQRScanner();
 #endif
 
     void Start()
@@ -18,17 +17,17 @@ public class QRScannerManager : MonoBehaviour
 #endif
     }
 
-    public void OnQRDetected(string value)
-    {
-        Debug.Log("✅ QR Code Detected: " + value);
-        // Handle your logic here, for example:
-        // SceneManager.LoadScene(value);
-    }
-
     void OnDestroy()
     {
 #if UNITY_IOS && !UNITY_EDITOR
         StopQRScanner();
 #endif
     }
+
+    // Called from native
+    public void OnQRScanned(string value)
+    {
+        OnQrAction?.Invoke(value);
+    }
+    
 }

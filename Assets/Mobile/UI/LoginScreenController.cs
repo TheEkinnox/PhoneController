@@ -12,7 +12,7 @@ public class LoginScreenController : MonoBehaviour
         Connecting,
         Connected
     }
-
+    private QRScannerController _qrScannerController;
     private VisualElement _root;
 
     private Button _connectButton;
@@ -42,6 +42,9 @@ public class LoginScreenController : MonoBehaviour
         _connectButton = _root.Q<Button>("btn-connect");
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
+        _qrScannerController = FindFirstObjectByType<QRScannerController>();
+        _qrScannerController.OnQrAction += QrRead;
+        
 
 #if UNITY_EDITOR
         _addressField.value = "localhost";
@@ -80,6 +83,8 @@ public class LoginScreenController : MonoBehaviour
     {
         Disconnect();
         _connectButton.clicked -= Connect;
+        _qrScannerController.OnQrAction -= QrRead;
+
     }
 
     private void Connect()
@@ -141,5 +146,11 @@ public class LoginScreenController : MonoBehaviour
             OnDisconnect();
 
         _statusLabel.text = message;
+    }
+
+    private void QrRead(string qrValue)
+    {
+        _addressField.value = qrValue;
+        Connect();
     }
 }
