@@ -577,9 +577,9 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 1
-  cameraUsageDescription: Used to scan QR code in-game
+  cameraUsageDescription: Used to scan QR code in-game and connect easily
   locationUsageDescription: Give me your address please :3
-  microphoneUsageDescription: 
+  microphoneUsageDescription: use mic
   bluetoothUsageDescription: 
   macOSTargetOSVersion: 11.0
   switchNMETAOverride: 
