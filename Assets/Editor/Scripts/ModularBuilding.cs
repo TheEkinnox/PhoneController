@@ -247,21 +247,23 @@ public class ModularBuilding : EditorWindow
     private static void DuplicateObject(Transform original, Vector3 position)
     {
         GameObject clone = Instantiate(original.gameObject, position, original.rotation, original.parent);
-        Undo.RegisterCreatedObjectUndo(clone, "Grid Duplicate");
         SnapToGrid(clone.transform.position, clone.transform);
+        Undo.RegisterCreatedObjectUndo(clone, "Grid Duplicate");
     }
 
     private static void BuildCube(Vector3 start, Vector3Int count, Transform original)
     {
+        Vector3 objPos = original.position;
+
         for (int x = 0; x <= count.x; x++)
         {
             for (int y = 0; y <= count.y; y++)
             {
                 for (int z = 0; z <= count.z; z++)
                 {
-                    Vector3 offset = new(x, y, z);
-                    if (offset != Vector3.zero)
-                        DuplicateObject(original, start + offset);
+                    Vector3 target = start + new Vector3(x, y, z);
+                    if (target != objPos)
+                        DuplicateObject(original, target);
                 }
             }
         }
@@ -273,11 +275,13 @@ public class ModularBuilding : EditorWindow
         float stepY = count.y != 0 ? _ySnapHeight : 0f;
         float stepZ = count.z != 0 ? _gridSize : 0f;
 
+        Vector3 objPos = original.position;
+
         for (int x = 0; x <= count.x; x++)
         {
-            Vector3 offset = new(stepX * x, stepY * x, stepZ * x);
-            if (offset != Vector3.zero)
-                DuplicateObject(original, start + offset);
+            Vector3 target = start + new Vector3(stepX * x, stepY * x, stepZ * x);
+            if (target != objPos)
+                DuplicateObject(original, target);
         }
     }
 
