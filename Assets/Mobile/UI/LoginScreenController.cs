@@ -12,7 +12,7 @@ public class LoginScreenController : MonoBehaviour
         Connecting,
         Connected
     }
-    private QRScannerController _qrScannerController;
+    private CameraQRScanner _qrScannerController;
     private VisualElement _root;
 
     private Button _connectButton;
@@ -42,7 +42,7 @@ public class LoginScreenController : MonoBehaviour
         _connectButton = _root.Q<Button>("btn-connect");
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
-        _qrScannerController = FindFirstObjectByType<QRScannerController>();
+        _qrScannerController = FindFirstObjectByType<CameraQRScanner>();
         _qrScannerController.OnQrAction += QrRead;
         
 
