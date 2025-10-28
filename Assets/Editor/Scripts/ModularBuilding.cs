@@ -56,7 +56,14 @@ public class ModularBuilding : EditorWindow
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
     private const string GridFollowX = "ModularBuilding_GridFollowX";
     private const string GridFollowY = "ModularBuilding_GridFollowY";
-    private const string DuplicationNum = "ModularBuilding_DuplicationNum";
+
+    private static readonly string[] DuplicationNum =
+    {
+        "ModularBuilding_DuplicationNumX",
+        "ModularBuilding_DuplicationNumY",
+        "ModularBuilding_DuplicationNumZ"
+    };
+
     private const string AutoGridHiding = "ModularBuilding_AutoGridHiding";
     private const string GridSizePrefKey = "ModularBuilding_GridSize";
     private const string ShowGridPrefKey = "ModularBuilding_ShowGrid";
@@ -420,8 +427,10 @@ public class ModularBuilding : EditorWindow
         _ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
         _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
         _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
-        string duplicateNumJson = EditorPrefs.GetString(DuplicationNum, "{\"x\":0,\"y\":0,\"z\":0}");
-        _duplicateNum = JsonUtility.FromJson<Vector3Int>(duplicateNumJson);
+
+        for (int i = 0; i < 3; ++i)
+            _duplicateNum[i] = EditorPrefs.GetInt(DuplicationNum[i], 0);
+
         _linesNumber = EditorPrefs.GetInt(LinesNumber, 25);
         _settingsLoaded = true;
         _buildMode = (BuildMode)EditorPrefs.GetInt(ModeKey, (int)_buildMode);
@@ -447,7 +456,10 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetBool(SnapPrefKey, _snapAlwaysOn);
         EditorPrefs.SetBool(GridFollowX, _followSelectionX);
         EditorPrefs.SetBool(GridFollowY, _followSelectionY);
-        EditorPrefs.SetString(DuplicationNum, JsonUtility.ToJson(_duplicateNum));
+
+        for (int i = 0; i < 3; ++i)
+            EditorPrefs.SetInt(DuplicationNum[i], _duplicateNum[i]);
+
         EditorPrefs.SetBool(AutoGridHiding, _unselectedGridHiding);
         EditorPrefs.SetFloat(GridSizePrefKey, _gridSize);
         EditorPrefs.SetFloat(YSnapHeightPrefKey, _ySnapHeight);
