@@ -13,7 +13,6 @@ public class Compass : MonoBehaviour
     {
         Input.location.Start();
         Input.compass.enabled = true;
-        Debug.Log(Input.compass.enabled);
         
     }
 

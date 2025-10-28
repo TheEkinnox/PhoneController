@@ -14,7 +14,6 @@ public class TouchScreen : MonoBehaviour
 #endif
     {
         _isTouchSupported = Input.touchSupported;
-        Debug.Log(_isTouchSupported);
         if (!_isTouchSupported) return;
     }
 

@@ -12,7 +12,7 @@ public class Accelerometer : MonoBehaviour
 #endif
     {
         _isAccSupported = SystemInfo.supportsAccelerometer;
-        Debug.Log(_isAccSupported);
+        
     }
 
     private void FixedUpdate()
@@ -28,6 +28,5 @@ public class Accelerometer : MonoBehaviour
 
         AccData data = new AccData(acceleration);
         WebSocketClient.Instance.Send(NetworkedObject.MakePayload(data));
-        Debug.Log(Input.acceleration.sqrMagnitude);
     }
 }
