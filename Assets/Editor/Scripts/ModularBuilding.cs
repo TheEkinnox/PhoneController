@@ -20,9 +20,9 @@ public class ModularBuilding : EditorWindow
     private static Color _vGridColor;
     private static Vector3Int _duplicateNum;
     private static Vector3 _selectedObject;
-    private static AxisDirection _xDirection;
-    private static AxisDirection _yDirection;
-    private static AxisDirection _zDirection;
+
+    private static AxisDirection[] _axisDirections = new AxisDirection[3];
+
     private static bool _showDuplicateDirections;
     private static bool _showGridParam;
     private static bool _buildingParam;
@@ -56,14 +56,7 @@ public class ModularBuilding : EditorWindow
     private const string SnapPrefKey = "ModularBuilding_SnapAlwaysOn";
     private const string GridFollowX = "ModularBuilding_GridFollowX";
     private const string GridFollowY = "ModularBuilding_GridFollowY";
-
-    private static readonly string[] DuplicationNum =
-    {
-        "ModularBuilding_DuplicationNumX",
-        "ModularBuilding_DuplicationNumY",
-        "ModularBuilding_DuplicationNumZ"
-    };
-
+    private const string DuplicationNum = "ModularBuilding_DuplicationNum";
     private const string AutoGridHiding = "ModularBuilding_AutoGridHiding";
     private const string GridSizePrefKey = "ModularBuilding_GridSize";
     private const string ShowGridPrefKey = "ModularBuilding_ShowGrid";
@@ -72,9 +65,7 @@ public class ModularBuilding : EditorWindow
     private const string XGridColorPrefKey = "XCustomGridColor";
     private const string YGridColorPrefKey = "YCustomGridColor";
     public const string ShortcutId = "Tools/Grid Snap";
-    private const string XDirectionKey = "ModularBuilding_XDirection";
-    private const string YDirectionKey = "ModularBuilding_YDirection";
-    private const string ZDirectionKey = "ModularBuilding_ZDirection";
+    private const string DirectionKey = "ModularBuilding_Direction";
     private const string LinesNumber = "ModularBuilding_LinesNumber";
 
     #endregion
@@ -156,18 +147,19 @@ public class ModularBuilding : EditorWindow
 
             GUILayout.Space(10);
 
-            _duplicateNum = EditorGUILayout.Vector3IntField("Duplicate Number", Vector3Int.Max(_duplicateNum, Vector3Int.zero));
+            if (_buildMode == BuildMode.Stair)
+                _duplicateNum.x = EditorGUILayout.IntField("Duplicate Count", Mathf.Max(_duplicateNum.x, 0));
+            else
+                _duplicateNum = EditorGUILayout.Vector3IntField("Duplicate Count", Vector3Int.Max(_duplicateNum, Vector3Int.zero));
 
             GUILayout.Space(10);
 
-            _showDuplicateDirections =
-                EditorGUILayout.Foldout(_showDuplicateDirections, "Duplication Directions", true);
+            _showDuplicateDirections = EditorGUILayout.Foldout(_showDuplicateDirections, "Duplication Directions", true);
             if (_showDuplicateDirections)
             {
                 EditorGUI.indentLevel++;
-                _xDirection = (AxisDirection)EditorGUILayout.EnumPopup("X Axis Direction", _xDirection);
-                _yDirection = (AxisDirection)EditorGUILayout.EnumPopup("Y Axis Direction", _yDirection);
-                _zDirection = (AxisDirection)EditorGUILayout.EnumPopup("Z Axis Direction", _zDirection);
+                for (int i = 0; i < _axisDirections.Length; i++)
+                    _axisDirections[i] = (AxisDirection)EditorGUILayout.EnumPopup($"{(SnapAxis)(1 << i)} Axis Direction", _axisDirections[i]);
                 EditorGUI.indentLevel--;
             }
 
@@ -269,19 +261,45 @@ public class ModularBuilding : EditorWindow
         }
     }
 
-    private static void BuildStairs(Vector3 start, Vector3Int count, Transform original)
+    private static void BuildStairs(int count, Transform original)
     {
-        float stepX = count.x != 0 ? _gridSize : 0f;
-        float stepY = count.y != 0 ? _ySnapHeight : 0f;
-        float stepZ = count.z != 0 ? _gridSize : 0f;
+        Vector3 start = original.position;
 
-        Vector3 objPos = original.position;
+        float stepX = _gridSize;
+        float stepY = _ySnapHeight;
+        float stepZ = _gridSize;
 
-        for (int x = 0; x <= count.x; x++)
+        int[][] dirs = new int[_axisDirections.Length][];
+
+        for (int i = 0; i < _axisDirections.Length; i++)
         {
-            Vector3 target = start + new Vector3(stepX * x, stepY * x, stepZ * x);
-            if (target != objPos)
-                DuplicateObject(original, target);
+            if ((int)_axisDirections[i] == 0)
+                continue;
+
+            dirs[i] = _axisDirections[i] == AxisDirection.Both ? new int[2] : new int[1];
+
+            int cur = 0;
+            if (_axisDirections[i].HasFlag(AxisDirection.Positive))
+                dirs[i][cur++] = 1;
+
+            if (_axisDirections[i].HasFlag(AxisDirection.Negative))
+                dirs[i][cur] = -1;
+        }
+
+        for (int i = 1; i <= count; i++)
+        {
+            foreach (int xDir in dirs[0])
+            {
+                foreach (int yDir in dirs[1])
+                {
+                    foreach (int zDir in dirs[2])
+                    {
+                        Vector3 offset = new(stepX * i * xDir, stepY * i * yDir, stepZ * i * zDir);
+                        if (offset != Vector3.zero)
+                            DuplicateObject(original, start + offset);
+                    }
+                }
+            }
         }
     }
 
@@ -296,34 +314,29 @@ public class ModularBuilding : EditorWindow
         if (_duplicateNum == Vector3Int.zero)
             return;
 
+        Vector3Int count = _duplicateNum;
+        for (int i = 0; i < _axisDirections.Length; i++)
+        {
+            if (_axisDirections[i] == AxisDirection.Both)
+                count[i] *= 2;
+        }
+
+        Vector3 startOffset = new()
+        {
+            x = _axisDirections[0].HasFlag(AxisDirection.Negative) ? -_duplicateNum.x * _gridSize : 0,
+            y = _axisDirections[1].HasFlag(AxisDirection.Negative) ? -_duplicateNum.y * _ySnapHeight : 0,
+            z = _axisDirections[2].HasFlag(AxisDirection.Negative) ? -_duplicateNum.z * _gridSize : 0
+        };
+
         foreach (Transform original in Selection.transforms)
         {
-            Vector3 objectPos = original.position;
-
-            objectPos = new Vector3
-            {
-                x = _xDirection.HasFlag(AxisDirection.Negative) ? objectPos.x - _duplicateNum.x * _gridSize : objectPos.x,
-                y = _yDirection.HasFlag(AxisDirection.Negative) ? objectPos.y - _duplicateNum.y * _ySnapHeight : objectPos.y,
-                z = _zDirection.HasFlag(AxisDirection.Negative) ? objectPos.z - _duplicateNum.z * _gridSize : objectPos.z
-            };
-
-            Vector3Int count = _duplicateNum;
-            if (_xDirection == AxisDirection.Both)
-                count.x *= 2;
-
-            if (_yDirection == AxisDirection.Both)
-                count.y *= 2;
-
-            if (_zDirection == AxisDirection.Both)
-                count.z *= 2;
-
             switch (_buildMode)
             {
                 case BuildMode.Normal:
-                    BuildCube(objectPos, count, original);
+                    BuildCube(original.position + startOffset, count, original);
                     break;
                 case BuildMode.Stair:
-                    BuildStairs(objectPos, count, original);
+                    BuildStairs(_duplicateNum[0], original);
                     break;
                 default:
                     Debug.LogAssertion($"Unhandled BuildMode {_buildMode}");
@@ -432,24 +445,22 @@ public class ModularBuilding : EditorWindow
         _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
         _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
 
-        for (int i = 0; i < 3; ++i)
-            _duplicateNum[i] = EditorPrefs.GetInt(DuplicationNum[i], 0);
+        for (int i = 0; i < _axisDirections.Length; i++)
+        {
+            _duplicateNum[i] = EditorPrefs.GetInt($"{DuplicationNum}{i}", 0);
+            _axisDirections[i] = (AxisDirection)EditorPrefs.GetInt($"{DirectionKey}{i}", (int)AxisDirection.Positive);
+        }
 
         _linesNumber = EditorPrefs.GetInt(LinesNumber, 25);
         _settingsLoaded = true;
         _buildMode = (BuildMode)EditorPrefs.GetInt(ModeKey, (int)_buildMode);
-        _xDirection = (AxisDirection)EditorPrefs.GetInt(XDirectionKey, (int)AxisDirection.Positive);
-        _yDirection = (AxisDirection)EditorPrefs.GetInt(YDirectionKey, (int)AxisDirection.Positive);
-        _zDirection = (AxisDirection)EditorPrefs.GetInt(ZDirectionKey, (int)AxisDirection.Positive);
 
-        if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(XGridColorPrefKey, "4D4D4DFF"),
-                out Color hSavedColor))
+        if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(XGridColorPrefKey, "4D4D4DFF"), out Color hSavedColor))
             _hGridColor = hSavedColor;
         else
             _hGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
 
-        if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(YGridColorPrefKey, "4D4D4DFF"),
-                out Color vSavedColor))
+        if (ColorUtility.TryParseHtmlString("#" + EditorPrefs.GetString(YGridColorPrefKey, "4D4D4DFF"), out Color vSavedColor))
             _vGridColor = vSavedColor;
         else
             _vGridColor = new Color(0.3f, 0.3f, 0.3f, 1f);
@@ -461,8 +472,11 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetBool(GridFollowX, _followSelectionX);
         EditorPrefs.SetBool(GridFollowY, _followSelectionY);
 
-        for (int i = 0; i < 3; ++i)
-            EditorPrefs.SetInt(DuplicationNum[i], _duplicateNum[i]);
+        for (int i = 0; i < _axisDirections.Length; i++)
+        {
+            EditorPrefs.SetInt($"{DuplicationNum}{i}", _duplicateNum[i]);
+            EditorPrefs.SetInt($"{DirectionKey}{i}", (int)_axisDirections[i]);
+        }
 
         EditorPrefs.SetBool(AutoGridHiding, _unselectedGridHiding);
         EditorPrefs.SetFloat(GridSizePrefKey, _gridSize);
@@ -472,9 +486,6 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetString(XGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_hGridColor));
         EditorPrefs.SetString(YGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_vGridColor));
         EditorPrefs.SetInt(ModeKey, (int)_buildMode);
-        EditorPrefs.SetInt(XDirectionKey, (int)_xDirection);
-        EditorPrefs.SetInt(YDirectionKey, (int)_yDirection);
-        EditorPrefs.SetInt(ZDirectionKey, (int)_zDirection);
         EditorPrefs.SetInt(LinesNumber, _linesNumber);
     }
 
