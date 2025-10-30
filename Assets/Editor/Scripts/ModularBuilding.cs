@@ -253,7 +253,7 @@ public class ModularBuilding : EditorWindow
             {
                 for (int z = 0; z <= count.z; z++)
                 {
-                    Vector3 target = start + new Vector3(x, y, z);
+                    Vector3 target = start + new Vector3(x * _gridSize, y * _ySnapHeight, z * _gridSize);
                     if (target != objPos)
                         DuplicateObject(original, target);
                 }
