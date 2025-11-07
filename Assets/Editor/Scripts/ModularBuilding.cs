@@ -5,6 +5,7 @@ using System.Reflection;
 
 public class ModularBuilding : EditorWindow
 {
+
     #region Variables
 
     private static bool _snapAlwaysOn;
@@ -27,6 +28,10 @@ public class ModularBuilding : EditorWindow
     private static bool _showGridParam;
     private static bool _buildingParam;
     private static int _linesNumber;
+    
+    private static bool _useZOffset;
+    private static bool _useXOffset;
+    private static bool _useYOffset;
 
     #endregion
 
@@ -67,6 +72,9 @@ public class ModularBuilding : EditorWindow
     public const string ShortcutId = "Tools/Grid Snap";
     private const string DirectionKey = "ModularBuilding_Direction";
     private const string LinesNumber = "ModularBuilding_LinesNumber";
+    private const string UseXOffsetKey = "ModularBuilding_UseXOffset";
+    private const string UseYOffsetKey = "ModularBuilding_UseYOffset";
+    private const string UseZOffsetKey = "ModularBuilding_UseZOffset";
 
     #endregion
 
@@ -148,10 +156,25 @@ public class ModularBuilding : EditorWindow
             GUILayout.Space(10);
 
             if (_buildMode == BuildMode.Stair)
-                _duplicateNum.x = EditorGUILayout.IntField("Duplicate Count", Mathf.Max(_duplicateNum.x, 0));
-            else
-                _duplicateNum = EditorGUILayout.Vector3IntField("Duplicate Count", Vector3Int.Max(_duplicateNum, Vector3Int.zero));
+            {
+                _duplicateNum.x = EditorGUILayout.IntField("Step Count", Mathf.Max(_duplicateNum.x, 0));
 
+                GUILayout.Space(5);
+
+                EditorGUILayout.LabelField("Apply Offset On:", EditorStyles.boldLabel);
+                EditorGUI.indentLevel++;
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Space(50);
+                _useXOffset = GUILayout.Toggle(_useXOffset, "X", GUILayout.Width(80));
+                _useYOffset = GUILayout.Toggle(_useYOffset, "Y", GUILayout.Width(80));
+                _useZOffset = GUILayout.Toggle(_useZOffset, "Z", GUILayout.Width(80));
+                EditorGUILayout.EndHorizontal();
+                EditorGUI.indentLevel--;
+            }
+            else
+            {
+                _duplicateNum = EditorGUILayout.Vector3IntField("Duplicate Count", Vector3Int.Max(_duplicateNum, Vector3Int.zero));
+            }
             GUILayout.Space(10);
 
             _showDuplicateDirections = EditorGUILayout.Foldout(_showDuplicateDirections, "Duplication Directions", true);
@@ -243,7 +266,7 @@ public class ModularBuilding : EditorWindow
         Undo.RegisterCreatedObjectUndo(clone, "Grid Duplicate");
     }
 
-    private static void BuildCube(Vector3 start, Vector3Int count, Transform original)
+    private static void NormalBuild(Vector3 start, Vector3Int count, Transform original)
     {
         Vector3 objPos = original.position;
 
@@ -294,7 +317,11 @@ public class ModularBuilding : EditorWindow
                 {
                     foreach (int zDir in dirs[2])
                     {
-                        Vector3 offset = new(stepX * i * xDir, stepY * i * yDir, stepZ * i * zDir);
+                        Vector3 offset = new(
+                            _useXOffset ? stepX * i * xDir : 0f,
+                            _useYOffset ? stepY * i * yDir : 0f,
+                            _useZOffset ? stepZ * i * zDir : 0f
+                        );
                         if (offset != Vector3.zero)
                             DuplicateObject(original, start + offset);
                     }
@@ -333,7 +360,7 @@ public class ModularBuilding : EditorWindow
             switch (_buildMode)
             {
                 case BuildMode.Normal:
-                    BuildCube(original.position + startOffset, count, original);
+                    NormalBuild(original.position + startOffset, count, original);
                     break;
                 case BuildMode.Stair:
                     BuildStairs(_duplicateNum[0], original);
@@ -444,6 +471,9 @@ public class ModularBuilding : EditorWindow
         _ySnapHeight = EditorPrefs.GetFloat(YSnapHeightPrefKey, 1f);
         _showCustomGrid = EditorPrefs.GetBool(ShowGridPrefKey, true);
         _showYGrid = EditorPrefs.GetBool(ShowYGridPrefKey, false);
+        _useXOffset = EditorPrefs.GetBool(UseXOffsetKey, true);
+        _useYOffset = EditorPrefs.GetBool(UseYOffsetKey, true);
+        _useZOffset = EditorPrefs.GetBool(UseZOffsetKey, true);
 
         for (int i = 0; i < _axisDirections.Length; i++)
         {
@@ -487,6 +517,9 @@ public class ModularBuilding : EditorWindow
         EditorPrefs.SetString(YGridColorPrefKey, ColorUtility.ToHtmlStringRGBA(_vGridColor));
         EditorPrefs.SetInt(ModeKey, (int)_buildMode);
         EditorPrefs.SetInt(LinesNumber, _linesNumber);
+        EditorPrefs.SetBool(UseXOffsetKey, _useXOffset);
+        EditorPrefs.SetBool(UseYOffsetKey, _useYOffset);
+        EditorPrefs.SetBool(UseZOffsetKey, _useZOffset);
     }
 
     #endregion
