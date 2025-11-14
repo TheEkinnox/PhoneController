@@ -3,28 +3,29 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-[Header("Movement Settings")]
-    public float moveSpeed = 6f;
+    [Header("Movement Settings")] public float moveSpeed = 6f;
+
     public float jumpForce = 8f;
 
-    [Header("Gravity Settings")]
-    public Vector3 gravityDirection = Vector3.down;
+    [Header("Gravity Settings")] public Vector3 gravityDirection = Vector3.down;
+
     public float gravityStrength = 20f;
 
-    [Header("Ground Check")]
-    public float groundCheckDistance = 1.2f;
-    public LayerMask groundMask;
+    [Header("Ground Check")] public float groundCheckDistance = 1.2f;
 
-    private Rigidbody rb;
-    private bool isGrounded;
-
+    public float mouseSensitivity = 150f;
+    [SerializeField] private Transform roomParent;
     private Transform cam;
+    private bool isGrounded;
     private float mouseX;
     private float mouseY;
-    private float xRotation = 0f;
-    public float mouseSensitivity = 150f;
 
-    void Start()
+    private Vector3 moveInput;
+
+    private Rigidbody rb;
+    private float xRotation;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
@@ -34,23 +35,20 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
     {
         HandleCamera();
         HandleMovementInput();
         HandleJumpInput();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         ApplyMovement();
         ApplyCustomGravity();
     }
 
-    // -------------------------------
-    // CAMERA
-    // -------------------------------
-    void HandleCamera()
+    private void HandleCamera()
     {
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -62,64 +60,53 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    // -------------------------------
-    // MOVEMENT
-    // -------------------------------
-    private Vector3 moveInput;
-
-    void HandleMovementInput()
+    private void HandleMovementInput()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        // Get the movement direction relative to custom gravity
-        Vector3 localRight = Vector3.Cross(-gravityDirection, transform.forward).normalized;
-        Vector3 localForward = Vector3.Cross(localRight, -gravityDirection).normalized;
+        Vector3 gravityAxis = gravityDirection.normalized;
 
-        moveInput = (localRight * x + localForward * z).normalized * moveSpeed;
+        Vector3 camForward = Vector3.ProjectOnPlane(cam.forward, -gravityAxis).normalized;
+        Vector3 camRight = Vector3.ProjectOnPlane(cam.right, -gravityAxis).normalized;
+
+        moveInput = (camRight * x + camForward * z).normalized * moveSpeed;
     }
 
-    void ApplyMovement()
+    private void ApplyMovement()
     {
         Vector3 velocity = rb.linearVelocity;
 
-        // Separate gravity velocity and lateral velocity
         Vector3 gravityAxis = gravityDirection.normalized;
         Vector3 verticalVel = Vector3.Project(velocity, gravityAxis);
-        Vector3 lateralVel = Vector3.ProjectOnPlane(velocity, gravityAxis);
 
-        // Directly set the lateral velocity for responsiveness
         Vector3 newVel = moveInput + verticalVel;
         rb.linearVelocity = newVel;
     }
 
-    // -------------------------------
-    // JUMP
-    // -------------------------------
-    void HandleJumpInput()
+    private void HandleJumpInput()
     {
-        isGrounded = Physics.Raycast(transform.position, gravityDirection, groundCheckDistance, groundMask);
+        isGrounded = Physics.Raycast(transform.position, gravityDirection, groundCheckDistance);
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded)
         {
-            // Remove downward velocity and apply upward impulse
-            Vector3 gravityAxis = gravityDirection.normalized;
-            Vector3 vel = rb.linearVelocity;
+            transform.parent = roomParent;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 gravityAxis = gravityDirection.normalized;
+                Vector3 vel = rb.linearVelocity;
 
-            // cancel any downward motion before jumping
-            vel -= Vector3.Project(vel, gravityAxis);
-            rb.linearVelocity = vel;
+                vel -= Vector3.Project(vel, gravityAxis);
+                rb.linearVelocity = vel;
 
-            rb.AddForce(-gravityAxis * jumpForce, ForceMode.VelocityChange);
+                rb.AddForce(-gravityAxis * jumpForce, ForceMode.VelocityChange);
+            }
         }
+        else
+            transform.parent = null;
+        
     }
 
-    // -------------------------------
-    // CUSTOM GRAVITY
-    // -------------------------------
-    void ApplyCustomGravity()
-    {
-        rb.AddForce(gravityDirection.normalized * gravityStrength, ForceMode.Acceleration);
-    }
+    private void ApplyCustomGravity() => rb.AddForce(gravityDirection.normalized * gravityStrength, ForceMode.Acceleration);
+    
 }
-
