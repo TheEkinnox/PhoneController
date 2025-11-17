@@ -40,12 +40,19 @@ public class PlayerMovement : MonoBehaviour
         HandleCamera();
         HandleMovementInput();
         HandleJumpInput();
+        FreezeRotation();
     }
 
     private void FixedUpdate()
     {
         ApplyMovement();
         ApplyCustomGravity();
+    }
+
+    private void FreezeRotation()
+    {
+        Vector3 rot = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(0, rot.y, 0);
     }
 
     private void HandleCamera()
@@ -86,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJumpInput()
     {
+        Vector3 rayDirection = roomParent.rotation * gravityDirection.normalized;
         isGrounded = Physics.Raycast(transform.position, gravityDirection, groundCheckDistance);
 
         if (isGrounded)
@@ -105,6 +113,27 @@ public class PlayerMovement : MonoBehaviour
         else
             transform.parent = null;
         
+    }
+    
+    private void OnDrawGizmos()
+    {
+        
+        Vector3 rayDirection = roomParent.rotation * gravityDirection.normalized;
+        if (roomParent == null) return;
+
+        Gizmos.color = Color.red;
+
+        // 1. Normal gravity ray
+        Vector3 origin = transform.position;
+        Vector3 gravityDir = gravityDirection.normalized;
+        Gizmos.DrawLine(origin, origin + gravityDir * groundCheckDistance);
+        Gizmos.DrawSphere(origin + gravityDir * groundCheckDistance, 0.05f);
+
+        // 2. Ray using rotated gravity direction
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawLine(origin, origin + rayDirection * groundCheckDistance);
+        Gizmos.DrawSphere(origin + rayDirection * groundCheckDistance, 0.05f);
     }
 
     private void ApplyCustomGravity() => rb.AddForce(gravityDirection.normalized * gravityStrength, ForceMode.Acceleration);
