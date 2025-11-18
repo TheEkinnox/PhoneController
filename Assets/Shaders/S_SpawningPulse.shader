@@ -80,6 +80,7 @@ Shader "Custom/S_SpawningPulse"
                 float ring = saturate(inner/blur);
                 //multiply the strench and color of the circle
                 color.rgb += ring * _PulseStrength;
+                
                 return color;
             }
             ENDHLSL
