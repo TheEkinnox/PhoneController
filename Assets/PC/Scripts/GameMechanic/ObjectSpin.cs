@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class LampSpin : MonoBehaviour
+[RequireComponent(typeof(PowerEnabled))]
+public class ObjectSpin : MonoBehaviour
 {
     [System.Serializable]
     public class AxisSettings

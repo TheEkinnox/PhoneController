@@ -4,23 +4,17 @@ using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
-    public bool powerEnabled;
+    
+    public bool powerAlreadyTriggered = false;
+    public float currentChargeTime;
+    public float chargeTime;
 
-    public bool powerEnabledAction
+    public void TriggerPower()
     {
-        get => powerEnabled;
-        set
-        {
-            if (powerEnabled == value) return;
-            
-            powerEnabled = value;
+        if (powerAlreadyTriggered) return;
 
-            if (powerEnabled)
-            {
-                PowerTrigger?.Invoke();
-                powerEnabled = false;
-            }
-        }
+        powerAlreadyTriggered = true;
+        PowerTrigger?.Invoke();
     }
 
     public event Action PowerTrigger;
