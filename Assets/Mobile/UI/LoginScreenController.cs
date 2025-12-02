@@ -6,6 +6,13 @@ using UnityEngine.UIElements;
 
 public class LoginScreenController : MonoBehaviour
 {
+    private enum Estate
+    {
+        Disconnected,
+        Connecting,
+        Connected
+    }
+    private CameraQRScanner _qrScannerController;
     private VisualElement _root;
 
     private Button _connectButton;
@@ -13,6 +20,8 @@ public class LoginScreenController : MonoBehaviour
     private Label _statusLabel;
 
     private WebSocketClient _client;
+    private Estate _state;
+
     [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
 #if UNITY_EDITOR
@@ -25,9 +34,7 @@ public class LoginScreenController : MonoBehaviour
         _client.onOpen.AddListener(OnConnect);
         _client.onClose.AddListener(OnDisconnect);
 
-#if DEBUG
-        _client.onError.AddListener(Debug.LogError);
-#endif
+        _client.onError.AddListener(OnError);
 
         _root = GetComponent<UIDocument>().rootVisualElement;
 
@@ -35,12 +42,16 @@ public class LoginScreenController : MonoBehaviour
         _connectButton = _root.Q<Button>("btn-connect");
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
+        _qrScannerController = FindFirstObjectByType<CameraQRScanner>();
+        _qrScannerController.OnQrAction += QrRead;
+        
 
 #if UNITY_EDITOR
         _addressField.value = "localhost";
 #endif
 
-        // TODO: Setup status label (Data source ? Manual text overriding ?)
+        _statusLabel.text = string.Empty;
+        _state = Estate.Disconnected;
 
         // Setup button
         _connectButton.clicked += Connect;
@@ -72,6 +83,8 @@ public class LoginScreenController : MonoBehaviour
     {
         Disconnect();
         _connectButton.clicked -= Connect;
+        _qrScannerController.OnQrAction -= QrRead;
+
     }
 
     private void Connect()
@@ -81,6 +94,10 @@ public class LoginScreenController : MonoBehaviour
 
         int port = tokens.Length == 2 ? int.Parse(tokens[1]) : WebSocketUtils.DefaultPort;
         _client.Connect(tokens[0], port);
+        _connectButton.text = "Connecting...";
+        _connectButton.enabledSelf = false;
+        _statusLabel.text = string.Empty;
+        _state = Estate.Connecting;
     }
 
     private void Disconnect()
@@ -91,9 +108,12 @@ public class LoginScreenController : MonoBehaviour
     private void OnConnect()
     {
         _connectButton.text = "Disconnect";
+        _connectButton.enabledSelf = true;
         _connectButton.clicked -= Connect;
         _connectButton.clicked += Disconnect;
         _addressField.isReadOnly = true;
+        _statusLabel.text = string.Empty;
+        _state = Estate.Connected;
         TrueDebug.Log("Connected to server");
 
         _client.Send("Plop!");
@@ -102,9 +122,35 @@ public class LoginScreenController : MonoBehaviour
     private void OnDisconnect()
     {
         _connectButton.text = "Connect";
-        _connectButton.clicked -= Disconnect;
-        _connectButton.clicked += Connect;
+        _connectButton.enabledSelf = true;
+
+        if (_state == Estate.Connected)
+        {
+            _connectButton.clicked -= Disconnect;
+            _connectButton.clicked += Connect;
+            TrueDebug.Log("Disconnected from server");
+        }
+
         _addressField.isReadOnly = false;
-        TrueDebug.Log("Disconnected from server");
+        _statusLabel.text = string.Empty;
+        _state = Estate.Disconnected;
+    }
+
+    private void OnError(string message)
+    {
+#if DEBUG
+        Debug.LogError(message);
+#endif
+
+        if (_state == Estate.Connecting && !_client.IsConnected)
+            OnDisconnect();
+
+        _statusLabel.text = message;
+    }
+
+    private void QrRead(string qrValue)
+    {
+        _addressField.value = qrValue;
+        Connect();
     }
 }

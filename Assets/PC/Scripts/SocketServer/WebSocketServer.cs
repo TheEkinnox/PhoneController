@@ -136,7 +136,7 @@ namespace SocketServer
             }
             finally
             {
-                _connection?.Close();
+                Close(_connection);
                 _listener?.Stop();
                 sendThread?.Interrupt();
             }

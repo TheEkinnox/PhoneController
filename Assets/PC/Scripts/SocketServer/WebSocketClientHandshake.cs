@@ -91,7 +91,7 @@ namespace SocketServer
 
                 if (!string.Equals(origin, targetOrigin))
                 {
-                    return (false, $"Invalid socket origin: {origin}");
+                    return (false, $"Invalid socket origin: \"{origin}\" - Expected: \"{targetOrigin}\"");
                 }
             }
 
@@ -131,7 +131,7 @@ namespace SocketServer
                     status = "403 Forbidden";
             }
 
-            TrueDebug.Log(errorMessage);
+            TrueDebug.LogError(errorMessage);
 
             StringBuilder response = new();
             response.Append($"{WebSocketUtils.HttpStr} {status}{WebSocketUtils.EOL}");

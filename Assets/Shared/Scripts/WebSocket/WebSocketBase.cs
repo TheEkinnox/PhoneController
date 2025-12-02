@@ -97,8 +97,30 @@ namespace Shared.WebSocket
             _messageQueue.Clear();
         }
 
+        private static byte[] GetData(WebSocketDataFrame frame, WebSocketDataFrame[] frameBuffer, int bufferLen)
+        {
+            int dataSize = frame.PayloadLength;
+
+            for (int i = 0; i < bufferLen; ++i)
+                dataSize += frameBuffer[i].PayloadLength;
+
+            byte[] data = new byte[dataSize];
+            int offset = 0;
+
+            for (int i = 0; i < bufferLen; ++i)
+            {
+                frameBuffer[i].DecodeData(ref data, offset);
+                offset += frameBuffer[i].PayloadLength;
+            }
+
+            return frame.DecodeData(ref data, offset);
+        }
+
         protected void ReceiveEvents(TcpConnection connection)
         {
+            WebSocketDataFrame[] frameBuffer = new WebSocketDataFrame[16];
+            int bufferLen = 0;
+
             while (connection?.Client?.Connected is true)
             {
                 WebSocketDataFrame frame = ReadFrame(connection);
@@ -106,30 +128,47 @@ namespace Shared.WebSocket
                 if (frame == null)
                 {
                     TrueDebug.LogWarning("Frame dropped");
+                    bufferLen = 0;
                     continue;
                 }
 
-                if (!frame.IsFinalFragment)
+                if (frame.IsDataFrame && !frame.IsFinalFragment)
                 {
-                    TrueDebug.LogWarning("Fragmented frame received");
-                    continue;
+                    if (bufferLen + 1 >= frameBuffer.Length)
+                    {
+                        TrueDebug.LogWarning("Too many fragments received - Frame dropped");
+                        bufferLen = 0;
+                        continue;
+                    }
+
+                    frameBuffer[bufferLen++] = frame;
+                    TrueDebug.Log($"{bufferLen} fragmented frames received");
                 }
 
                 switch (frame.OpCode)
                 {
                     case WebSocketOpCode.Text:
-                        QueueMessage(frame.DecodeData(), true);
+                        QueueMessage(GetData(frame, frameBuffer, bufferLen), true);
                         break;
                     case WebSocketOpCode.Binary:
-                        QueueMessage(frame.DecodeData(), false);
+                        QueueMessage(GetData(frame, frameBuffer, bufferLen), false);
                         break;
                     case WebSocketOpCode.Close:
                         connection.Close();
                         break;
+                    case WebSocketOpCode.Ping:
+                        SendImpl(connection.Stream, WebSocketOpCode.Pong, Array.Empty<byte>());
+                        break;
+                    case WebSocketOpCode.Pong:
+                        TrueDebug.Log("Pong received");
+                        break;
+                    case WebSocketOpCode.Continuation:
                     default:
-                        TrueDebug.LogWarning("Unknown opcode: " + frame.OpCode);
+                        TrueDebug.LogWarning("Unhandled opcode: " + frame.OpCode);
                         break;
                 }
+
+                bufferLen = 0;
             }
 
             QueueClose();
@@ -277,6 +316,10 @@ namespace Shared.WebSocket
             }
 
             Array.Resize(ref buffer, offset + frame.PayloadLength);
+
+            if (!WaitForBytes(connection, frame.PayloadLength))
+                return null;
+
             connection.Stream.ReadExactly(buffer, offset, frame.PayloadLength);
             frame.Data = buffer;
 
