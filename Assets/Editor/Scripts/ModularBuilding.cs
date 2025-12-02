@@ -218,7 +218,7 @@ public class ModularBuilding : EditorWindow
 
     private static void OnSceneGUI(SceneView sceneView)
     {
-        if (Selection.activeGameObject == null)
+        if (Selection.activeTransform == null)
         {
             _selectedObject = Vector3.zero;
             if (_unselectedGridHiding)
