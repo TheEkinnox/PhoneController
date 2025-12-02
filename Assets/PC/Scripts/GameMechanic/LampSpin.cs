@@ -1,42 +1,46 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class LampSpin : MonoBehaviour
 {
-    public enum SpinAxis
+    [System.Serializable]
+    public class AxisSettings
     {
-        X,
-        Y,
-        Z
+        public bool enable = false;
+        public float speed = 45f;
+        public bool positiveDirection = true;
     }
+    
+    [SerializeField] private AxisSettings xAxis;
 
-    [SerializeField] private float speed;
-    [SerializeField] private SpinAxis axis;
-    [SerializeField] private bool spinDirection;
+    [SerializeField] private AxisSettings yAxis;
 
+    [SerializeField] private AxisSettings zAxis;
 
     void Update()
     {
-        float direction = 1f;
-        if (!spinDirection)
-            direction *= -1f;
-
         Vector3 rotation = Vector3.zero;
 
-        switch (axis)
+        if (xAxis.enable)
         {
-            case SpinAxis.X:
-                rotation = new Vector3(speed * direction * Time.deltaTime, 0f, 0f);
-                break;
-            case SpinAxis.Y:
-                rotation = new Vector3(0f, speed * direction * Time.deltaTime, 0f);
-                break;
-            case SpinAxis.Z:
-                rotation = new Vector3(0f, 0f, speed * direction * Time.deltaTime);
-                break;
+            float dir = xAxis.positiveDirection ? 1f : -1f;
+            rotation.x = xAxis.speed * dir * Time.deltaTime;
         }
 
-        gameObject.transform.Rotate(rotation);
+        if (yAxis.enable)
+        {
+            float dir = yAxis.positiveDirection ? 1f : -11f;
+            rotation.y = yAxis.speed * dir * Time.deltaTime;
+        }
+
+        if (zAxis.enable)
+        {
+            float dir = zAxis.positiveDirection ? 1f : -1f;
+            rotation.z = zAxis.speed * dir * Time.deltaTime;
+        }
+
+        transform.Rotate(rotation, Space.Self);
     }
 }

@@ -14,18 +14,12 @@ public class Puzzle01 : MonoBehaviour
         Vector3 dirNormalized = direction.normalized;
         
         if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance))
-        {
-            if (hit.collider.CompareTag("SolarPanel"))
-            {
-                Debug.Log("Nice Cock");
-            }
-            else
-            {
-                Debug.Log("hunhun");
-            }
-        }
-
-        // Draw visible line in Scene view
+            if (hit.collider.CompareTag("SolarPanel") && !GameManager.Instance.powerEnabled)
+                GameManager.Instance.powerEnabledAction = true;
+            
+        
+        #if UNITY_EDITOR
         Debug.DrawLine(objectA.position, objectB.position, Color.red);
+        #endif
     }
 }
