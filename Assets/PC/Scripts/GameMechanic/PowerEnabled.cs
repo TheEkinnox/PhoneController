@@ -18,9 +18,10 @@ public class PowerEnabled : MonoBehaviour
         GameManager.Instance.PowerTrigger += LightTurnOn;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        GameManager.Instance.PowerTrigger -= LightTurnOn;
+        if(GameManager.Instance)
+            GameManager.Instance.PowerTrigger -= LightTurnOn;
     }
 
     private void Update()
