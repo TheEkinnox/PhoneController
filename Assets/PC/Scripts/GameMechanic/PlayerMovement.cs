@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private float xRotation;
+    private float yRotation;
 
     private void Start()
     {
@@ -40,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         HandleCamera();
         HandleMovementInput();
         HandleJumpInput();
-        FreezeRotation();
     }
 
     private void FixedUpdate()
@@ -49,22 +49,18 @@ public class PlayerMovement : MonoBehaviour
         ApplyCustomGravity();
     }
 
-    private void FreezeRotation()
-    {
-        Vector3 rot = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0, rot.y, 0);
-    }
-
     private void HandleCamera()
     {
         mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+        xRotation = Mathf.Clamp(xRotation - mouseY, -80f, 80f);
+        yRotation += mouseX;
 
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+
+        Quaternion rotAdjust = Quaternion.FromToRotation(Vector3.down, gravityDirection);
+        transform.rotation = rotAdjust * Quaternion.Euler(0, yRotation, 0);
     }
 
     private void HandleMovementInput()
