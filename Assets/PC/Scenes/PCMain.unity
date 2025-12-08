@@ -119,6 +119,159 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &15499707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 15499708}
+  - component: {fileID: 15499713}
+  - component: {fileID: 15499712}
+  - component: {fileID: 15499711}
+  - component: {fileID: 15499710}
+  - component: {fileID: 15499709}
+  m_Layer: 0
+  m_Name: Puzzle2 Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15499708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 16.070002, z: 0}
+  m_LocalScale: {x: 1, y: 3.6801, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778879638}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &15499709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Platform.PC::ObjectGravity
+  gravityActive: 1
+--- !u!54 &15499710
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &15499711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &15499712
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 974fa39b5dcc66e41a3a3b3ee96bf35f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &15499713
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15499707}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &25970669
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,10 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &29832698
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,10 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &35282296
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,10 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &35796150
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,10 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &46018867
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,10 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &109737403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,10 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &112925420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,10 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &114223467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,10 +1495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &141065279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,10 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &143436979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,10 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &145114801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,10 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &174154171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,10 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &196428416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,10 +2260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &212659061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,10 +2413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &215260921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,10 +2766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &281181213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,10 +2919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &288336698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,10 +3072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &307382728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,10 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &315551713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,10 +3409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &329741800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,10 +3562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,10 +3852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &396823286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3915,10 +4005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,10 +4316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &465395658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4385,10 +4469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &519191494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,7 +4490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &519191495
 Transform:
   m_ObjectHideFlags: 0
@@ -4678,10 +4759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &526927610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,10 +4912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &570054217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,10 +5065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &608621308
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,10 +5218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &634861159
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,14 +5327,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634861159}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.050966606, y: 0.031703014, z: 0.0009553831, w: -0.9981966}
-  m_LocalPosition: {x: -14.17, y: 6.96, z: -7.38}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 330585546}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -5.843, y: -3.642, z: 0.076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &634861164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5273,7 +5342,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634861159}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f69e46744097b384d8be29361534ade9, type: 3}
   m_Name: 
@@ -5464,10 +5533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &667301632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5620,10 +5686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &677202780
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,10 +6097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &709081271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6190,10 +6250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &716618374
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,10 +6403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &722237573
 GameObject:
   m_ObjectHideFlags: 0
@@ -6502,10 +6556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &736585657
 GameObject:
   m_ObjectHideFlags: 0
@@ -6721,10 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &758345558
 GameObject:
   m_ObjectHideFlags: 0
@@ -6877,10 +6925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &768115454
 GameObject:
   m_ObjectHideFlags: 0
@@ -7033,10 +7078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &772802350
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,10 +7231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &800489682
 GameObject:
   m_ObjectHideFlags: 0
@@ -7345,10 +7384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &808436161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7501,10 +7537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &818960941
 GameObject:
   m_ObjectHideFlags: 0
@@ -7657,10 +7690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7999,10 +8029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &890314162
 GameObject:
   m_ObjectHideFlags: 0
@@ -8155,10 +8182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &891702666
 GameObject:
   m_ObjectHideFlags: 0
@@ -8311,10 +8335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &901383972
 GameObject:
   m_ObjectHideFlags: 0
@@ -8467,10 +8488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &901455880
 GameObject:
   m_ObjectHideFlags: 0
@@ -8623,10 +8641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &906296739
 GameObject:
   m_ObjectHideFlags: 0
@@ -8973,10 +8988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &939371024
 GameObject:
   m_ObjectHideFlags: 0
@@ -9129,10 +9141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &955811674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9153,7 +9162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &955811675
 Transform:
   m_ObjectHideFlags: 0
@@ -9422,10 +9431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &976301107
 GameObject:
   m_ObjectHideFlags: 0
@@ -9578,10 +9584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &977246443
 GameObject:
   m_ObjectHideFlags: 0
@@ -9734,10 +9737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &987594356
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,10 +9890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1007838668
 GameObject:
   m_ObjectHideFlags: 0
@@ -10157,10 +10154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1029398688
 GameObject:
   m_ObjectHideFlags: 0
@@ -10313,10 +10307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1032595076
 GameObject:
   m_ObjectHideFlags: 0
@@ -10469,10 +10460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1052171209
 GameObject:
   m_ObjectHideFlags: 0
@@ -10736,10 +10724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1107519817
 GameObject:
   m_ObjectHideFlags: 0
@@ -10892,10 +10877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1120936065
 GameObject:
   m_ObjectHideFlags: 0
@@ -10925,6 +10907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d58fabbc661b4147be6583642548004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::GameManager
+  gravityDirection: {x: 0, y: -1, z: 0}
+  gravityStrength: 20
   powerAlreadyTriggered: 0
   currentChargeTime: 0
   chargeTime: 2
@@ -11095,10 +11079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1136134855
 GameObject:
   m_ObjectHideFlags: 0
@@ -11251,10 +11232,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
+--- !u!1001 &1141876114
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.03
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
+      propertyPath: m_Name
+      value: blobe
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70e32d4fe0a0820408eb42d3d04e92b8, type: 3}
 --- !u!1 &1162466268
 GameObject:
   m_ObjectHideFlags: 0
@@ -11407,10 +11442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1188196311
 GameObject:
   m_ObjectHideFlags: 0
@@ -11563,10 +11595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1195560212
 GameObject:
   m_ObjectHideFlags: 0
@@ -11719,10 +11748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1196296362
 GameObject:
   m_ObjectHideFlags: 0
@@ -11875,10 +11901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1202876407
 GameObject:
   m_ObjectHideFlags: 0
@@ -12031,10 +12054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1216459918
 GameObject:
   m_ObjectHideFlags: 0
@@ -12187,10 +12207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1218337663
 GameObject:
   m_ObjectHideFlags: 0
@@ -12343,10 +12360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1223844906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12858,10 +12872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1309183506
 GameObject:
   m_ObjectHideFlags: 0
@@ -13014,10 +13025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1343324260
 GameObject:
   m_ObjectHideFlags: 0
@@ -13419,10 +13427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1363240905
 GameObject:
   m_ObjectHideFlags: 0
@@ -13575,10 +13580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1364109952
 GameObject:
   m_ObjectHideFlags: 0
@@ -13731,10 +13733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1370370282
 GameObject:
   m_ObjectHideFlags: 0
@@ -13887,10 +13886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1372467602
 GameObject:
   m_ObjectHideFlags: 0
@@ -14043,10 +14039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1380787856
 GameObject:
   m_ObjectHideFlags: 0
@@ -14199,10 +14192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1445960249
 GameObject:
   m_ObjectHideFlags: 0
@@ -14466,10 +14456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1461625131
 GameObject:
   m_ObjectHideFlags: 0
@@ -14733,10 +14720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1464316434
 GameObject:
   m_ObjectHideFlags: 0
@@ -15111,10 +15095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1507574585
 GameObject:
   m_ObjectHideFlags: 0
@@ -15267,10 +15248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1509002397
 GameObject:
   m_ObjectHideFlags: 0
@@ -15317,6 +15295,7 @@ Transform:
   - {fileID: 1464316435}
   - {fileID: 1665111549}
   - {fileID: 222256065}
+  - {fileID: 1778879638}
   - {fileID: 1489382361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15364,7 +15343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1521928268
 Transform:
   m_ObjectHideFlags: 0
@@ -15633,10 +15612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1537221931
 GameObject:
   m_ObjectHideFlags: 0
@@ -15789,10 +15765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1544390149
 GameObject:
   m_ObjectHideFlags: 0
@@ -15945,10 +15918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1548550434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4864342965330004576, guid: a5c8325cc59d0c34dbf43e962a2924bb, type: 3}
@@ -16142,10 +16112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1556335975
 GameObject:
   m_ObjectHideFlags: 0
@@ -16298,10 +16265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1596852855
 GameObject:
   m_ObjectHideFlags: 0
@@ -16454,10 +16418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1617140648
 GameObject:
   m_ObjectHideFlags: 0
@@ -16610,10 +16571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1623725000
 GameObject:
   m_ObjectHideFlags: 0
@@ -16766,10 +16724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1626845632
 GameObject:
   m_ObjectHideFlags: 0
@@ -16922,10 +16877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1641561934
 GameObject:
   m_ObjectHideFlags: 0
@@ -17078,10 +17030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1642019392
 GameObject:
   m_ObjectHideFlags: 0
@@ -17234,10 +17183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1647747422
 GameObject:
   m_ObjectHideFlags: 0
@@ -17390,10 +17336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1657662704
 GameObject:
   m_ObjectHideFlags: 0
@@ -17736,10 +17679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1685486758
 GameObject:
   m_ObjectHideFlags: 0
@@ -17892,10 +17832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1698557645
 GameObject:
   m_ObjectHideFlags: 0
@@ -18048,10 +17985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1699868673
 GameObject:
   m_ObjectHideFlags: 0
@@ -18204,10 +18138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1720872906
 GameObject:
   m_ObjectHideFlags: 0
@@ -18360,10 +18291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1721625159
 GameObject:
   m_ObjectHideFlags: 0
@@ -18516,10 +18444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1733007479
 GameObject:
   m_ObjectHideFlags: 0
@@ -18672,10 +18597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1752615291
 GameObject:
   m_ObjectHideFlags: 0
@@ -18828,10 +18750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1755408789
 GameObject:
   m_ObjectHideFlags: 0
@@ -18984,10 +18903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1778631663
 GameObject:
   m_ObjectHideFlags: 0
@@ -19140,10 +19056,259 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
+--- !u!1 &1778879637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778879638}
+  - component: {fileID: 1778879642}
+  - component: {fileID: 1778879641}
+  - component: {fileID: 1778879640}
+  - component: {fileID: 1778879639}
+  m_Layer: 0
+  m_Name: Puzzle2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778879638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778879637}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.16, y: -7.25, z: -8.53}
+  m_LocalScale: {x: 3.1268373, y: 1, z: 2.18925}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 15499708}
+  m_Father: {fileID: 1509002398}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1778879639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778879637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3d7c1becede9344b5152e8a39e735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Platform.PC::Puzzle02
+  targetObject: {fileID: 15499707}
+  books:
+  - {fileID: 1902375354}
+  - {fileID: 145114801}
+  - {fileID: 2070071111}
+  - {fileID: 1752615291}
+  - {fileID: 965581107}
+  - {fileID: 1188196311}
+  - {fileID: 46018867}
+  - {fileID: 35796150}
+  - {fileID: 1195560212}
+  - {fileID: 1733007479}
+  - {fileID: 1789091028}
+  - {fileID: 307382728}
+  - {fileID: 1216459918}
+  - {fileID: 1370370282}
+  - {fileID: 1720872906}
+  - {fileID: 1107519817}
+  - {fileID: 1537221931}
+  - {fileID: 380760297}
+  - {fileID: 1196296362}
+  - {fileID: 1907988187}
+  - {fileID: 709081271}
+  - {fileID: 1858364175}
+  - {fileID: 987594356}
+  - {fileID: 1502476679}
+  - {fileID: 716618374}
+  - {fileID: 247747364}
+  - {fileID: 1202876407}
+  - {fileID: 25970669}
+  - {fileID: 570054217}
+  - {fileID: 143436979}
+  - {fileID: 329741800}
+  - {fileID: 977246443}
+  - {fileID: 1623725000}
+  - {fileID: 1128090719}
+  - {fileID: 818960941}
+  - {fileID: 1028303946}
+  - {fileID: 939371024}
+  - {fileID: 1805195745}
+  - {fileID: 451755622}
+  - {fileID: 1984838798}
+  - {fileID: 2120964354}
+  - {fileID: 1032595076}
+  - {fileID: 114223467}
+  - {fileID: 1859142642}
+  - {fileID: 141065279}
+  - {fileID: 1999460978}
+  - {fileID: 1380787856}
+  - {fileID: 1056625026}
+  - {fileID: 1029398688}
+  - {fileID: 1363240905}
+  - {fileID: 1462709654}
+  - {fileID: 1811942262}
+  - {fileID: 281181213}
+  - {fileID: 288336698}
+  - {fileID: 890314162}
+  - {fileID: 1357017117}
+  - {fileID: 1617140648}
+  - {fileID: 174154171}
+  - {fileID: 1364109952}
+  - {fileID: 109737403}
+  - {fileID: 1721625159}
+  - {fileID: 2113069916}
+  - {fileID: 865930535}
+  - {fileID: 1685486758}
+  - {fileID: 1461027523}
+  - {fileID: 1641561934}
+  - {fileID: 808436161}
+  - {fileID: 1647747422}
+  - {fileID: 976301107}
+  - {fileID: 752443551}
+  - {fileID: 891702666}
+  - {fileID: 1962203134}
+  - {fileID: 2037658990}
+  - {fileID: 667301632}
+  - {fileID: 1523598499}
+  - {fileID: 758345558}
+  - {fileID: 1972310110}
+  - {fileID: 112925420}
+  - {fileID: 2079376234}
+  - {fileID: 396823286}
+  - {fileID: 1507574585}
+  - {fileID: 665488808}
+  - {fileID: 1278615576}
+  - {fileID: 901455880}
+  - {fileID: 1544390149}
+  - {fileID: 694140590}
+  - {fileID: 212659061}
+  - {fileID: 1872943829}
+  - {fileID: 768115454}
+  - {fileID: 35282296}
+  - {fileID: 1642019392}
+  - {fileID: 1755408789}
+  - {fileID: 1556335975}
+  - {fileID: 1596852855}
+  - {fileID: 1699868673}
+  - {fileID: 1778631663}
+  - {fileID: 1675293059}
+  - {fileID: 1136134855}
+  - {fileID: 1218337663}
+  - {fileID: 1884215401}
+  - {fileID: 2022775968}
+  - {fileID: 1372467602}
+  - {fileID: 327357902}
+  - {fileID: 29832698}
+  - {fileID: 196428416}
+  - {fileID: 722237573}
+  - {fileID: 2047279365}
+  - {fileID: 526497514}
+  - {fileID: 1309183506}
+  - {fileID: 465395658}
+  - {fileID: 1162466268}
+  - {fileID: 901383972}
+  - {fileID: 2046101936}
+  - {fileID: 1932843677}
+  - {fileID: 772802350}
+  - {fileID: 935639181}
+  - {fileID: 2115388072}
+  - {fileID: 1698557645}
+  - {fileID: 1626845632}
+  - {fileID: 1916030024}
+  - {fileID: 1550972907}
+  - {fileID: 800489682}
+  - {fileID: 2062545951}
+  - {fileID: 608621308}
+  - {fileID: 526927610}
+--- !u!65 &1778879640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778879637}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1778879641
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778879637}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fb060c587cb182d4f8ec16b8c620c14e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1778879642
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778879637}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1789091028
 GameObject:
   m_ObjectHideFlags: 0
@@ -19296,10 +19461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1805195745
 GameObject:
   m_ObjectHideFlags: 0
@@ -19452,10 +19614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1811942262
 GameObject:
   m_ObjectHideFlags: 0
@@ -19608,10 +19767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1819188208
 GameObject:
   m_ObjectHideFlags: 0
@@ -19849,10 +20005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1859142642
 GameObject:
   m_ObjectHideFlags: 0
@@ -20005,10 +20158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1872943829
 GameObject:
   m_ObjectHideFlags: 0
@@ -20161,10 +20311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1884215401
 GameObject:
   m_ObjectHideFlags: 0
@@ -20317,10 +20464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1902375354
 GameObject:
   m_ObjectHideFlags: 0
@@ -20473,10 +20617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1907988187
 GameObject:
   m_ObjectHideFlags: 0
@@ -20629,10 +20770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1916030024
 GameObject:
   m_ObjectHideFlags: 0
@@ -20785,10 +20923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1932843677
 GameObject:
   m_ObjectHideFlags: 0
@@ -20941,10 +21076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1962203134
 GameObject:
   m_ObjectHideFlags: 0
@@ -21097,10 +21229,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
+--- !u!1 &1967764114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967764118}
+  - component: {fileID: 1967764117}
+  - component: {fileID: 1967764116}
+  - component: {fileID: 1967764115}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1967764115
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967764114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1967764116
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967764114}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1967764117
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967764114}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1967764118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967764114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.42172, y: -6.5, z: -1.48868}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972310110
 GameObject:
   m_ObjectHideFlags: 0
@@ -21253,10 +21493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1984838798
 GameObject:
   m_ObjectHideFlags: 0
@@ -21409,10 +21646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &1999460978
 GameObject:
   m_ObjectHideFlags: 0
@@ -21565,10 +21799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2022775968
 GameObject:
   m_ObjectHideFlags: 0
@@ -21721,10 +21952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2037658990
 GameObject:
   m_ObjectHideFlags: 0
@@ -21877,10 +22105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2046101936
 GameObject:
   m_ObjectHideFlags: 0
@@ -22033,10 +22258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2047279365
 GameObject:
   m_ObjectHideFlags: 0
@@ -22189,10 +22411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2062545951
 GameObject:
   m_ObjectHideFlags: 0
@@ -22345,10 +22564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2070071111
 GameObject:
   m_ObjectHideFlags: 0
@@ -22501,10 +22717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2079376234
 GameObject:
   m_ObjectHideFlags: 0
@@ -22657,10 +22870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2113069916
 GameObject:
   m_ObjectHideFlags: 0
@@ -22813,10 +23023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2115388072
 GameObject:
   m_ObjectHideFlags: 0
@@ -22969,10 +23176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1 &2120964354
 GameObject:
   m_ObjectHideFlags: 0
@@ -23125,10 +23329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityDirection: {x: 0, y: -1, z: 0}
-  gravityStrength: 20
-  groundCheckDistance: 1.2
-  roomParent: {fileID: 1509002398}
+  gravityActive: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -23146,3 +23347,5 @@ SceneRoots:
   - {fileID: 1343324264}
   - {fileID: 906296743}
   - {fileID: 678660095}
+  - {fileID: 1967764118}
+  - {fileID: 1141876114}

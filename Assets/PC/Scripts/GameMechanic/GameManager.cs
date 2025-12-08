@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Vector3 gravityDirection = Vector3.down;
+    public float gravityStrength = 20f;
     
     public bool powerAlreadyTriggered = false;
     public float currentChargeTime;
@@ -18,4 +21,6 @@ public class GameManager : Singleton<GameManager>
     }
 
     public event Action PowerTrigger;
+    
+    
 }

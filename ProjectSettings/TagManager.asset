@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - SolarPanel
+  - Dirt
+  - Hardwood
+  - Metal
   layers:
   - Default
   - TransparentFX
