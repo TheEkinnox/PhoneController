@@ -38,7 +38,6 @@ public class LoginScreenController : MonoBehaviour
 
         _root = GetComponent<UIDocument>().rootVisualElement;
 
-        // Load elements
         _connectButton = _root.Q<Button>("btn-connect");
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
@@ -53,7 +52,6 @@ public class LoginScreenController : MonoBehaviour
         _statusLabel.text = string.Empty;
         _state = Estate.Disconnected;
 
-        // Setup button
         _connectButton.clicked += Connect;
     }
 
@@ -98,11 +96,13 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.enabledSelf = false;
         _statusLabel.text = string.Empty;
         _state = Estate.Connecting;
+        _qrScannerController.canScan = false;
     }
 
     private void Disconnect()
     {
         _client.Disconnect();
+        _qrScannerController.canScan = true;
     }
 
     private void OnConnect()
@@ -115,8 +115,8 @@ public class LoginScreenController : MonoBehaviour
         _statusLabel.text = string.Empty;
         _state = Estate.Connected;
         TrueDebug.Log("Connected to server");
-
         _client.Send("Plop!");
+        
     }
 
     private void OnDisconnect()

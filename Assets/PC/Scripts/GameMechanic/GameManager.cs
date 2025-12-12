@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public bool powerAlreadyTriggered = false;
     public float currentChargeTime;
     public float chargeTime;
+    public Quaternion phoneRotation;
 
     public void TriggerPower()
     {

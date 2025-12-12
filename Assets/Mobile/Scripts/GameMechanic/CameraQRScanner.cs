@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using ZXing; // make sure ZXing.Net is imported (see below)
 
@@ -14,9 +15,12 @@ public class CameraQRScanner : MonoBehaviour
     private IBarcodeReader barcodeReader;
     private float nextScanTime = 0f;
     private const float ScanInterval = 2f; // scan every 0.3s to save performance
+    [HideInInspector]public bool canScan = true;
+    private LoginScreenController _loginScreenController;
 
     void Start()
     {
+        _loginScreenController = FindFirstObjectByType<LoginScreenController>();
         barcodeReader = new BarcodeReader { AutoRotate = true };
         StartCamera();
     }
@@ -56,7 +60,7 @@ public class CameraQRScanner : MonoBehaviour
             : Vector3.one;
 
         // Decode every few frames
-        if (Time.time >= nextScanTime)
+        if (Time.time >= nextScanTime && canScan)
         {
             TryDecode();
             nextScanTime = Time.time + ScanInterval;

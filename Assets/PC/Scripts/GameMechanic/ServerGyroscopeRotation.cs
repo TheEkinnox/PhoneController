@@ -18,6 +18,6 @@ public class ServerGyroscopeRotation : NetworkedBehaviour
         if (!data.Is<GyroData>()) //NEEDED: Data receiver
             return;
 
-        _target.transform.rotation = data.GetData<GyroData>().value;
+        GameManager.Instance.phoneRotation = data.GetData<GyroData>().value;
     }
 }

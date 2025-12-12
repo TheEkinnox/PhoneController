@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpForce = 8f;
 
-    [Header("Gravity Settings")] public Vector3 gravityDirection = Vector3.down;
+    [Header("Gravity Settings")] public Vector3 gravityAxis;
 
     public float gravityStrength = 20f;
 
@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         HandleCamera();
         HandleMovementInput();
         HandleJumpInput();
+        gravityAxis = GameManager.Instance.phoneRotation * Vector3.down;
     }
 
     private void FixedUpdate()
@@ -59,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        Quaternion rotAdjust = Quaternion.FromToRotation(Vector3.down, gravityDirection);
+        Quaternion rotAdjust = Quaternion.FromToRotation(Vector3.down, gravityAxis);
         transform.rotation = rotAdjust * Quaternion.Euler(0, yRotation, 0);
     }
 
@@ -67,8 +68,6 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-
-        Vector3 gravityAxis = gravityDirection.normalized;
 
         Vector3 camForward = Vector3.ProjectOnPlane(cam.forward, -gravityAxis).normalized;
         Vector3 camRight = Vector3.ProjectOnPlane(cam.right, -gravityAxis).normalized;
@@ -80,8 +79,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 velocity = rb.linearVelocity;
 
-        Vector3 gravityAxis = gravityDirection.normalized;
-        Vector3 verticalVel = Vector3.Project(velocity, gravityAxis);
+        Vector3 verticalVel = Vector3.Project(velocity, gravityAxis.normalized);
 
         Vector3 newVel = moveInput + verticalVel;
         rb.linearVelocity = newVel;
@@ -89,21 +87,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJumpInput()
     {
-        Vector3 rayDirection = roomParent.rotation * gravityDirection.normalized;
-        isGrounded = Physics.Raycast(transform.position, gravityDirection, groundCheckDistance);
+        Vector3 rayDirection = roomParent.rotation * gravityAxis.normalized;
+        isGrounded = Physics.Raycast(transform.position, gravityAxis, groundCheckDistance);
 
         if (isGrounded)
         {
             transform.parent = roomParent;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Vector3 gravityAxis = gravityDirection.normalized;
                 Vector3 vel = rb.linearVelocity;
 
-                vel -= Vector3.Project(vel, gravityAxis);
+                vel -= Vector3.Project(vel, gravityAxis.normalized);
                 rb.linearVelocity = vel;
 
-                rb.AddForce(-gravityAxis * jumpForce, ForceMode.VelocityChange);
+                rb.AddForce(-gravityAxis.normalized * jumpForce, ForceMode.VelocityChange);
             }
         }
         else
@@ -114,16 +111,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         
-        Vector3 rayDirection = roomParent.rotation * gravityDirection.normalized;
+        Vector3 rayDirection = roomParent.rotation * gravityAxis.normalized;
         if (roomParent == null) return;
 
         Gizmos.color = Color.red;
 
         // 1. Normal gravity ray
         Vector3 origin = transform.position;
-        Vector3 gravityDir = gravityDirection.normalized;
-        Gizmos.DrawLine(origin, origin + gravityDir * groundCheckDistance);
-        Gizmos.DrawSphere(origin + gravityDir * groundCheckDistance, 0.05f);
+        Gizmos.DrawLine(origin, origin + gravityAxis.normalized * groundCheckDistance);
+        Gizmos.DrawSphere(origin + gravityAxis.normalized * groundCheckDistance, 0.05f);
 
         // 2. Ray using rotated gravity direction
         Gizmos.color = Color.blue;
@@ -132,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawSphere(origin + rayDirection * groundCheckDistance, 0.05f);
     }
 
-    private void ApplyCustomGravity() => rb.AddForce(gravityDirection.normalized * gravityStrength, ForceMode.Acceleration);
-    
+    private void ApplyCustomGravity()
+    {
+        rb.AddForce(gravityAxis.normalized * gravityStrength, ForceMode.Acceleration);
+    }
 }
