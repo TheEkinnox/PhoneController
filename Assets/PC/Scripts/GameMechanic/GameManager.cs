@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Vector3 gravityDirection = Vector3.down;
+    public Vector3 GravityDirection { get; private set; } = Vector3.down;
     public float gravityStrength = 20f;
-    
+
     public bool powerAlreadyTriggered = false;
     public float currentChargeTime;
     public float chargeTime;
@@ -15,13 +13,17 @@ public class GameManager : Singleton<GameManager>
 
     public void TriggerPower()
     {
-        if (powerAlreadyTriggered) return;
+        if (powerAlreadyTriggered)
+            return;
 
         powerAlreadyTriggered = true;
         PowerTrigger?.Invoke();
     }
 
+    public void Update()
+    {
+        GravityDirection = phoneRotation * Vector3.down;
+    }
+
     public event Action PowerTrigger;
-    
-    
 }

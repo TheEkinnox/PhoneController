@@ -1,15 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : ObjectGravity
 {
     [Header("Movement Settings")] public float moveSpeed = 6f;
 
     public float jumpForce = 8f;
-
-    [Header("Gravity Settings")] public Vector3 gravityAxis;
-
-    public float gravityStrength = 20f;
 
     [Header("Ground Check")] public float groundCheckDistance = 1.2f;
 
@@ -22,15 +17,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveInput;
 
-    private Rigidbody rb;
     private float xRotation;
     private float yRotation;
 
-    private void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.freezeRotation = true;
+        base.Start();
 
         cam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,13 +33,12 @@ public class PlayerMovement : MonoBehaviour
         HandleCamera();
         HandleMovementInput();
         HandleJumpInput();
-        gravityAxis = GameManager.Instance.phoneRotation * Vector3.down;
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         ApplyMovement();
-        ApplyCustomGravity();
+        base.FixedUpdate();
     }
 
     private void HandleCamera()
@@ -60,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
         cam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        Quaternion rotAdjust = Quaternion.FromToRotation(Vector3.down, gravityAxis);
+        Quaternion rotAdjust = Quaternion.FromToRotation(Vector3.down, GravityAxis);
         transform.rotation = rotAdjust * Quaternion.Euler(0, yRotation, 0);
     }
 
@@ -69,26 +60,22 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 camForward = Vector3.ProjectOnPlane(cam.forward, -gravityAxis).normalized;
-        Vector3 camRight = Vector3.ProjectOnPlane(cam.right, -gravityAxis).normalized;
+        Vector3 camForward = Vector3.ProjectOnPlane(cam.forward, -GravityAxis);
+        Vector3 camRight = Vector3.ProjectOnPlane(cam.right, -GravityAxis);
 
         moveInput = (camRight * x + camForward * z).normalized * moveSpeed;
     }
 
     private void ApplyMovement()
     {
-        Vector3 velocity = rb.linearVelocity;
-
-        Vector3 verticalVel = Vector3.Project(velocity, gravityAxis.normalized);
-
+        Vector3 verticalVel = Vector3.Project(rb.linearVelocity, GravityAxis); // TODO: Check if this behaves as it should (isolating the local Y)
         Vector3 newVel = moveInput + verticalVel;
         rb.linearVelocity = newVel;
     }
 
     private void HandleJumpInput()
     {
-        Vector3 rayDirection = roomParent.rotation * gravityAxis.normalized;
-        isGrounded = Physics.Raycast(transform.position, gravityAxis, groundCheckDistance);
+        isGrounded = Physics.Raycast(transform.position, GravityAxis, groundCheckDistance);
 
         if (isGrounded)
         {
@@ -96,40 +83,30 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Vector3 vel = rb.linearVelocity;
-
-                vel -= Vector3.Project(vel, gravityAxis.normalized);
-                rb.linearVelocity = vel;
-
-                rb.AddForce(-gravityAxis.normalized * jumpForce, ForceMode.VelocityChange);
+                rb.linearVelocity -= Vector3.Project(vel, GravityAxis);
+                rb.AddForce(-GravityAxis * jumpForce, ForceMode.VelocityChange);
             }
         }
         else
             transform.parent = null;
-        
     }
-    
+
     private void OnDrawGizmos()
     {
-        
-        Vector3 rayDirection = roomParent.rotation * gravityAxis.normalized;
+        Vector3 rayDirection = roomParent.rotation * GravityAxis;
         if (roomParent == null) return;
 
         Gizmos.color = Color.red;
 
         // 1. Normal gravity ray
         Vector3 origin = transform.position;
-        Gizmos.DrawLine(origin, origin + gravityAxis.normalized * groundCheckDistance);
-        Gizmos.DrawSphere(origin + gravityAxis.normalized * groundCheckDistance, 0.05f);
+        Gizmos.DrawLine(origin, origin + GravityAxis * groundCheckDistance);
+        Gizmos.DrawSphere(origin + GravityAxis * groundCheckDistance, 0.05f);
 
         // 2. Ray using rotated gravity direction
         Gizmos.color = Color.blue;
 
         Gizmos.DrawLine(origin, origin + rayDirection * groundCheckDistance);
         Gizmos.DrawSphere(origin + rayDirection * groundCheckDistance, 0.05f);
-    }
-
-    private void ApplyCustomGravity()
-    {
-        rb.AddForce(gravityAxis.normalized * gravityStrength, ForceMode.Acceleration);
     }
 }

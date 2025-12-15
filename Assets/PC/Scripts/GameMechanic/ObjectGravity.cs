@@ -1,34 +1,29 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ObjectGravity : MonoBehaviour
 {
-    [Header("Gravity Settings")] public Vector3 gravityAxis;
+    public float gravityScale = 1f;
+    protected Rigidbody rb;
 
-    public float gravityStrength = 20f;
-    public bool gravityActive = true;
-    
-    private Rigidbody rb;
+    protected static Vector3 GravityAxis => GameManager.Instance ? GameManager.Instance.GravityDirection : Vector3.down;
+    private float GravityStrength => GameManager.Instance ? GameManager.Instance.gravityStrength * gravityScale : gravityScale;
 
-    private void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.freezeRotation = true;
     }
 
-    private void Update()
-    {
-        gravityAxis = GameManager.Instance.phoneRotation * Vector3.down;
-    }
-
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         ApplyCustomGravity();
     }
 
     private void ApplyCustomGravity()
     {
-        if (gravityActive)
-            rb.AddForce(gravityAxis.normalized * gravityStrength, ForceMode.Acceleration);
+        if (!Mathf.Approximately(GravityStrength, 0f))
+            rb.AddForce(GravityAxis * GravityStrength, ForceMode.Acceleration);
     }
 }

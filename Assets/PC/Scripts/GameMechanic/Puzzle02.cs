@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,17 +21,17 @@ public class Puzzle02 : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject == targetObject && !_puzzleFinished)
-        {
-            foreach (GameObject book in books)
-            {
-                book.GetComponent<ObjectGravity>().gravityActive = true;
-                Rigidbody rb = book.GetComponent<Rigidbody>();
-                rb.isKinematic = false;
-            }
+        if (other.gameObject != targetObject || _puzzleFinished)
+            return;
 
-            _puzzleFinished = true;
+        foreach (GameObject book in books)
+        {
+            book.GetComponent<ObjectGravity>().gravityScale = 1f;
+            Rigidbody rb = book.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
         }
+
+        _puzzleFinished = true;
     }
 
     private void Update()
