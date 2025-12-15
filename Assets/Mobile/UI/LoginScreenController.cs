@@ -1,4 +1,5 @@
-﻿using Shared.Utility;
+﻿using System;
+using Shared.Utility;
 using Shared.WebSocket;
 using SocketClient;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class LoginScreenController : MonoBehaviour
         Connecting,
         Connected
     }
+
     private CameraQRScanner _qrScannerController;
     private VisualElement _root;
 
@@ -21,6 +23,8 @@ public class LoginScreenController : MonoBehaviour
 
     private WebSocketClient _client;
     private Estate _state;
+    private DateTime _nextHeartBeat;
+    private const int HeartBeatMs = WebSocketUtils.DefaultTimeout - WebSocketUtils.HandshakeTimeout;
 
     [SerializeField] private WebSocketEventDispatchMode dispatchMode;
 
@@ -43,7 +47,7 @@ public class LoginScreenController : MonoBehaviour
         _statusLabel = _root.Q<Label>("lbl-status");
         _qrScannerController = FindFirstObjectByType<CameraQRScanner>();
         _qrScannerController.OnQrAction += QrRead;
-        
+
 
 #if UNITY_EDITOR
         _addressField.value = "localhost";
@@ -57,6 +61,12 @@ public class LoginScreenController : MonoBehaviour
 
     private void Update()
     {
+        if (_state == Estate.Connected && DateTime.UtcNow >= _nextHeartBeat)
+        {
+            _client.Ping();
+            _nextHeartBeat = DateTime.UtcNow + TimeSpan.FromMilliseconds(HeartBeatMs);
+        }
+
         if (dispatchMode == WebSocketEventDispatchMode.Update)
             _client.DispatchEvents();
     }
@@ -82,7 +92,6 @@ public class LoginScreenController : MonoBehaviour
         Disconnect();
         _connectButton.clicked -= Connect;
         _qrScannerController.OnQrAction -= QrRead;
-
     }
 
     private void Connect()
@@ -116,7 +125,7 @@ public class LoginScreenController : MonoBehaviour
         _state = Estate.Connected;
         TrueDebug.Log("Connected to server");
         _client.Send("Plop!");
-        
+        _nextHeartBeat = DateTime.UtcNow + TimeSpan.FromMilliseconds(HeartBeatMs);
     }
 
     private void OnDisconnect()

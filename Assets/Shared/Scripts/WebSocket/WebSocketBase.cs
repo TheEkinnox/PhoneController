@@ -215,6 +215,11 @@ namespace Shared.WebSocket
             _messageQueue.Enqueue(new WebSocketMessage(isText ? WebSocketOpCode.Text : WebSocketOpCode.Binary, data));
         }
 
+        public void Ping()
+        {
+            _messageQueue.Enqueue(new WebSocketMessage(WebSocketOpCode.Ping, Array.Empty<byte>()));
+        }
+
         protected static void Close(TcpConnection connection)
         {
             if (connection?.Stream?.CanWrite is true)
@@ -238,14 +243,14 @@ namespace Shared.WebSocket
             if (count == 0)
                 return true;
 
-            DateTime endTime = timeout > 0 ? DateTime.Now + TimeSpan.FromMilliseconds(timeout) : DateTime.MaxValue;
-            DateTime currentTime = DateTime.Now;
+            DateTime endTime = timeout > 0 ? DateTime.UtcNow + TimeSpan.FromMilliseconds(timeout) : DateTime.MaxValue;
+            DateTime currentTime = DateTime.UtcNow;
 
             while (currentTime < endTime && connection?.Client?.Connected is true &&
                    !(connection.Stream?.DataAvailable is true && connection.Client.Available >= count))
             {
                 Thread.Sleep(0);
-                currentTime = DateTime.Now;
+                currentTime = DateTime.UtcNow;
             }
 
             if (currentTime >= endTime)
