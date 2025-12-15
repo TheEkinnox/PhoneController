@@ -14,6 +14,7 @@ public class Puzzle01 : MonoBehaviour
         float distance = direction.magnitude;
         Vector3 dirNormalized = direction.normalized;
         bool isCharging = false;
+        GameManager gm = GameManager.Instance;
 
         if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance))
         {
@@ -21,20 +22,19 @@ public class Puzzle01 : MonoBehaviour
                 isCharging = true;
         }
 
-        if (!GameManager.Instance.powerAlreadyTriggered)
+        if (!gm.powerAlreadyTriggered)
         {
             if (isCharging)
-                GameManager.Instance.currentChargeTime += Time.deltaTime;
+                gm.currentChargeTime += Time.deltaTime;
             else
-                GameManager.Instance.currentChargeTime -= Time.deltaTime;
+                gm.currentChargeTime -= Time.deltaTime;
 
-            GameManager.Instance.currentChargeTime = Mathf.Clamp(GameManager.Instance.currentChargeTime, 0f, GameManager.Instance.chargeTime
-            );
+            gm.currentChargeTime = Mathf.Clamp(gm.currentChargeTime, 0f, gm.chargeTime);
 
-            if (GameManager.Instance.currentChargeTime >= GameManager.Instance.chargeTime)
+            if (gm.currentChargeTime >= gm.chargeTime)
             {
-                GameManager.Instance.currentChargeTime = GameManager.Instance.chargeTime;
-                GameManager.Instance.TriggerPower();
+                gm.currentChargeTime = gm.chargeTime;
+                gm.TriggerPower();
             }
         }
             
