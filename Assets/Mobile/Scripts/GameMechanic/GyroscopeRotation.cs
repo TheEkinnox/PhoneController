@@ -6,7 +6,7 @@ public class GyroscopeRotation : MonoBehaviour
     private Gyroscope _gyroscope;
     private bool _isGyroSupported;
     private Quaternion _lastRotation;
-    private Quaternion _gyroInitialRotation;
+    private Quaternion _gyroInitialRotation = Quaternion.identity;
     private bool _canSend;
 
 #if UNITY_EDITOR
