@@ -7,6 +7,7 @@ public class Puzzle01 : MonoBehaviour
     
     [SerializeField] private Transform objectA;
     [SerializeField] private Transform objectB;
+    [SerializeField] private LayerMask raycastMask;
     
     void Update()
     {
@@ -18,6 +19,7 @@ public class Puzzle01 : MonoBehaviour
 
         if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance))
         {
+            Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("SolarPanel"))
                 isCharging = true;
         }
