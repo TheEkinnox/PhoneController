@@ -61,9 +61,6 @@ public class GyroscopeRotation : MonoBehaviour
             return; // Skip first frame as gyro is not properly initialized yet
         }
 
-        if (!IsValidRotation(_gyroInitialRotation))
-            Recalibrate();
-
         GyroData data = new(AdjustGyro(_gyroscope.attitude));
 
         //Debug.Log($"{data.value} text {_lastRotation}");
