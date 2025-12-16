@@ -167,9 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::ObjectGravity
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 1
+  gravityScale: 1
 --- !u!54 &15499710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -399,9 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &25970676
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -554,9 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &29832705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -709,9 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &35282303
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -864,9 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &35796157
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1019,9 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &46018874
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1174,9 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &109737410
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1329,9 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &112925427
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1484,9 +1468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &114223474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1639,9 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &141065286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1794,9 +1774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &143436986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1949,9 +1927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &145114808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2104,9 +2080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &174154178
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2259,9 +2233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &196428423
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2414,9 +2386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &212659068
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2476,6 +2446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Platform.PC::Puzzle01
   objectA: {fileID: 315551714}
   objectB: {fileID: 434567469}
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &215260923
 Transform:
   m_ObjectHideFlags: 0
@@ -2782,9 +2755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &247747371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2937,9 +2908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &281181220
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3092,9 +3061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &288336705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3247,9 +3214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &307382735
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3433,9 +3398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &327357909
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3588,9 +3551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &329741807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3880,9 +3841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &380760304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4035,9 +3994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &396823293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4348,9 +4305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &451755629
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4503,9 +4458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &465395665
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4795,9 +4748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &526497521
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4950,9 +4901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &526927617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5105,9 +5054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &570054224
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5260,9 +5207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &608621315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5418,10 +5363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69e46744097b384d8be29361534ade9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::PlayerMovement
+  gravityScale: 1
   moveSpeed: 6
   jumpForce: 8
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
   groundCheckDistance: 1.1
   mouseSensitivity: 450
   roomParent: {fileID: 1509002398}
@@ -5577,9 +5521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &665488815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5732,9 +5674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &667301639
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6145,9 +6085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &694140597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6300,9 +6238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &709081278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6455,9 +6391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &716618381
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6610,9 +6544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &722237580
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6828,9 +6760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &752443558
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6983,9 +6913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &758345565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7138,9 +7066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &768115461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7293,9 +7219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &772802357
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7448,9 +7372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &800489689
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7478,6 +7400,117 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &807790685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807790689}
+  - component: {fileID: 807790688}
+  - component: {fileID: 807790687}
+  - component: {fileID: 807790686}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &807790686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807790685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &807790687
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807790685}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &807790688
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807790685}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &807790689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807790685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &808436161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7603,9 +7636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &808436168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7758,9 +7789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &818960948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8099,9 +8128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &865930542
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8254,9 +8281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &890314169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8409,9 +8434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &891702673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8564,9 +8587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &901383979
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8719,9 +8740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &901455887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9071,9 +9090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &935639188
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9243,9 +9260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &939371031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9535,9 +9550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &965581114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9690,9 +9703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &976301114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9845,9 +9856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &977246450
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10000,9 +10009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &987594363
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10266,9 +10273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1028303953
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10421,9 +10426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1029398695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10576,9 +10579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1032595083
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10842,9 +10843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1056625033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10997,9 +10996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1107519824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11057,7 +11054,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d58fabbc661b4147be6583642548004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::GameManager
-  gravityDirection: {x: 0, y: -1, z: 0}
   gravityStrength: 20
   powerAlreadyTriggered: 0
   currentChargeTime: 0
@@ -11215,9 +11211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1128090726
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11370,9 +11364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1136134862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11525,9 +11517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1162466275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11680,9 +11670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1188196318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11835,9 +11823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1195560219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11990,9 +11976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1196296369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12145,9 +12129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1202876414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12300,9 +12282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1216459925
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12455,9 +12435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1218337670
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12969,9 +12947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1278615583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13124,9 +13100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1309183513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13528,9 +13502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1357017124
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13683,9 +13655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1363240912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13838,9 +13808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1364109959
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13993,9 +13961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1370370289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14148,9 +14114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1372467609
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14303,9 +14267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1380787863
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14569,9 +14531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1461027530
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14835,9 +14795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1462709661
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15212,9 +15170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1502476686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15367,9 +15323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1507574592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15720,9 +15674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1523598506
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15875,9 +15827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1537221938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16030,9 +15980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1544390156
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16226,9 +16174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1550972914
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16381,9 +16327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1556335982
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16536,9 +16480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1596852862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16691,9 +16633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1617140655
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16846,9 +16786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1623725007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17001,9 +16939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1626845639
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17156,9 +17092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1641561941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17311,9 +17245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1642019399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17466,9 +17398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1647747429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17811,9 +17741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1675293066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17966,9 +17894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1685486765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18121,9 +18047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1698557652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18276,9 +18200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1699868680
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18431,9 +18353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1720872913
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18586,9 +18506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1721625166
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18741,9 +18659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1733007486
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18896,9 +18812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1752615298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19051,9 +18965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1755408796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19206,9 +19118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1778631670
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19613,9 +19523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1789091035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19768,9 +19676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1805195752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19923,9 +19829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1811942269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20163,9 +20067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1858364182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20318,9 +20220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1859142649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20473,9 +20373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1872943836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20628,9 +20526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1884215408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20783,9 +20679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1902375361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20938,9 +20832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1907988194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21093,9 +20985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1916030031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21248,9 +21138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1932843684
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21403,9 +21291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1962203141
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21558,9 +21444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1972310117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21713,9 +21597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1984838805
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21868,9 +21750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &1999460985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22023,9 +21903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2022775975
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22178,9 +22056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2037658997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22333,9 +22209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2046101943
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22488,9 +22362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2047279372
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22643,9 +22515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2062545958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22798,9 +22668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2070071118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22953,9 +22821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2079376241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23108,9 +22974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2113069923
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23263,9 +23127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2115388079
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23418,9 +23280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fab9f97892ebd42b02e791f8a941b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Book
-  gravityAxis: {x: 0, y: 0, z: 0}
-  gravityStrength: 20
-  gravityActive: 0
+  gravityScale: 1
 --- !u!54 &2120964361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23465,3 +23325,4 @@ SceneRoots:
   - {fileID: 1343324264}
   - {fileID: 906296743}
   - {fileID: 678660095}
+  - {fileID: 807790689}
