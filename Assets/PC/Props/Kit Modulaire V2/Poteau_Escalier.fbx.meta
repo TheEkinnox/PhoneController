@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/PC/Props/Center_Axes.fbx.meta
-guid: d3b709ef4f14ebc4f86f29c7c828df8c
-========
-guid: e74718308da789d489dce1caa03c4f84
->>>>>>>> Alice:Assets/PC/Props/Bonbonne.fbx.meta
+guid: 4fd088f41dca8e24481519141f5f169d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
