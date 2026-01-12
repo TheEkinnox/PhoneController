@@ -30,6 +30,7 @@ public class Puzzle02 : MonoBehaviour
             book.GetComponent<ObjectGravity>().gravityScale = 1f;
             Rigidbody rb = book.GetComponent<Rigidbody>();
             rb.isKinematic = false;
+            rb.freezeRotation = false;
         }
         
         
