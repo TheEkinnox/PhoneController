@@ -19,7 +19,6 @@ public class Puzzle01 : MonoBehaviour
 
         if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance))
         {
-            Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("SolarPanel"))
                 isCharging = true;
         }

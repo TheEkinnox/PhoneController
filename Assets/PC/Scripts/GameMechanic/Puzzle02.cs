@@ -6,6 +6,7 @@ public class Puzzle02 : MonoBehaviour
     [SerializeField] private GameObject targetObject;
     private bool _puzzleFinished = false;
     private Camera _cam;
+    [SerializeField]  private GameObject puzzle3;
 
     public List<GameObject> books = new List<GameObject>();
 
@@ -30,7 +31,9 @@ public class Puzzle02 : MonoBehaviour
             Rigidbody rb = book.GetComponent<Rigidbody>();
             rb.isKinematic = false;
         }
-
+        
+        
+        puzzle3.SetActive(true);
         _puzzleFinished = true;
     }
 

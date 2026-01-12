@@ -15184,6 +15184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Puzzle02
   targetObject: {fileID: 933416202}
+  puzzle3: {fileID: 1710182670}
   books:
   - {fileID: 1836246622}
   - {fileID: 737290541}
@@ -24588,6 +24589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Platform.PC::Puzzle02
   targetObject: {fileID: 0}
+  puzzle3: {fileID: 0}
   books: []
 --- !u!1001 &1133058608
 PrefabInstance:
