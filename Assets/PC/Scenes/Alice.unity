@@ -45335,7 +45335,7 @@ Transform:
   m_GameObject: {fileID: 919132149264735469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5500003, y: -0.19999978, z: 0.049999952}
+  m_LocalPosition: {x: -1.6000001, y: -0.20000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45824,6 +45824,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1916688885}
     m_Modifications:
+    - target: {fileID: 2835382343307053666, guid: 23698e417e1bb464c9ea7adb08fede83, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fc5761f1ea24ed47820701cc55860a9, type: 2}
     - target: {fileID: 5674542924571512343, guid: 23698e417e1bb464c9ea7adb08fede83, type: 3}
       propertyPath: m_Name
       value: Bonbonne
@@ -45927,7 +45931,7 @@ Transform:
   m_GameObject: {fileID: 3794108208580605470}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50000006, y: -0.49999994, z: -0.50000006, w: 0.49999994}
-  m_LocalPosition: {x: -2, y: -0.20000005, z: 0.29999995}
+  m_LocalPosition: {x: -2.0000002, y: -0.20000005, z: 0.29999995}
   m_LocalScale: {x: 1.477254, y: 1.2854507, z: 2.0731997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45940,7 +45944,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3794108208580605470}
-  m_Mesh: {fileID: -6173385259654341162, guid: d6bd01b3612dba544aa7174491fe604a, type: 3}
+  m_Mesh: {fileID: -6173385259654341162, guid: 3f263dda70275eb439d81f5ef1550067, type: 3}
 --- !u!33 &6837041447458730057
 MeshFilter:
   m_ObjectHideFlags: 0
