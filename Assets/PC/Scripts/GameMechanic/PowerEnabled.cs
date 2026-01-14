@@ -10,7 +10,9 @@ public class PowerEnabled : MonoBehaviour
     
     private void Awake()
     {
-        _material = GetComponent<Renderer>().material;
+        if (_material != null)
+            _material = GetComponent<Renderer>().material;
+        
         _objectSpin = GetComponent<ObjectSpin>();
     }
     private void OnEnable()
@@ -27,7 +29,9 @@ public class PowerEnabled : MonoBehaviour
     private void Update()
     {
         float emissiveValue = Mathf.InverseLerp(0f, GameManager.Instance.chargeTime, GameManager.Instance.currentChargeTime);
-        _material.SetFloat("_EmissiveOn", emissiveValue);
+        
+        if (_material != null)
+            _material.SetFloat("_EmissiveOn", emissiveValue);
     }
 
     private void LightTurnOn()
