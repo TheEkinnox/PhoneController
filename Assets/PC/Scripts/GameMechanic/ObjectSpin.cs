@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PowerEnabled))]
 public class ObjectSpin : MonoBehaviour
 {
     [System.Serializable]
