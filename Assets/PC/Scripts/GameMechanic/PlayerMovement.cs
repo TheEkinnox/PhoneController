@@ -25,14 +25,16 @@ public class PlayerMovement : ObjectGravity
         base.Start();
 
         cam = Camera.main.transform;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        HandleCamera();
-        HandleMovementInput();
-        HandleJumpInput();
+        if (GameManager.Instance.gameStarted)
+        {
+            HandleCamera();
+            HandleMovementInput();
+            HandleJumpInput();
+        }
     }
 
     protected override void FixedUpdate()
@@ -91,22 +93,20 @@ public class PlayerMovement : ObjectGravity
             transform.parent = null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Vector3 rayDirection = roomParent.rotation * GravityAxis;
-        if (roomParent == null) return;
-
-        Gizmos.color = Color.red;
-
-        // 1. Normal gravity ray
-        Vector3 origin = transform.position;
-        Gizmos.DrawLine(origin, origin + GravityAxis * groundCheckDistance);
-        Gizmos.DrawSphere(origin + GravityAxis * groundCheckDistance, 0.05f);
-
-        // 2. Ray using rotated gravity direction
-        Gizmos.color = Color.blue;
-
-        Gizmos.DrawLine(origin, origin + rayDirection * groundCheckDistance);
-        Gizmos.DrawSphere(origin + rayDirection * groundCheckDistance, 0.05f);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Vector3 rayDirection = roomParent.rotation * GravityAxis;
+    //     if (roomParent == null) return;
+    //
+    //     Gizmos.color = Color.red;
+    //
+    //     Vector3 origin = transform.position;
+    //     Gizmos.DrawLine(origin, origin + GravityAxis * groundCheckDistance);
+    //     Gizmos.DrawSphere(origin + GravityAxis * groundCheckDistance, 0.05f);
+    //
+    //     Gizmos.color = Color.blue;
+    //
+    //     Gizmos.DrawLine(origin, origin + rayDirection * groundCheckDistance);
+    //     Gizmos.DrawSphere(origin + rayDirection * groundCheckDistance, 0.05f);
+    // }
 }

@@ -21,6 +21,14 @@ public class Timer : MonoBehaviour
     Vector3 currentSlot;
     Vector3 middleSlot;
     Vector3 bottomSlot;
+    
+    private void OnEnable() => GameManager.Instance.GameStarted += StartTimer;
+    
+
+    private void OnDisable() => GameManager.Instance.GameStarted -= StartTimer;
+    
+    
+    private void StartTimer() => time = 0f;
 
     void Start()
     {
@@ -39,6 +47,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        
         time += Time.deltaTime;
 
         int totalSeconds = Mathf.FloorToInt(time);
@@ -57,26 +66,21 @@ public class Timer : MonoBehaviour
 
     void Rotate(int minutes, int seconds)
     {
-        // Top → Current → Bottom → Top
         TextMeshPro temp = topText;
         topText = currentText;
         currentText = bottomText;
         bottomText = temp;
 
-        // Current shows THIS second
         currentText.text = $"{minutes:00}:{seconds:00}";
 
-        // Top = current + 1
         int nextSeconds = (seconds + 1) % 60;
 
-        // Bottom = current - 1 (wrap-safe)
         int prevSeconds = (seconds - 1 + 60) % 60;
 
         bottomText.text = $"{minutes:00}:{nextSeconds:00}";
         topText.text = $"{minutes:00}:{prevSeconds:00}";
         
 
-        // Visual emphasis
         currentText.alpha = 1f;
         topText.alpha = 0.4f;
         bottomText.alpha = 0.4f;
