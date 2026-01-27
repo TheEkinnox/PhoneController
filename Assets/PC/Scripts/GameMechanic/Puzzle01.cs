@@ -7,7 +7,9 @@ public class Puzzle01 : MonoBehaviour
     
     [SerializeField] private Transform objectA;
     [SerializeField] private Transform objectB;
+    [SerializeField] private Animator window;
     [SerializeField] private LayerMask raycastMask;
+    
     
     void Update()
     {
@@ -36,6 +38,7 @@ public class Puzzle01 : MonoBehaviour
             {
                 gm.currentChargeTime = gm.chargeTime;
                 gm.TriggerPower();
+                CloseWindow();
             }
         }
             
@@ -44,5 +47,10 @@ public class Puzzle01 : MonoBehaviour
 #if UNITY_EDITOR
         Debug.DrawLine(objectA.position, objectB.position, Color.red);
 #endif
+    }
+
+    private void CloseWindow()
+    {
+        window.enabled = true;
     }
 }
