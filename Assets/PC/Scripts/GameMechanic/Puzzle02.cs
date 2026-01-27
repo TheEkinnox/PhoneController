@@ -4,6 +4,7 @@ using UnityEngine;
 public class Puzzle02 : MonoBehaviour
 {
     [SerializeField] private GameObject targetObject;
+    [SerializeField] private GameObject targetLight;
     private bool _puzzleFinished = false;
     private Camera _cam;
     [SerializeField]  private GameObject puzzle3;
@@ -12,6 +13,7 @@ public class Puzzle02 : MonoBehaviour
 
     private void Start()
     {
+        
         _cam = Camera.main;
         foreach (GameObject obj in books)
         {
@@ -51,6 +53,10 @@ public class Puzzle02 : MonoBehaviour
             {
                 if (hit.collider.gameObject == targetObject)
                 {
+                    
+                    Material mat = targetLight.GetComponent<Renderer>().material;
+                    mat.SetColor("_EmissionColor", new Color32(255, 0, 0, 255));
+                    Debug.Log("canape");
                     Rigidbody rb = hit.collider.gameObject.GetComponent<Rigidbody>();
                     rb.isKinematic = false;
                     Debug.Log(hit.collider.gameObject.name);
