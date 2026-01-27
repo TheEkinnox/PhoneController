@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager>
             GravityDirection = Physics.gravity;
         else
             GravityDirection = phoneRotation * Vector3.down;
+        
+        //Debug.Log(phoneRotation);
     }
 
     public void StartGame()

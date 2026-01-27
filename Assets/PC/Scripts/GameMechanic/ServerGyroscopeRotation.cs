@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ServerGyroscopeRotation : NetworkedBehaviour
 {
     //NEEDED: convert with the data you want
     private Transform _target;
+    private Quaternion _test;
 
     private void Awake()
     {
