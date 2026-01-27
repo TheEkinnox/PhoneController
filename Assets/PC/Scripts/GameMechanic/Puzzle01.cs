@@ -17,7 +17,7 @@ public class Puzzle01 : MonoBehaviour
         bool isCharging = false;
         GameManager gm = GameManager.Instance;
 
-        if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance))
+        if (Physics.Raycast(objectA.position, dirNormalized, out RaycastHit hit, distance,  ~raycastMask))
         {
             if (hit.collider.CompareTag("SolarPanel"))
                 isCharging = true;

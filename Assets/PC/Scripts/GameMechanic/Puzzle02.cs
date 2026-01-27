@@ -24,9 +24,12 @@ public class Puzzle02 : MonoBehaviour
     {
         if (other.gameObject != targetObject || _puzzleFinished)
             return;
+        
+        Debug.Log(other.gameObject.name);
 
         foreach (GameObject book in books)
         {
+            Debug.Log(book.name);
             book.GetComponent<ObjectGravity>().gravityScale = 1f;
             Rigidbody rb = book.GetComponent<Rigidbody>();
             rb.isKinematic = false;
