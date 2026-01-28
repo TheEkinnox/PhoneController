@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Puzzle03 : MonoBehaviour
 {
@@ -9,25 +11,30 @@ public class Puzzle03 : MonoBehaviour
     [SerializeField] private Transform hand;
     private bool _emptyHand = true;
     [SerializeField] private GameObject door;
-    private int _doorCount = 0;
+    [SerializeField]private int _doorCount = 0;
     private GameObject _hitObj;
     [SerializeField] private Animator doorOpen;
     private bool _launchFinal = false;
+    [SerializeField] private Transform finalCamLocation;
+    [SerializeField] private Animator ending;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject pointer;
+    [SerializeField] private GameObject credit;
+    [SerializeField] private GameObject qrCode;
+    [SerializeField] private GameObject player;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _cam = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hit, 1000f))
+            if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hit, 2f))
             {
                 GameObject hitObj = hit.collider.gameObject;
 
@@ -79,10 +86,50 @@ public class Puzzle03 : MonoBehaviour
         }
 
         if (_doorCount == 3 && !_launchFinal)
+            StartCoroutine(FinalLerp(finalCamLocation));
+        
+    }
+
+    private IEnumerator FinalLerp(Transform target, float duration = 2f)
+    {
+        if (playerMovement)
+            playerMovement.enabled = false;
+        
+        player.SetActive(false);
+        
+        if(qrCode)
+            qrCode.SetActive(false);
+        
+        pointer.SetActive(false);
+        _cam.transform.SetParent(null);
+        
+        Vector3 startPos = _cam.transform.position;
+        Quaternion startRot = _cam.transform.rotation;
+        
+        float elapsed = 0f;
+
+        while (elapsed < duration)
         {
-            doorOpen.enabled = true;
-            _launchFinal = true;
+            float t = elapsed / duration;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            _cam.transform.position = Vector3.Lerp(startPos, target.position, t);
+            _cam.transform.rotation = Quaternion.Slerp(startRot, target.rotation, t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
         }
+
+        _cam.transform.position = target.position;
+        _cam.transform.rotation = target.rotation;
+        
+        doorOpen.enabled = true;
+        yield return new WaitForSeconds(2f);
+        ending.enabled = true;
+        yield return new WaitForSeconds(1f);
+        credit.SetActive(true);
+        
+        _launchFinal = true;
     }
 }
 
