@@ -116,8 +116,8 @@ namespace SocketServer
                         Name = $"[{nameof(WebSocketServer)}] Send Thread"
                     };
                     sendThread.Start();
-
                     ReceiveEvents(_connection);
+                    
                 }
             }
             catch (ThreadInterruptedException)

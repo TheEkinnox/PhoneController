@@ -34,7 +34,7 @@ public class Puzzle03 : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hit, 2f))
+            if (Physics.Raycast(_cam.transform.position, _cam.transform.forward, out hit, 1.75f))
             {
                 GameObject hitObj = hit.collider.gameObject;
 

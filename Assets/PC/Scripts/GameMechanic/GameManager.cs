@@ -1,4 +1,5 @@
 using System;
+using SocketServer;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,11 @@ public class GameManager : Singleton<GameManager>
     public Quaternion phoneRotation;
     public bool gameStarted = false;
     [SerializeField] private GameObject menu;
+
+    private void Start()
+    {
+        SocketServerComponent.Instance.OnOpen.AddListener(StartGame);
+    }
 
     public void TriggerPower()
     {

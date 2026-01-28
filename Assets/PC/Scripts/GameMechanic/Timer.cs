@@ -79,11 +79,14 @@ public class Timer : MonoBehaviour
 
         bottomText.text = $"{minutes:00}:{nextSeconds:00}";
         topText.text = $"{minutes:00}:{prevSeconds:00}";
-        
 
-        currentText.alpha = 1f;
-        topText.alpha = 0.4f;
-        bottomText.alpha = 0.4f;
+
+        if (GameManager.Instance.powerAlreadyTriggered)
+        {
+            currentText.alpha = 1f;
+            topText.alpha = 0.2f;
+            bottomText.alpha = 0.2f;
+        }
     }
 
     void AnimateToSlots()
