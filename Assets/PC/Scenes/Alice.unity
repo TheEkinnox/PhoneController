@@ -13330,9 +13330,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\t\t   Gyroscape\n3D Modeling:\t\t          Programming:\nAlice K.\t\t\tMartin
-    B.\nVictoria C\n                                         VFX:\nTextures:\t\t\tVictoria
-    C.\nAlice K.\n                                         Shaders:\nLighting Artist:\t\tMartin
+  m_text: "\t\t   Gyroscape\n3D Modeling:\t\tProgramming:\nAlice K.\t\t\tMartin B.\nVictoria
+    C\n                                         VFX:\nTextures:\t\t\tVictoria C.\nAlice
+    K.\n                                         Shaders:\nLighting Artist:\t\tMartin
     B.\nMartin B.\n\t\t\t\tOptimization:\nPuzzle Design:\t\tMartin B.\nMartin B.\nAlice
     K.\t\t\tLevel Design:\nVictoria C.\t\t\tAlice K.\n\n\t\tSpecial Thanks\n\nKarim
     Aktouf: \tLancelot Peaucelle:\nCreativity\t\tLighting\n\n\tLo\xEFck Obiang Ndong:\n\tNetworking
@@ -32889,7 +32889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1116726783
 MonoBehaviour:
   m_ObjectHideFlags: 0
