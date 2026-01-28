@@ -82,7 +82,7 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 0.25
     m_Colors:
-    - _EmissionColor: {r: 30.209375, g: 30.209375, b: 30.209375, a: 1}
+    - _EmissionColor: {r: 0, g: 5.229654, b: 4.62323, a: 1}
     - _Emissive_Color: {r: 0, g: 24.209465, b: 25.688936, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

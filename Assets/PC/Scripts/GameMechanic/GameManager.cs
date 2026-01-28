@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
         else
             GravityDirection = phoneRotation * Vector3.down;
         
-        //Debug.Log(phoneRotation);
     }
 
     public void StartGame()

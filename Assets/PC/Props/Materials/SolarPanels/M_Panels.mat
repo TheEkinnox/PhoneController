@@ -120,8 +120,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EmissiveMultiplier: 0.5
-    - _EmissiveOn: 0
+    - _EmissiveMultiplier: 2
+    - _EmissiveOn: 0.1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -144,7 +144,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 28.51895, g: 28.51895, b: 28.51895, a: 1}
+    - _EmissionColor: {r: 0, g: 38.075047, b: 29.032207, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

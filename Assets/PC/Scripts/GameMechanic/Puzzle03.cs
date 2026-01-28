@@ -11,6 +11,8 @@ public class Puzzle03 : MonoBehaviour
     [SerializeField] private GameObject door;
     private int _doorCount = 0;
     private GameObject _hitObj;
+    [SerializeField] private Animator doorOpen;
+    private bool _launchFinal = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -76,9 +78,10 @@ public class Puzzle03 : MonoBehaviour
             _hitObj.transform.rotation = hand.rotation;
         }
 
-        if (_doorCount == 3)
+        if (_doorCount == 3 && !_launchFinal)
         {
-            Debug.Log("finished");
+            doorOpen.enabled = true;
+            _launchFinal = true;
         }
     }
 }

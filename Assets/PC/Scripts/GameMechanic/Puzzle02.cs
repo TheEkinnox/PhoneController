@@ -5,6 +5,7 @@ public class Puzzle02 : MonoBehaviour
 {
     [SerializeField] private GameObject targetObject;
     [SerializeField] private GameObject targetLight;
+    [SerializeField] private GameObject targetLightButton;
     private bool _puzzleFinished = false;
     private Camera _cam;
     [SerializeField]  private GameObject puzzle3;
@@ -27,7 +28,8 @@ public class Puzzle02 : MonoBehaviour
         if (other.gameObject != targetObject || _puzzleFinished)
             return;
         
-        Debug.Log(other.gameObject.name);
+        Material mat = targetLightButton.GetComponent<Renderer>().material;
+        mat.SetColor("_EmissionColor", new Color32(255, 0, 0, 255));
 
         foreach (GameObject book in books)
         {
@@ -59,6 +61,7 @@ public class Puzzle02 : MonoBehaviour
                     Debug.Log("canape");
                     Rigidbody rb = hit.collider.gameObject.GetComponent<Rigidbody>();
                     rb.isKinematic = false;
+                    rb.freezeRotation = false;
                     Debug.Log(hit.collider.gameObject.name);
                 }
             }

@@ -9,6 +9,7 @@ public class Puzzle01 : MonoBehaviour
     [SerializeField] private Transform objectB;
     [SerializeField] private Animator window;
     [SerializeField] private LayerMask raycastMask;
+    [SerializeField] private GameObject sphereHolo;
     
     
     void Update()
@@ -37,8 +38,9 @@ public class Puzzle01 : MonoBehaviour
             if (gm.currentChargeTime >= gm.chargeTime)
             {
                 gm.currentChargeTime = gm.chargeTime;
-                gm.TriggerPower();
+                sphereHolo.SetActive(true);
                 CloseWindow();
+                gm.TriggerPower();
             }
         }
             
