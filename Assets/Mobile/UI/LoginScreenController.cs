@@ -46,6 +46,7 @@ public class LoginScreenController : MonoBehaviour
         _addressField = _root.Q<TextField>("txt-address");
         _statusLabel = _root.Q<Label>("lbl-status");
         _qrScannerController = FindFirstObjectByType<CameraQRScanner>();
+        Debug.Log(_qrScannerController);
         _qrScannerController.OnQrAction += QrRead;
 
 
@@ -96,6 +97,7 @@ public class LoginScreenController : MonoBehaviour
 
     private void Connect()
     {
+        _qrScannerController.canScan = false;
         string[] tokens = _addressField.text.Split(':');
         TrueDebug.Assert(tokens.Length is 1 or 2);
 
@@ -105,7 +107,6 @@ public class LoginScreenController : MonoBehaviour
         _connectButton.enabledSelf = false;
         _statusLabel.text = string.Empty;
         _state = Estate.Connecting;
-        _qrScannerController.canScan = false;
     }
 
     private void Disconnect()
